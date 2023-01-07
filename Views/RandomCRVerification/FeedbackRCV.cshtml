@@ -1,0 +1,227 @@
+﻿@model QA.Entities.View_Entities.Vw_RCV
+@{
+    ViewBag.Title = Localization.RCV.FeedBack_Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.RCV.AssignedRCVRetrievedSuccess',
+                        @*text: '@Session["EndMessage"].ToString()',*@
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+    else
+    {
+        <script>
+            jQuery(function () {
+                new PNotify({
+                    title: 'CR Accepted And moved to the next step',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                });
+            });
+        </script>
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.RCV.FeedBack_ScreenHeader</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCV.projectID, Localization.RCV.FeedBack_Project
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCV.projectName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCV.CRID, Localization.RCV.FeedBack_CRID
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCV.CRID, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCV.CRRegistrationDate, Localization.RCV.FeedBack_CRRegistrationDate
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCV.strCRRegistrationDate, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCV.RCVAssignDate, Localization.RCV.FeedBack_RCVAssignDate
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCV.strRCVAssignDate, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("FeedbackRCV", "RandomCRVerification", FormMethod.Post
+                            , new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.RCV.RCVID)
+
+                            <div class="form-group form-group-upload">
+                                <div class="row">
+                                    <div class="control-label col-md-3 col-sm-3 col-12">@Localization.RCV.Feedback_AddAttached</div>
+                                    <div class="col-md-6 col-sm-5 col-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fa fa-cloud-upload"></i> @Localization.Global.Attachment_Upload </span>
+                                            </div>
+                                            <div class="custom-file col-md-5 col-sm-6 col-12">
+                                                <input type="file" multiple="multiple" name="RCV.attachFiles" id="RCV_attachFiles"
+                                                       class="custom-file-input col-md-5 col-12" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="RCV_attachFiles">@Localization.Global.Attachment_ChooseMultiFiles</label>
+                                                @Html.ValidationMessage("RCV.attachFiles", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.RCV.comments, Localization.RCV.FeedBack_Comments
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextAreaFor(model => model.RCV.comments, 2, 0, htmlAttributes: new { @class = "form-control col-md-7 col-12" })
+                                        @Html.ValidationMessageFor(model => model.RCV.comments, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            if (Model.RCV.lstAttachmentNames.Count > 0)
+                            {
+                                <div class="form-group">
+                                    <table class="table table-striped" id="tblAttachments" style="text-align: center;">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4">@Localization.RCV.Feedback_AttachTable_Header</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @for (int i = 0; i < Model.RCV.lstAttachmentNames.Count; i++)
+                                                {
+                                                    <td class="border">
+                                                        @Html.ActionLink(Model.RCV.lstAttachmentNames[i], "DownloadAttachment", "RandomCRVerification"
+                                                            , new { fileName = Model.RCV.lstAttachmentPaths[i], downloadName = Model.RCV.lstAttachmentNames[i] }
+                                                            , new { @target = "_blank" })
+                                                    </td>
+                                                    if (i != 0 && (i + 1) % 4 == 0)
+                                                    {
+                                                    @:</tr><tr>
+                                                    }
+                                                }
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-9 col-sm-9 col-12 col-md-offset-3">
+                                        <input type="submit" value="@Localization.RCV.FeedBack_AcceptRCV"
+                                               class="btn btn-success" name="RCVAction" />
+                                        <input type="submit" value="@Localization.RCV.FeedBack_RejectRCV"
+                                               class="btn btn-primary" name="RCVAction" />
+                                        @if (Model.RCV.isLabRequired)
+                                        {
+                                            <input type="submit" value="@Localization.RCV.FeedBack_Pending"
+                                                   class="btn btn-primary" name="RCVAction" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

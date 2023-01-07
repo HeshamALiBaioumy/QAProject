@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QA.Entities.Business_Entities.Ent_Factory>
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@Localization.Global.SearchResults</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+               cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>@Localization.Factory.factoryTypeID_ViewSearch</th>
+                    <th>@Localization.Factory.name_ViewSearch</th>
+                    <th>@Localization.Factory.description_ViewSearch</th>
+                    <th>@Localization.Factory.factoryCode_ViewSearch</th>
+                    <th>@Localization.Factory.addressLine_ViewSearch</th>
+                    <th>@Localization.Factory.factoryPower_ViewSearch</th>
+                    <th>@Localization.Global.boolIsActive</th>
+                    <th>@Localization.Global.SearchTableActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.factoryTypeName</td>
+                        <td>@item.name</td>
+                        <td>@item.description</td>
+                        <td>@item.factoryCode</td>
+                        <td>@item.addressLine</td>
+                        <td>@item.factoryPower</td>
+                        <td>@item.isActive</td>
+                        <td>
+                            @Ajax.ActionLink(Localization.Global.SearchTableActions_View, "View", "Factory"
+                                , new { FactoryID = @item.factoryID }, new AjaxOptions()
+                                 {
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "Get",
+                                    LoadingElementId = "imgloader",
+                                    OnBegin = "ajaxViewBegin",
+                                    OnSuccess = "ajaxViewSuccess",
+                                    OnFailure = "ajaxViewError",
+                                    UpdateTargetId = "divViewItemModal",
+                        }) | @Html.ActionLink(Localization.Global.SearchTableActions_Edit, "Edit", "Factory"
+                           , new { FID = @item.factoryID }, null)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="x_content">
+        <div id="divViewItemModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+             aria-hidden="true">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+﻿@model QA.Entities.Business_Entities.Ent_Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700|Open+Sans+Condensed:300,700|PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <title>@Localization.Login.PageTitle </title>
+
+    <!-- Bootstrap -->
+    <link href="~/Design_Template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Design_Template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Design_Template/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/Design_Template/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Design_Template/build/css/custom.css" rel="stylesheet">
+    <link href="~/Design_Template/build/css/style-extra-bs4.css" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="login">
+
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <div class="container">
+                <div class="login-wrapper-container">
+                    <div class="block-left">
+                        @using (Html.BeginForm("login", "Login", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h1>@Localization.Login.Logintxt</h1>
+
+                            <div>
+                                @Html.HiddenFor(model => Model.errorMessage)
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fa fa-user"></i>
+                                @Html.EditorFor(model => model.userName
+                                    , new { htmlAttributes = new { @class = "form-control", @placeholder = Localization.Login.UserName } })
+                                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-lock"></i>
+                                @Html.EditorFor(model => model.password
+                                        , new { htmlAttributes = new { @class = "form-control", @placeholder = Localization.Login.Password } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+                            <div style="display: none;">
+                                @Model.errorMessage
+                            </div>
+                            <a href="#signup" class="btn-rest-pass reset_pass">@Localization.Login.ForgetPassword</a>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-new-sign">@Localization.Login.LoginBtn</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="block-right">
+                        <div class="login-logo-wrapper">
+                            <img src="~/Design_Template/production/images/img.jpg" alt="App User" class="logo-img-login">
+                            <h2>
+                                <i class="fa fa-chrome"></i>
+                                <span>@Localization.Global.Project_Quality_Control</span>
+                            </h2>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+            <div class="container">
+                <div class="login-wrapper-container">
+                    <div class="block-left">
+
+                        <h1>@Localization.Login.ForgetPassword</h1>
+
+                        <div class="form-group">
+                            <i class="fa fa-envelope"></i>
+                            <input type="email" class="form-control" placeholder="Email" required="" />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-new-sign">@Localization.Login.ForgetPassword_Submit</button>
+                        </div>
+
+                        <p class="change_link btn-change-link">
+                            @Localization.Login.AlreadyMember
+                            <a href="#signin" class="btn-rest-pass to_register">@Localization.Login.Logintxt</a>
+                        </p>
+
+                    </div>
+                    <div class="block-right">
+                        <div class="login-logo-wrapper">
+                            <img src="~/Design_Template/production/images/img.jpg" alt="App User" class="logo-img-login">
+                            <h2>
+                                <i class="fa fa-chrome"></i>
+                                <span>@Localization.Global.Project_Quality_Control</span>
+                            </h2>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="copyrights">@Localization.Global.CopyRights - <a href="#">@Localization.Global.CopyRightSW</a></p>
+        </div>
+    </footer>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <!-- jQuery -->
+    <script src="~/Design_Template/vendors/jquery/dist/jquery.js"></script>
+    <script src="~/Design_Template/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Design_Template/Scripts/jquery.validate.js"></script>
+    <script src="~/Design_Template/Scripts/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>

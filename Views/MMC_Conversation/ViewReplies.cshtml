@@ -1,0 +1,369 @@
+﻿@model QA.Entities.View_Entities.Vw_MMC_Conversation
+
+@{
+    ViewBag.Title = Localization.MMC_Conversation.View_Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Session["EndMessage"].ToString()',
+                        @*text: '@Session["EndMessage"].ToString()',*@
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+<script src="~/Design_Template/Scripts/tinymce/tinymce.min.js"></script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="form-group conversation-reply-container sticky" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12">
+                    @if (Model.conversation.allowedforReply)
+                    {
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Reply" class="btn btn-success Conversation-buttons"
+                               onclick="return viewAddReplyModal();" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Reply" class="btn btn-success Conversation-buttons btn-disabled"
+                               disabled="disabled" />
+                    }
+
+                    @if (Model.conversation.allowedforClosure)
+                    {
+
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Close" class="btn btn-primary Conversation-buttons"
+                               onclick="return viewCloseCaseModal();" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Close" class="btn btn-primary Conversation-buttons btn-disabled"
+                               disabled="disabled" />
+                    }
+
+                    @if (Model.conversation.allowedforEscalation)
+                    {
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Escalate" class="btn btn-danger Conversation-buttons"
+                               onclick="return false;" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="@Localization.MMC_Conversation.View_Actions_Escalate" class="btn btn-danger Conversation-buttons btn-disabled"
+                               disabled="disabled" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="form-group conversation-reply-container">
+            <div class="row col-md-12 col-sm-12 col-12">
+                <h3> @Localization.MMC_Conversation.View_StakeHold_Title </h3>
+                <br />
+                <table class="table table-striped" id="tblProjectMilestones" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th style="width:24%"> @Localization.MMC_Conversation.View_StakeHold_Technician </th>
+                            <th style="width:24%"> @Localization.MMC_Conversation.View_StakeHold_QualityEng </th>
+                            <th style="width:24%"> @Localization.MMC_Conversation.View_StakeHold_SuperEng </th>
+                            <th style="width:24%"> @Localization.MMC_Conversation.View_StakeHold_ContractorAss </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> @Model.conversation.technicianName </td>
+                            <td> @Model.conversation.QualityAssuranceEngName </td>
+                            <td> @Model.conversation.supervisorEngName </td>
+                            <td> @Model.conversation.contractorAssName </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @for (int i = 0; i < Model.conversation.repliesHistory.Count; i++)
+        {
+            <div class="form-group conversation-reply-container">
+                <div class="row col-md-12 col-sm-12 col-12">
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <label class="control-label col-md-4 col-sm-4 col-12 Conversation-font-bold">
+                            @Model.conversation.repliesHistory[i].replyUserName
+                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-12 Conversation-font-bold">
+                            @Model.conversation.repliesHistory[i].strReplyDate
+                        </label>
+                        <label class="control-label col-md-2 col-sm-2 col-12 Conversation-font-bold">
+                            @Model.conversation.repliesHistory[i].getReplyAction
+                        </label>
+                        <a href="#" onclick="return viewAttachmentsModal('@Model.conversation.repliesHistory[i].strID');"
+                           class="control-label col-md-2 col-sm-2 col-12">
+                            Attachments(@Model.conversation.repliesHistory[i].getAttachmentsCount)
+                        </a>
+                        <div class="Conversation-ln_solid"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <p class="control-label col-md-11 col-sm-11 col-12">
+                            @Html.Raw(@Model.conversation.repliesHistory[i].replyMessage)
+                        </p>
+                    </div>
+                </div>
+                <div class="x_content">
+                    <div id='@("divViewAttachmentsModal" + Model.conversation.repliesHistory[i].strID)'
+                         class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">@Localization.MMC_Conversation.View_ReplyAttachments</h4>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+
+                                <!-- Modal Body -->
+                                <div class="modal-body">
+                                    <div class="x_content">
+                                        <div>
+                                            @if (Model.conversation.repliesHistory[i].getAttachmentsCount > 0)
+                                            {
+                                                <div class="form-group">
+                                                    <table class="table table-striped" id="tblAttachments" style="text-align: center;">
+                                                        <tbody>
+                                                            <tr>
+                                                                @for (int j = 0; j < Model.conversation.repliesHistory[i].getAttachmentsCount; j++)
+                                                                {
+                                                                    <td class="border">
+                                                                        @Html.ActionLink(Model.conversation.repliesHistory[i].lstAttachmentNames[j]
+                                                                        , "DownloadAttachment", "MMC_Conversation"
+                                                                            , new
+                                                                                 {
+                                                                                     fileName = Model.conversation.repliesHistory[i].lstAttachmentPaths[j],
+                                                                                     downloadName = Model.conversation.repliesHistory[i].lstAttachmentNames[j]
+                                                                                 }
+                                                                            , new { @target = "_blank" })
+                                                                    </td>
+                                                                    if (j != 0 && (j + 1) % 4 == 0)
+                                                                    {
+                                                                    @:</tr><tr>
+                                                                    }
+                                                                }
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal Body -->
+                                <div class="modal-footer">
+                                    @*btn-*@
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        @Localization.Global.BtnOk
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <br />
+        <div class="x_content">
+            <div id='divAddReplyModal'
+                 class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel"> @Localization.MMC_Conversation.AddReply_Title </h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        @using (Html.BeginForm("addReply", "MMC_Conversation", FormMethod.Post
+                                        , new
+                                        {
+                                            @class = "form-horizontal form-label-left",
+                                            enctype = "multipart/form-data",
+                                            @id = "AddMissmatchCaseReplyForm",
+                                            @name = "AddMissmatchCaseReplyForm"
+                                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => Model.conversation.MMCID)
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="x_content">
+                                    <div class="form-group">
+                                        @Html.TextAreaFor(model => model.conversation.replyMessage
+                                                , new { @class = "form-control col-md-12 col-12" })
+                                        <div id="infoMessage" style="display:none; color: red; font-weight: bold;">  </div>
+                                    </div>
+                                    <div class="form-group form-group-upload">
+                                        <div class="row">
+                                            <div class="control-label col-md-2 col-sm-2 col-2">
+                                                @Localization.MMC_Conversation.AddReply_AddAttachments
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupFileAddon01">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                            @Localization.Global.Attachment_Upload
+                                                        </span>
+                                                    </div>
+                                                    <div class="custom-file col-md-9 col-sm-9 col-9">
+                                                        <input type="file" multiple="multiple" name="conversation.replyAttachments"
+                                                               id="conversation_replyAttachments"
+                                                               class="custom-file-input col-md-9 col-9" aria-describedby="inputGroupFileAddon01">
+                                                        <label class="custom-file-label" for="conversation_replyAttachments">
+                                                            @Localization.Global.Attachment_ChooseMultiFiles
+                                                        </label>
+                                                        @Html.ValidationMessage("conversation.replyAttachments", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal Body -->
+                            <div class="modal-footer">
+                                <div class="clearfix"></div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-12 col-md-offset-12">
+                                            <input type="submit" value="@Localization.MMC_Conversation.AddReply_Accept"
+                                                   class="btn btn-success" name="addReplyAction"
+                                                   onclick="return AddReplyValidation();" style="margin-right: 15px;" />
+                                            <input type="submit" value="@Localization.MMC_Conversation.AddReply_Reject"
+                                                   class="btn btn-primary" name="addReplyAction"
+                                                   onclick="return AddReplyValidation();" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="x_content">
+            <div id='divCloseCaseModal'
+                 class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel"> @Localization.MMC_Conversation.CloseCase_Title </h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        @using (Html.BeginForm("closeCase", "MMC_Conversation", FormMethod.Post
+                                        , new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => Model.conversation.MMCID)
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="x_content">
+                                    <div class="form-group">
+                                        @Html.TextAreaFor(model => model.conversation.replyMessage
+                                                , new { @class = "form-control col-md-12 col-12" })
+                                        <div id="infoMessage" style="display:none; color: red; font-weight: bold;">  </div>
+                                    </div>
+                                    <div class="form-group form-group-upload">
+                                        <div class="row">
+                                            <div class="control-label col-md-2 col-sm-2 col-2">
+                                                @Localization.MMC_Conversation.AddReply_AddAttachments
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupFileAddon01">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                            @Localization.Global.Attachment_Upload
+                                                        </span>
+                                                    </div>
+                                                    <div class="custom-file col-md-9 col-sm-9 col-9">
+                                                        <input type="file" multiple="multiple" name="conversation.replyAttachments"
+                                                               id="conversation_replyAttachments"
+                                                               class="custom-file-input col-md-9 col-9" aria-describedby="inputGroupFileAddon01">
+                                                        <label class="custom-file-label" for="conversation_replyAttachments">
+                                                            @Localization.Global.Attachment_ChooseMultiFiles
+                                                        </label>
+                                                        @Html.ValidationMessage("conversation.replyAttachments", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal Body -->
+                            <div class="modal-footer">
+                                <div class="clearfix"></div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-12 col-md-offset-12">
+                                            <input type="submit" value="@Localization.MMC_Conversation.CloseCase_Fixed"
+                                                   class="btn btn-success" name="closeAction"
+                                                   onclick="return AddReplyValidation();" style="margin-right: 15px;" />
+                                            <input type="submit" value="@Localization.MMC_Conversation.CloseCase_Closed"
+                                                   class="btn btn-primary" name="closeAction"
+                                                   onclick="return AddReplyValidation();" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var Sample_Field_Required = '@Localization.MMC_Conversation.AddReply_Field_Required_val';
+    var SpecialCharactersNotAllowed = '@Localization.Global.Special_Characters_Not_Allowed';
+    var TextArea_Regex = "@Localization.Global.TextArea_Regex";
+</script>
+
+<script src="~/Design_Template/build/js/SoftaEngineers_MMC_Conversation.js"></script>

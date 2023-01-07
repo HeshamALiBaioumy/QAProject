@@ -1,0 +1,36 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- page content -->
+<div class="col-md-12 col-lg-12" style="height: 730px;">
+    <div class="col-middle">
+        <div class="text-center">
+            <h1 class="error-number">500</h1>
+            <h2>Internal Server Error</h2>
+            <p>
+                We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing. <a href="#">Report this?</a>
+            </p>
+            <div class="mid_center">
+                @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+                {
+                    <div>
+                        <p>
+                            <b>Exception:</b> @Model.Exception.Message<br />
+                            <b>Controller:</b> @Model.ControllerName<br />
+                            <b>Action:</b> @Model.ActionName
+                        </p>
+                        <div style="overflow:scroll">
+                            <pre>
+                                @Model.Exception.StackTrace
+                            </pre>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

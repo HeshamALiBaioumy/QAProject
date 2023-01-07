@@ -1,0 +1,409 @@
+﻿@model QA.Entities.Business_Entities.Ent_RCV_Missmatch
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+<script src="~/Design_Template/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea#caseDescription',
+        readonly : 1,
+        //height: 500,
+        //menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help'
+    });
+</script>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">@Localization.RCV_Missmatch.View_MMC_Details</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <div class="x_content">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.projectID
+                            , Localization.RCV_Missmatch.Create_Project
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.projectName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.CRID
+                            , Localization.RCV_Missmatch.Create_CR
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.strCRID, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.CRRegistrationDate
+                            , Localization.RCV_Missmatch.Create_CRRegistrationDate
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.strCRRegistrationDate, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.RCVAssignDate
+                            , Localization.RCV_Missmatch.Create_RCVAssignDate
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.strRCVAssignDate, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.comments
+                        , Localization.RCV_Missmatch.Create_Comments
+                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.TextAreaFor(model => model.comments, 2, 0
+                                , htmlAttributes: new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                })
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="container border">
+                    <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_RCV_Attachments </h5>
+                    <div>
+                        @if (Model.lstAttachmentNames.Count > 0)
+                        {
+                            <div class="form-group">
+                                <table class="table table-striped" id="tblAttachments" style="text-align: center;">
+                                    <tbody>
+                                        <tr>
+                                            @for (int i = 0; i < Model.lstAttachmentNames.Count; i++)
+                                            {
+                                                <td class="border">
+                                                    @Html.ActionLink(Model.lstAttachmentNames[i], "DownloadAttachment", "RandomCRVerification"
+                                                        , new
+                                                             {
+                                                                 fileName = Model.lstAttachmentPaths[i],
+                                                                 downloadName = Model.lstAttachmentNames[i]
+                                                             }
+                                                        , new { @target = "_blank" })
+                                                </td>
+                                                if (i != 0 && (i + 1) % 4 == 0)
+                                                {
+                                                @:</tr><tr>
+                                                }
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <br />
+                @Html.HiddenFor(model => Model.mapProject.zoomLevel, new { id = "MapZoomLevel" })
+                @Html.HiddenFor(model => Model.mapProject.exportJEOJSON, new { id = "ProjectMapJEOJSON" })
+                @Html.HiddenFor(model => Model.mapCR.exportJEOJSON, new { id = "CRMapJEOJSON" })
+                @Html.HiddenFor(model => Model.mapCR.projectMapSelectionType, new { id = "CRMapDrawType" })
+                @Html.HiddenFor(model => Model.mapSample1.exportJEOJSON, new { id = "Sample1MapJEOJSON" })
+                @Html.HiddenFor(model => Model.mapSample2.exportJEOJSON, new { id = "Sample2MapJEOJSON" })
+
+                <div class="container border">
+                    <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_caseDescription </h5>
+                    <div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(model => model.caseDescription
+                                    , new { @class = "form-control col-md-12 col-12" })
+                            <div id="infoMessage" style="display:none; color: red; font-weight: bold;">  </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                       @*Sample 1 Details*@
+                <div class="container border">
+                    <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_Sample1_Header </h5>
+                    <div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => Model.sample1.sampleMaker
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.sample1.sampleMaker, new
+                                        {
+                                           htmlAttributes = new
+                                           {
+                                               @class = "form-control col-md-7 col-12",
+                                               @disabled = "disabled",
+                                               @readonly = "readonly"
+                                           }
+                                       })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => Model.sample1.sampleSize
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => Model.sample1.sampleSize
+                                        , new
+                                             {
+                                                 htmlAttributes = new
+                                                 {
+                                                     @class = "form-control col-md-7 col-12",
+                                                     @type = "number",
+                                                     @step = "0.01",
+                                                     @disabled = "disabled",
+                                                     @readonly = "readonly"
+                                                 }
+                                             })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => Model.sample1.sampleLength
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => Model.sample1.sampleLength
+                                        , new
+                                             {
+                                                 htmlAttributes = new
+                                                 {
+                                                     @class = "form-control col-md-7 col-12",
+                                                     @type = "number",
+                                                     @step = "0.01",
+                                                     @disabled = "disabled",
+                                                     @readonly = "readonly"
+                                                 }
+                                             })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => Model.sample1.sampleUnitID
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => Model.sample1.sampleUnitName
+                                        , new
+                                             {
+                                                 htmlAttributes = new
+                                                 {
+                                                     @class = "form-control col-md-7 col-12",
+                                                     @disabled = "disabled",
+                                                     @readonly = "readonly"
+                                                 }
+                                             })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                @*       Sample 1 Map*@
+                @*<div class="container border">
+                    <h5 class="Container_Header" style="width: 180px;"> @Localization.RCV_Missmatch.Create_Sample1_Location_Header </h5>
+                    <div class="form-group" style="height: 320px;margin-top: 20px;">
+                        <div id='map1' class="col-12" style="height: 300px;"></div>
+                    </div>
+                </div>
+                <br />*@
+                  @*     Sample 2 Details*@
+                <div class="container border">
+                    <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_Sample2_Header </h5>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => Model.sample2.sampleMaker
+                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                            <div class="col-md-6 col-sm-6 col-12">
+                                @Html.EditorFor(model => Model.sample2.sampleMaker
+                                    , new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-control col-md-7 col-12",
+                                                 @disabled = "disabled",
+                                                 @readonly = "readonly"
+                                             }
+                                         })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => Model.sample2.sampleSize
+                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                            <div class="col-md-6 col-sm-6 col-12">
+                                @Html.EditorFor(model => Model.sample2.sampleSize
+                                    , new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-control col-md-7 col-12",
+                                                 @disabled = "disabled",
+                                                 @readonly = "readonly"
+                                             }
+                                         })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => Model.sample2.sampleLength
+                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                            <div class="col-md-6 col-sm-6 col-12">
+                                @Html.EditorFor(model => Model.sample2.sampleLength
+                                    , new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-control col-md-7 col-12",
+                                                 @disabled = "disabled",
+                                                 @readonly = "readonly"
+                                             }
+                                         })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => Model.sample2.sampleUnitID
+                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                            <div class="col-md-6 col-sm-6 col-12">
+                                @Html.EditorFor(model => Model.sample2.sampleUnitName
+                                    , new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-control col-md-7 col-12",
+                                                 @disabled = "disabled",
+                                                 @readonly = "readonly"
+                                             }
+                                         })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                @*       Sample 2 Map*@
+                @*<div class="container border">
+                    <h5 class="Container_Header" style="width: 180px;"> @Localization.RCV_Missmatch.Create_Sample2_Location_Header </h5>
+                    <div class="form-group" style="height: 320px;margin-top: 20px;">
+                        <div id='map2' class="col-12" style="height: 300px;"></div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+        <!-- End Modal Body -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">
+                @Localization.Global.BtnOk
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    //var zoomVar = $('#MapZoomLevel').val();
+    //var projectMapJEOJSON = $('#ProjectMapJEOJSON').val();
+    //var CRMapJEOJSON = $('#CRMapJEOJSON').val();
+    //var CRMapDrawType = $('#CRMapDrawType').val();
+    //var Sample1MapJEOJSON = $('#Sample1MapJEOJSON').val();
+    //var Sample2MapJEOJSON = $('#Sample2MapJEOJSON').val();
+
+    //var ProjectPolygon1 = L.polygon(JSON.parse(projectMapJEOJSON));
+    //var ProjectPolygon2 = L.polygon(JSON.parse(projectMapJEOJSON));
+
+    //var map1 = L.mapbox.map('map1').setView(ProjectPolygon1.getBounds().getCenter(), zoomVar);
+    //var map2 = L.mapbox.map('map2').setView(ProjectPolygon2.getBounds().getCenter(), zoomVar);
+
+    //ProjectPolygon1.addTo(map1);
+    //ProjectPolygon2.addTo(map2);
+
+    //if (CRMapDrawType == 'polyline') {
+    //    var polyline1 = L.polyline(JSON.parse(CRMapJEOJSON), { color: "#ff0000", weight: 3, smoothFactor: 1 }).addTo(map1);
+    //    var polyline2 = L.polyline(JSON.parse(CRMapJEOJSON), { color: "#ff0000", weight: 3, smoothFactor: 1 }).addTo(map2);
+    //} else if (CRMapDrawType == 'Polygon') {
+    //    var CRPolygon1 = L.polygon(JSON.parse(CRMapJEOJSON), { color: "#ff0000", weight: 3, smoothFactor: 1 }).addTo(map1);
+    //    var CRPolygon2 = L.polygon(JSON.parse(CRMapJEOJSON), { color: "#ff0000", weight: 3, smoothFactor: 1 }).addTo(map2);
+    //}
+
+    //if (Sample1MapJEOJSON.length > 0) {
+    //    var marker1 = L.marker(JSON.parse(Sample1MapJEOJSON)).addTo(map1);
+    //}
+
+    //if (Sample2MapJEOJSON.length > 0) {
+    //    var marker2 = L.marker(JSON.parse(Sample2MapJEOJSON)).addTo(map2);
+    //}
+
+    // Add Tile layers to the map
+    //L.control.layers({
+    //    'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', { detectRetina: true }).addTo(map1),
+    //    'Terrain Map': L.mapbox.tileLayer('bobbysud.i2pfp2lb', { detectRetina: true })
+    //}).addTo(map1);
+    //L.control.layers({
+    //    'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', { detectRetina: true }).addTo(map2),
+    //    'Terrain Map': L.mapbox.tileLayer('bobbysud.i2pfp2lb', { detectRetina: true })
+    //}).addTo(map2);
+</script>

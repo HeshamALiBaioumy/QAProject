@@ -1,0 +1,185 @@
+﻿body {
+    background: rgb(204,204,204);
+    direction: rtl;
+}
+
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+
+    page[size="A4"] {
+        width: 21cm;
+        height: 29.7cm;
+        padding: 0.1cm;
+        /*border: 1px solid black;*/
+    }
+
+        page[size="A4"][layout="landscape"] {
+            width: 29.7cm;
+            height: 21cm;
+        }
+
+    page[size="A3"] {
+        width: 29.7cm;
+        height: 42cm;
+    }
+
+        page[size="A3"][layout="landscape"] {
+            width: 42cm;
+            height: 29.7cm;
+        }
+
+    page[size="A5"] {
+        width: 14.8cm;
+        height: 21cm;
+    }
+
+        page[size="A5"][layout="landscape"] {
+            width: 21cm;
+            height: 14.8cm;
+        }
+
+.text {
+    position: page;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 2%; /* Adjust this value to move the positioned div up and down */
+    /*text-align: right;*/
+    /*width: 60%;*/ /* Set the width of the positioned div */
+    font-weight: bold;
+}
+
+table {
+    border: 1px solid #8ebf42;
+    border-spacing: 0;
+    width: 100%;
+    page-break-inside: auto
+}
+
+td, th {
+    border-bottom: 1px solid #8ebf42;
+    border-left: 1px solid #8ebf42;
+}
+
+th {
+    padding: 10px 0px 10px 0px;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto
+}
+td {
+    page-break-inside: avoid;
+    page-break-after: auto
+}
+thead {
+    display: table-header-group
+}
+
+tfoot {
+    display: table-footer-group
+}
+
+.clearfix {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.TextField {
+    font-weight: bold;
+    font-size: large;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-right: 5px;
+}
+
+.TextFieldSubHeader {
+    font-weight: bold;
+    font-size: larger;
+    padding: 10px 5px 10px 0px;
+    width: 14%;
+    background-color: #f9f9f9;
+    /*border-left: 1px solid black;
+    border-right: 1px solid black;*/
+}
+
+.TextValue {
+    padding: 5px 5px 8px 5px;
+}
+
+.map {
+    /*border: solid 1px red;*/
+    height: 400px;
+    margin: 10px;
+}
+
+.mapMinimized {
+    /*border: solid 1px red;*/
+    height: 200px;
+    padding-bottom: 3px;
+}
+
+.ReportHeader_Container {
+    height: 3cm;
+    width: 98%;
+    overflow: hidden;
+    padding-top: 12px;
+    padding-bottom: 5px;
+}
+
+.ReportHeader_AppOwner {
+    width: 42%;
+    float: right;
+    padding-top: 22px;
+    height: 90%;
+}
+
+.ReportHeader_Logo {
+    width: 40%;
+    float: right;
+    height: 90%;
+}
+
+.ReportHeader_Logo_Image {
+    width: 2cm;
+    height: 2cm;
+    margin-right: 25px;
+}
+
+.ReportHeader_Logo_ReportName {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.ReportHeader_BarCode {
+    width: 15%;
+    text-align: left;
+    /*padding-left: 2%;*/
+    float: left;
+    padding-top: 13px;
+    height: 90%;
+}
+
+.ReportHeader_BarCode_Img {
+    width: 2cm;
+    height: 2cm;
+}
+
+.borders {
+    border: solid 1px black;
+}
+
+.pageContainer {
+    /*border: solid 1px black;*/
+    height: 98%;
+}

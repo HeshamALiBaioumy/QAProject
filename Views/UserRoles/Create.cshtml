@@ -1,0 +1,1215 @@
+﻿@model QA.Entities.View_Entities.Vw_UserRoles
+
+@{
+    bool isUpdate = (Model != null && Model.userRoles.userRoleID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.UserRoles.UserRoleAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.UserRoles.UpdateRole : Localization.UserRoles.CreateRole)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.UserRoles.RoleDetails</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "UserRoles"
+                            , FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.userRoles.userRoleID)
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.userRoles.roleName
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.userRoles.roleName, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => model.userRoles.roleName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.userRoles.initialScreenID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.userRoles.initialScreenID
+                                            , new SelectList(Model.lOVinitialScreens, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.userRoles.initialScreenID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.userRoles.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-9 col-sm-9 col-12">
+                                        <div class="">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.userRoles.isActive, htmlAttributes: new { @class = "js-switch", @checked = "checked" })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h4>
+                                            <small> @Localization.UserRoles.UserRolesSection </small>
+                                        </h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <ul class="list-unstyled timeline">
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Dashboard_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_SuperEng
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_SuperEng
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_ConsultantEng
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_ConsultantEng
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_AuthLab
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_AuthLab
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_Technician
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_Technician
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_CEO
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_CEO
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Dashboard_QualityEng
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Dashboard_QualityEng
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_ProjectOwnerType_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.projectOwnerType_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.projectOwnerType_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.projectOwnerType_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.projectOwnerType_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_ProjectOwner_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.ProjectOwner_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.ProjectOwner_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.ProjectOwner_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.ProjectOwner_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_FactoryType_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.FactoryType_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.FactoryType_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.FactoryType_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.FactoryType_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Factory_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Factory_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Factory_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Factory_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Factory_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Department_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Department_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Department_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Department_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Department_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_DepartmentSection_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.DepartmentSection_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.DepartmentSection_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.DepartmentSection_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.DepartmentSection_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_MixerType_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.MixerType_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.MixerType_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.MixerType_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.MixerType_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Mixer_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Mixer_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Mixer_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Mixer_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Mixer_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_SampleTestCategory_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTestCategory_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTestCategory_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTestCategory_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTestCategory_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_SampleTest_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTest_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTest_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTest_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.SampleTest_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CRTYPEMC_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTYPEMC_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTYPEMC_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTYPEMC_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTYPEMC_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CRTypeGroup_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTypeGroup_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTypeGroup_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTypeGroup_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRTypeGroup_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CRType_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRType_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRType_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRType_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CRType_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CheckListItem_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItem_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItem_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItem_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItem_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CheckListItemGroup_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItemGroup_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItemGroup_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItemGroup_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckListItemGroup_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CheckLists_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckLists_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckLists_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckLists_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CheckLists_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_UserProfile_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserProfile_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserProfile_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserProfile_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserProfile_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_UserRoles_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserRoles_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserRoles_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserRoles_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.UserRoles_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CR_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                                <br />
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_Action
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_CR_Action
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_AddAttachments
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_CR_AddAttach
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CR_ViewAttachments
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_CR_ViewAttach
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CLWF_Sequence_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Sequence_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Sequence_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Sequence_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Sequence_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CLWF_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Maker
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_CLWF_Maker
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.CLWF_Checker
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_CLWF_Checker
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Project_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Project_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Project_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Project_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Project_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Complaint_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Complaint_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Complaint_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Complaint_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Complaint_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_CR_Reports_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_CR_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_CR_View
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_CR_Samples_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_CR_Samples_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_CR_Projects_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_CR_Projects_Search
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_CR_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_CR_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_CR_Samples_SearchDetailed
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_CR_Samples_SearchDetailed
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_Project_Reports_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.Reports_Project_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Reports_Project_View
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_RCV_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Action
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCV_Action
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_RandomSearch
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCV_RandomSearch
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_RCVMM_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCVMM_Create
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Create
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCVMM_Search
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Search
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCVMM_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_View
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCVMM_Edit
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_Edit
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="block">
+                                                    <div class="tags">
+                                                        <a href="#" class="tag">
+                                                            <span> @Localization.UserRoles.UR_RCVMM_Conversation_Head </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="block_content">
+                                                        <h2 class="title"></h2>
+                                                        <div class="col-md-12 col-sm-12 col-12">
+                                                            <div>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Conversation_View
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCVMMConv_View
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Conversation_Reply
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCVMMConv_Reply
+                                                                </label>
+                                                                <label class="col-3">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Conversation_Close
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCVMMConv_Close
+                                                                </label>
+                                                                <label class="col-2">
+                                                                    @Html.CheckBoxFor(model => model.userRoles.RCV_Conversation_Escalation
+                                                                        , htmlAttributes: new { @class = "flat" })
+                                                                    @Localization.UserRoles.UR_Action_RCVMMConv_Escalation
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

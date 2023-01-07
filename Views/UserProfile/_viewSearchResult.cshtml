@@ -1,0 +1,312 @@
+﻿@model QA.Entities.Business_Entities.Ent_UserProfile
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">@Localization.UserProfile.UserProfileDetails</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs " role="tablist">
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content1" class="nav-link active" role="tab"
+                               id="Details-tab" data-toggle="tab" aria-expanded="true"> @Localization.UserProfile.Wizard_UserDetails </a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content2" class="nav-link" role="tab"
+                               id="ContactDetails-tab" data-toggle="tab" aria-expanded="false"> @Localization.UserProfile.Wizard_ContactDetails </a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content4" class="nav-link" role="tab"
+                               id="User-tab" data-toggle="tab" aria-expanded="false"> @Localization.UserProfile.Wizard_LoginDetails </a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active show in"
+                             id="tab_content1" aria-labelledby="Details-tab">
+                            <br />
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.userTypeID, Localization.UserProfile.UserTypeID_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.userTypeName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.employeeName, Localization.UserProfile.employeeName_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.employeeName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.nationalityTypeID, Localization.UserProfile.nationalityTypeID_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.nationalityTypeName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.nationalityID, Localization.UserProfile.nationalityID_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.nationalityName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.nationalId, Localization.UserProfile.NationalId_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.nationalId, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.employeeId, Localization.UserProfile.employeeId_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.employeeId, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.isAssistantUser, Localization.UserProfile.boolIsAssistant
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-9 col-sm-9 col-12">
+                                        <div class="">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.isAssistantUser, htmlAttributes: new
+                                                {
+                                                    @class = "js-switch",
+                                                    @checked = "checked",
+                                                    @disabled = "disabled"
+                                                })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.superUserID, Localization.UserProfile.SuperUserID_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.superUserName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.projectOwnerID, Localization.UserProfile.projectOwnerID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.projectOwnerName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2"
+                             aria-labelledby="ContactDetails-tab">
+                            <br />
+                            <!-- Contact Details Section -->
+                            @Html.Partial("_ViewSearchResultContactDetails", Model.contactDetails
+                                , new ViewDataDictionary { TemplateInfo = new TemplateInfo { HtmlFieldPrefix = "contactDetails" } })
+                            <!-- End Contact Details Section -->
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content4" 
+                             aria-labelledby="User-tab">
+                            <br />
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.userName, Localization.UserProfile.userName_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.userName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.roleID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.roleName, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.expiryDate
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.strExpiryDate, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-7 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.isLocked
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-9 col-sm-9 col-12">
+                                        <div class="">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.isLocked, htmlAttributes: new
+                                                {
+                                                    @class = "js-switch",
+                                                    @checked = "checked",
+                                                    @disabled = "disabled"
+                                                })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-9 col-sm-9 col-12">
+                                            <div class="">
+                                                <label>
+                                                    @Html.CheckBoxFor(model => model.isActive, htmlAttributes: new
+                                                    {
+                                                        @class = "js-switch",
+                                                        @checked = "checked",
+                                                        @disabled = "disabled"
+                                                    })
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">
+                    @Localization.Global.BtnOk
+                </button>
+            </div>
+        </div>
+    </div>
+

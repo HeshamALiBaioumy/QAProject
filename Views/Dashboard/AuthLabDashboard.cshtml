@@ -1,0 +1,160 @@
+﻿@model QA.Entities.View_Entities.Vw_Dashboard
+
+@{
+    ViewBag.Title = "Supervisor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col col-md-12" role="main">
+    <!-- top tiles -->
+    <div class="row tile_count">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-briefcase"></i> @Localization.Dashboard.Projects_Total </span>
+            <div class="count">@Model.dashboard.Projects_Total</div>
+            <span class="count_bottom">
+                <i class="green"><i class="fa fa-sort-asc"></i>@Model.dashboard.Projects_New_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range
+            </span>
+        </div>
+    </div>
+    <div class="row tile_count">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-commenting"></i> @Localization.Dashboard.Complaints_Total </span>
+            <div class="count">@Model.dashboard.compliants_Total</div>
+            <span class="count_bottom">
+                <i class="green"><i class="fa fa-sort-asc"></i>@Model.dashboard.compliants_New_Percent%</i>
+                @Localization.Dashboard.Diff_Date_Range
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-commenting"></i> @Localization.Dashboard.Complaints_Closed_Total</span>
+            <div class="count green">@Model.dashboard.compliants_Closed</div>
+            <span class="count_bottom">
+                <i class="green">
+                    <i class="fa fa-sort-asc"></i>@Model.dashboard.compliants_Closed_Percent%
+                </i> @Localization.Dashboard.Diff_Date_Range
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-pie-chart"></i> @Localization.Dashboard.CR_Total</span>
+            <div class="count">@Model.dashboard.CR_Total</div>
+            <span class="count_bottom">
+                <i class="green">
+                    <i class="fa fa-sort-asc"></i>@Model.dashboard.CR_New_Percent%
+                </i> @Localization.Dashboard.Diff_Date_Range_CR
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-pie-chart"></i> @Localization.Dashboard.CR_Pending</span>
+            <div class="count red">@Model.dashboard.CR_Pending_OverAll</div>
+            <span class="count_bottom">
+                <i class="red">
+                    <i class="fa fa-sort-asc"></i>@Model.dashboard.CR_Pending_New_OverAll_Percent%
+                </i> @Localization.Dashboard.Diff_Date_Range_CR
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-pie-chart"></i> @Localization.Dashboard.CL_Total</span>
+            <div class="count">@Model.dashboard.CL_Total</div>
+            <span class="count_bottom">
+                <i class="green">
+                    <i class="fa fa-sort-asc"></i>@Model.dashboard.CL_New_Percent%
+                </i> @Localization.Dashboard.Diff_Date_Range_CL
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-pie-chart"></i> @Localization.Dashboard.CL_Pending</span>
+            <div class="count red">@Model.dashboard.CL_Pending_OverAll</div>
+            <span class="count_bottom">
+                <i class="red">
+                    <i class="fa fa-sort-asc"></i>@Model.dashboard.CL_Pending_New_OverAll_Percent%
+                </i> @Localization.Dashboard.Diff_Date_Range_CL
+            </span>
+        </div>
+    </div>
+    <!-- /top tiles -->
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @Localization.Dashboard.Graph_CR </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_donut" style="height:350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="col-md-6 col-sm-6 col-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @Localization.Dashboard.Graph_CheckList </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_pie2" style="height:350px;"></div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="col-md-12 col-sm-12 col-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @Localization.Dashboard.Graph_Overall </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_line" style="height:350px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ////////////////////////// CR Graph /////////////////////////////////////////
+    var V_CR_Types_Pending = '@Localization.Dashboard.Graph_CR_Types_Pending';
+    var V_CR_Types_RecievedPending = '@Localization.Dashboard.Graph_CR_Types_RecievedPending';
+    var V_CR_Types_Accepted = '@Localization.Dashboard.Graph_CR_Types_Accepted';
+    var V_CR_Types_Rejected = '@Localization.Dashboard.Graph_CR_Types_Rejected';
+    var V_CR_Types = [V_CR_Types_Pending, V_CR_Types_RecievedPending, V_CR_Types_Accepted, V_CR_Types_Rejected];
+
+    var V_CR_Pending = @Model.dashboard.CR_Pending_Total;
+    var V_CR_Recieved = @Model.dashboard.CR_Recieved_Pending_Total;
+    var V_CR_Accepted = @Model.dashboard.CR_Accepted_Total;
+    var V_CR_Rejected = @Model.dashboard.CR_Rejected_Total;
+
+    ////////////////////////////// Checklist graph ///////////////////////////////////
+    @*var V_CL_Types_Maker_Done = '@Localization.Dashboard.Graph_CL_Types_MakerDone';
+    var V_CL_Types_Maker_Pending = '@Localization.Dashboard.Graph_CL_Types_MakerPending';
+    var V_CL_Types_Checker_Done = '@Localization.Dashboard.Graph_CL_Types_CheckerDone';
+    var V_CL_Types_Checker_Pending = '@Localization.Dashboard.Graph_CL_Types_CheckerPending';
+    var V_CL_Types_Accepted = '@Localization.Dashboard.Graph_CL_Types_Accepted';
+    var V_CL_Types_Rejected = '@Localization.Dashboard.Graph_CL_Types_Rejected';
+    var V_CL_Types_Closed = '@Localization.Dashboard.Graph_CL_Types_Closed';
+    var V_CL_Types = [V_CL_Types_Maker_Done, V_CL_Types_Maker_Pending, V_CL_Types_Checker_Done
+        , V_CL_Types_Checker_Pending, V_CL_Types_Accepted, V_CL_Types_Rejected, V_CL_Types_Closed];
+
+    var V_CL_Maker_Done = @Model.dashboard.CL_Done_Maker;
+    var V_CL_Maker_Pending = @Model.dashboard.CL_Pending_Maker;
+    var V_CL_Checker_Done = @Model.dashboard.CL_Done_Cheker;
+    var V_CL_Checker_Pending = @Model.dashboard.CL_Pending_Cheker;
+    var V_CL_Accepted = @Model.dashboard.CL_Accepted_Total;
+    var V_CL_Rejected = @Model.dashboard.CL_Rejected_Total;
+    var V_CL_Closed = @Model.dashboard.CL_Closed_Total;*@
+
+    //////////////////////////////// Overall Graph //////////////////////////////////////
+    var V_overAll_Title = '@Localization.Dashboard.Graph_Overall';
+
+    var V_Overall_Types_CR = '@Localization.Dashboard.Graph_Overall_Types_CR';
+    var V_Overall_Types_CL = '@Localization.Dashboard.Graph_Overall_Types_CL';
+    var V_Overall_Types_Complaint = '@Localization.Dashboard.Graph_Overall_Types_Complaint';
+    var V_overAll_Types = [V_Overall_Types_CR, V_Overall_Types_CL, V_Overall_Types_Complaint];
+
+    var V_overAll_Denominator = JSON.parse('@Html.Raw(Json.Encode(@Model.dashboard.lstOverAll_denominator))');
+    var V_overAll_CR = JSON.parse('@Html.Raw(Json.Encode(@Model.dashboard.lstOverAll_CR))');
+    var V_overAll_CL = JSON.parse('@Html.Raw(Json.Encode(@Model.dashboard.lstOverAll_CL))');
+    @*var V_overAll_Complaint = JSON.parse('@Html.Raw(Json.Encode(@Model.dashboard.lstOverAll_Complaint))');*@
+</script>

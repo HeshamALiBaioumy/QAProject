@@ -1,0 +1,200 @@
+﻿@model QA.Entities.View_Entities.Vw_Complaint
+
+@{
+    bool isUpdate = (Model != null && Model.complaint.complaintID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.Complaint.ComplaintAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<script>
+    $(function () {
+        $('#complaint_projectID').on("change", function () {
+            var ProjectCRs = $('#complaint_CRID');
+            var parameters = { projectID: $('#complaint_projectID').val() };
+            AjaxCall('/Complaint/getProjectCRs', JSON.stringify(parameters), 'POST').done(function (response) {
+                $("#imgloader").hide();
+                if (response.length > 0) {
+                    ProjectCRs.empty();
+                    $.each(response, function (index, item) {
+                        ProjectCRs.append($('<option></option>').val(item.id).text(item.value));
+                    });
+                }
+            }).fail(function (error) {
+                $("#imgloader").hide();
+                alert(error.StatusText);
+            });
+        });
+    });
+</script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.Complaint.UpdateComplaint : Localization.Complaint.CreateComplaint)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.Complaint.ComplaintDetails</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "Complaint", FormMethod.Post, new { @class = "form-horizontal form-label-left", @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.complaint.complaintID)
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="control-label col-md-3 col-sm-3 col-12">@Localization.Complaint.ProjectName</label>
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.complaint.projectID
+                                            , new SelectList(Model.lOVProjects, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.complaint.CRID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.complaint.CRID
+                                            , new SelectList(Model.lOVCRs, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.complaint.CRID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.complaint.comments
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.complaint.comments, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => model.complaint.comments, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.complaint.description, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextAreaFor(model => model.complaint.description, 1, 0, htmlAttributes: new { @class = "form-control col-md-7 col-12" })
+                                        @Html.ValidationMessageFor(model => model.complaint.description, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.complaint.NotificationList, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextAreaFor(model => model.complaint.NotificationList, 1, 0
+                                            , htmlAttributes: new { @class = "form-control col-md-7 col-12", @readonly = "readonly" })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!--    new edit     -->
+                            <div class="form-group form-group-upload">
+                                <div class="row">
+                                    <div class="control-label col-md-3 col-sm-3 col-12">@Localization.Complaint.Attachment_AddAttached</div>
+                                    <div class="col-md-6 col-sm-5 col-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fa fa-cloud-upload"></i> @Localization.Global.Attachment_Upload </span>
+                                            </div>
+                                            <div class="custom-file col-md-5 col-sm-6 col-12">
+                                                <input type="file" name="complaint.attachFile" class="custom-file-input col-md-5 col-12" id="complaint_attachFile"
+                                                    aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="complaint_attachFile">@Localization.Global.Attachment_ChooseFile</label>
+                                                @Html.ValidationMessage("complaint.attachFile", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   end new edit     -->
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.complaint.complaintStatus, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.complaint.complaintStatus
+                                            , new SelectList(Model.lOVComplaintStatus, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1", disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

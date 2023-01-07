@@ -1,0 +1,372 @@
+﻿@model QA.Entities.Business_Entities.Ent_Project
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">@Localization.Project.ProjectDetails</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs " role="tablist">
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content1" class="nav-link active" role="tab"
+                               id="Details-tab" data-toggle="tab" aria-expanded="true"> @Localization.Project.ProjectDetails </a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content2" class="nav-link" role="tab"
+                               id="Stakeholders-tab" data-toggle="tab" aria-expanded="false"> @Localization.Project.ProjectStakeholders </a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="#tab_content3" class="nav-link" role="tab"
+                               id="Milestones-tab" data-toggle="tab" aria-expanded="false"> @Localization.Project.ProjectMileStones </a>
+                        </li>
+                        @*<li role="presentation" class="nav-item">
+                                <a href="#tab_content4" class="nav-link" role="tab"
+                                   id="Map-tab" data-toggle="tab" aria-expanded="false"> @Localization.Project.ProjectLocation</a>
+                            </li>*@
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active show in"
+                             id="tab_content1" aria-labelledby="Details-tab">
+                            <br />
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.name, Localization.Project.name_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-6" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.name, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-12 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.startDate, Localization.Project.startDate_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.txtStartDate, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.endDate, Localization.Project.endDate_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.txtEndDate, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-12 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.registerDate, Localization.Project.registerDate_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.txtRegisterDate, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control col-md-12 col-12",
+                                                @disabled = "disabled",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-9 col-sm-9 col-12">
+                                        <div class="">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.isActive, htmlAttributes: new
+                                                {
+                                                    @class = "js-switch",
+                                                    @checked = "checked",
+                                                    @disabled = "disabled"
+                                                })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2"
+                             aria-labelledby="Stakeholders-tab">
+                            <br />
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.projectOwnerID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.projectOwnerName, new
+                                        {
+                                            htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.departmentID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.departmentName, new
+                                        {
+                                            htmlAttributes = new
+                                   {
+                                       @class = "form-control col-md-12 col-12",
+                                       @disabled = "disabled",
+                                       @readonly = "readonly"
+                                   }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.departmentSectionID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.departmentSectionName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.supervisorEngID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.supervisorEngName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.consultantID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.consultantName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.consultantAssistantID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.consultantAssistantName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.contractorID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.contractorName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.contractorAssistantID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.contractorAssistantName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.authorizedLabID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.authorizedLabName, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-12 col-12",
+                                           @disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.QATechnicianID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.QATechnicianName, new
+                                        {
+                                            htmlAttributes = new
+                                   {
+                                       @class = "form-control col-md-12 col-12",
+                                       @disabled = "disabled",
+                                       @readonly = "readonly"
+                                   }
+                                   })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.QualityAssuranceEngID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.QualityAssuranceEngName, new
+                                        { htmlAttributes = new {
+                                            @class = "form-control col-md-12 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }})
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="Milestones-tab">
+                            <br />
+                            <div class="form-group">
+                                <table class="table table-striped" id="tblProjectMilestonesView" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%">@Localization.Project.tbl_ProjMlstone_MileStone</th>
+                                            <th style="width:30%">@Localization.Project.tbl_ProjMlstone_Description</th>
+                                            <th style="width:16%">@Localization.Project.tbl_ProjMlstone_Amount</th>
+                                            <th style="width:18%">@Localization.Project.tbl_ProjMlstone_Amt_Unit</th>
+                                            @*<th style="width:16%">@Localization.Project.tbl_ProjMlstone_Percentage</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.projectMileStones)
+                                        {
+                                            <tr>
+                                                <td>@item.name</td>
+                                                <td>@item.description</td>
+                                                <td>@item.amount</td>
+                                                <td>@item.txtAmountUnit</td>
+                                                @*<td>@item.percentage %</td>*@
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @*<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="Map-tab" style="height: 400px;">
+                                <br />
+                                <div class="form-group" style="height: 100%;">
+                                    <div id='map' class="col-12" style="height: 98%;"></div>
+
+                                    @Html.HiddenFor(model => model.mapSelection.centerLatitude, new { id = "MapCenterLatitude" })
+                                    @Html.HiddenFor(model => model.mapSelection.centerLongitude, new { id = "MapCenterLongitude" })
+                                    @Html.HiddenFor(model => model.mapSelection.zoomLevel, new { id = "MapZoomLevel" })
+                                    @Html.HiddenFor(model => model.mapSelection.exportJEOJSON, new { id = "MapJEOJSON" })
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Body -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">
+                @Localization.Global.BtnOk
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="~/Design_Template/build/js/SoftaEngineers_ProjectScreen_View.js"></script>

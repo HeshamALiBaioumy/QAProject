@@ -1,0 +1,188 @@
+﻿@model QA.Entities.Business_Entities.Ent_Mixer
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">@Localization.Mixer.Mixer_Details</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <div class="x_content">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.factoryID, Localization.Mixer.factoryID_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.factoryName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.mixerTypeID, Localization.Mixer.MixerTypeID_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.mixerTypeName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.name, Localization.Mixer.name_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.name, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.description, Localization.Mixer.description_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.TextAreaFor(model => model.description, 1, 0, htmlAttributes: new
+                            {
+                                @class = "form-control col-md-7 col-12",
+                                @disabled = "disabled",
+                                @readonly = "readonly"
+                            })
+                            <br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.mixerCode, Localization.Mixer.MixerCode_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.mixerCode, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.mixerModel, Localization.Mixer.mixerModel_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.mixerModel, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.mixerPower, Localization.Mixer.mixerPower_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.mixerPower, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.mixerStatus, Localization.Mixer.mixer_status_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.mixerStatus, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                        <div class="col-md-9 col-sm-9 col-12">
+                            <div class="">
+                                <label>
+                                    @Html.CheckBoxFor(model => model.isActive, htmlAttributes: new
+                                    {
+                                        @class = "js-switch",
+                                        @checked = "checked",
+                                        @disabled = "disabled"
+                                    })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Body -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">
+                @Localization.Global.BtnOk
+            </button>
+        </div>
+    </div>
+</div>
+

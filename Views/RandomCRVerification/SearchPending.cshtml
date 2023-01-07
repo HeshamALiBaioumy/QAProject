@@ -1,0 +1,178 @@
+﻿@model QA.Entities.View_Entities.Vw_RCV
+
+@{
+    ViewBag.Title = Localization.RCV.Search_Pending_Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        @*title: '@Localization.Global.SearchDataRetrievedSuccessfully',*@
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<script>
+    function ajaxSearchBegin() {
+
+    }
+
+    function ajaxSearchSuccess() {
+        new PNotify({
+            title: '@Localization.Global.SearchDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+    }
+
+    function ajaxSearchError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+
+    function ajaxViewBegin() {
+
+    }
+
+    function ajaxViewSuccess() {
+        new PNotify({
+            title: '@Localization.Global.ViewDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+
+        $('#divViewItemModal').modal('toggle');
+    }
+
+    function ajaxViewError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+</script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.RCV.Search_Pending</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="right_col col-lg-12" role="main">
+                <div class="">
+                    <div class="clearfix"></div>
+                    <div id="imgloader" class="loadingImageDiv">
+                        <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+                    </div>
+                    <div id="divSearchArea" class="row">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+                                       cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@Localization.RCV.PendingCR_Action</th>
+                                            <th>@Localization.RCV.PendingCR_Project</th>
+                                            <th>@Localization.RCV.PendingCR_CRID</th>
+                                            <th>@Localization.RCV.PendingCR_CRRegistration_Date</th>
+                                            <th>@Localization.RCV.PendingCR_AssignDate</th>
+                                            <th>@Localization.RCV.PendingCR_AssignUser</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.lstRCVs)
+                                        {
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    @if (item.allowedforAction)
+                                                    {
+                                                        @Html.ActionLink(Localization.RCV.PendingCR_Action, "FeedbackRCV", "RandomCRVerification"
+                                                            , new
+                                                                 {
+                                                                ID = @item.RCVID,
+                                                                token = URLParametersValidator.Encrypt(@item.RCVID.ToString())
+                                                            }, null)
+                                                    }
+                                                    else
+                                                    {
+                                                        @Localization.RCV.PendingCR_Action_NotAllowed;
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @Ajax.ActionLink(@item.projectName, "View", "Project"
+                                                            , new { ID = @item.projectID }, new AjaxOptions()
+                                                             {
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                HttpMethod = "Get",
+                                                                LoadingElementId = "imgloader",
+                                                                OnBegin = "ajaxViewBegin",
+                                                                OnSuccess = "ajaxViewSuccess",
+                                                                OnFailure = "ajaxViewError",
+                                                                UpdateTargetId = "divViewItemModal"
+                                                                     })
+                                                </td>
+                                                <td>@item.CRID</td>
+                                                <td>@item.strCRRegistrationDate</td>
+                                                <td>@item.strRCVAssignDate</td>
+                                                <td>@item.assignUserName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x_content">
+                <div id="divViewItemModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                     aria-hidden="true">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

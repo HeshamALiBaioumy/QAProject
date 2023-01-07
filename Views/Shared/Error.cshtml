@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = Localization.Global.ErrorPage_Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if (!(bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-md-12">
+
+    <div class="row tile_count error-content">
+        <div class="col-md-12">
+            <div class="notfound">
+                <div class="notfound-content">
+                    <div class="notfound-404" style="margin-right:10px;">
+                        <img src="~/Design_Template/build/images/emoji.png" class="error-img" alt="">
+                    </div>
+
+                    <div class="content-text-error">
+                        <h1> 404 </h1>
+                        <h2> @Localization.Global.ErrorPage_Header </h2>
+                        <p> @Localization.Global.ErrorPage_Message </p>
+                        @{
+
+                            QA.Entities.Business_Entities.Ent_UserRoles initialScreenName =
+                                (QA.Entities.Business_Entities.Ent_UserRoles)Session["SideMenuRoles"];
+                        }
+                        @Html.ActionLink(@Localization.Global.ErrorPage_HomePage, @initialScreenName.initialScreenName, "Dashboard")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

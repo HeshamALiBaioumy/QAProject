@@ -1,0 +1,241 @@
+﻿@model QA.Entities.View_Entities.Vw_CR
+
+@{
+    ViewBag.Title = "TestMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <br />
+
+                        <div style="height: 350px;">
+                            <input type="submit" value="Accept"
+                                   class="btn btn-success" onclick="return customizedFormValidation();" />
+                            <br />
+                            <label id="c1"> </label>
+                            <br />
+                            <label id="c2"> </label>
+                            <br />
+                            <br />
+                            <div id='map' class="col-12" style="height: 300px;"></div>
+                            @Html.HiddenFor(model => Model.CR.mapSelection.centerLatitude, new { id = "MapCenterLatitude" })
+                            @Html.HiddenFor(model => Model.CR.mapSelection.centerLongitude, new { id = "MapCenterLongitude" })
+                            @Html.HiddenFor(model => Model.CR.mapSelection.zoomLevel, new { id = "MapZoomLevel" })
+                            @Html.HiddenFor(model => Model.CR.mapSelection.exportJEOJSON, new { id = "MapJEOJSON" })
+                            @Html.HiddenFor(model => Model.CR.mapSelection.turfCoordinates, new { id = "turfCoordinates" })
+                        </div>
+                        <div class="clearfix clear"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Design_Template/vendors/turf.min.js" charset="utf-8"></script>
+
+<script>
+    function localizedAlerts(ErrorCode) {
+        if (ErrorCode == 'Map_Validation_Location') {
+            alert('@Localization.CR.Map_Validation_Location');
+        }
+    }
+</script>
+<script>
+    //var TurfProject;
+    var zoomLevel = $('#MapZoomLevel').val();
+    var exportJEOJSON = $('#MapJEOJSON').val();
+    var TurfexportJEOJSON = $('#turfCoordinates').val();
+
+    function clearMap() {
+        for (i in map._layers) {
+            if (map._layers[i]._path != undefined) {
+                try {
+                    map.removeLayer(map._layers[i]);
+                }
+                catch (e) {
+                    console.log("problem with " + e + map._layers[i]);
+                }
+            }
+        }
+    }
+
+    var map = L.mapbox.map('map').setView([-71.08482, 45.3052400000002], zoomLevel);
+
+    var polygon = L.polygon(JSON.parse(exportJEOJSON)).addTo(map);
+    map.panTo(polygon.getBounds().getCenter(), zoomLevel);
+
+    //var Coord1 = [[
+    //    [31.290176957845684, 30.032095737067444],
+    //    [31.308029741048813, 30.03053526718188],
+    //    [31.302450746297836, 30.013517120097877],
+    //    [31.288975328207016, 30.015152178082037],
+    //    [31.290176957845684, 30.032095737067444]
+    //]];
+
+    //alert(polygon.getBounds());
+    //var Coord2 = JSON.parse(TurfexportJEOJSON);
+    //alert(Coord1);
+    //alert(Coord2);
+
+    //$('#c1').text(Coord1);
+    //$('#c2').text(Coord2);
+
+    //alert(JSON.parse(TurfexportJEOJSON));
+    var Turfpolygon1 = turf.polygon(JSON.parse(TurfexportJEOJSON));
+    //var Turfpolygon1 = turf.polygon([[
+    //    [31.290176957845684, 30.032095737067444],
+    //    [31.308029741048813, 30.03053526718188],
+    //    [31.302450746297836, 30.013517120097877],
+    //    [31.288975328207016, 30.015152178082037],
+    //    [31.290176957845684, 30.032095737067444]
+    //]], { name: 'poly1', population: 400 });
+
+
+    //alert(TurfexportJEOJSON);
+    //TurfProject = turf.polygon(JSON.parse('[' + exportJEOJSON + ']'));
+    //map.panTo(turf.center(TurfProject), zoomLevel);
+
+    // Add Tile layers to the map
+    L.control.layers({
+        'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', { detectRetina: true }).addTo(map),
+        'Terrain Map': L.mapbox.tileLayer('bobbysud.i2pfp2lb', { detectRetina: true })
+    }).addTo(map);
+
+    var featureGroup = L.featureGroup().addTo(map);
+
+    var drawControl = new L.Control.Draw(
+        {
+            draw: {
+                position: 'topleft',
+                polygon: {
+                    allowIntersection: false,
+                    drawError: {
+                        color: '#e1e100',
+                        message: 'Intersection Not allowed'
+                    },
+                    shapeOptions: {
+                        color: '#97009c'
+                    }
+                },
+                circle: false,
+                polyline: true,
+                marker: false
+            },
+            edit: { featureGroup: featureGroup }
+        }
+    ).addTo(map);
+
+    //alert('polygon: ' + polygon.getBounds().getCenter());
+    //alert('TurfProject: ' + turf.center(TurfProject));
+    //TurfProject.addTo(map);
+    //map.panTo(turf.center(TurfProject), zoomLevel);
+    //var TT1 = turf.polygon([[[24.394944, 39.620850], [113, -22], [154, -27], [144, -15], [125, -15]]]);
+    //var area = turf.area(TT1);
+    //map.panTo(turf.center(TT1), zoomLevel);
+
+    map.on('draw:created', function (e) {
+        mapProjectShapeAdded = false;
+        featureGroup.clearLayers();
+        // Each time a feaute is created, it's added to the over arching feature group
+        featureGroup.addLayer(e.layer);
+        mapProjectShapeAdded = true;
+    });
+
+    map.on('draw:deleted', function (evt) {
+        mapProjectShapeAdded = false;
+        featureGroup.clearLayers();
+    });
+
+    function customizedFormValidation() {
+        //clearMap();
+
+        //TurfProject.addTo(map);
+        //alert('Here');
+
+        //var polygonCR = L.polygon(featureGroup.toGeoJSON().features[0].geometry.coordinates);
+        //var Turfpolygon2 = turf.polygon(featureGroup.toGeoJSON().features[0].geometry.coordinates);
+        //var Turfpolygon2 = turf.polygon([[
+        //    [31.293179690837857, 30.028528912657872],
+        //    [32.300217807292935, 30.027934429444258],
+        //    [31.29970282316208, 30.0199085571309],
+        //    [31.294381320476532, 30.019314022225615],
+        //    [31.293179690837857, 30.028528912657872]
+        //]], { name: 'poly2', population: 400 });
+
+        //alert(turf.booleanContains(Turfpolygon1, Turfpolygon2));
+
+        //alert(polygon.getBounds().contains(polygon.getBounds().getCenter(polygonCR)));
+        //.features.geometry.coordinates
+        //$('#c1').text(JSON.stringify(featureGroup.toGeoJSON().features[0].geometry.coordinates));
+        TurfCR = turf.lineString(featureGroup.toGeoJSON().features[0].geometry.coordinates);
+        alert('Here');
+        //var tt = turf.booleanContains(TurfProject, TurfCR);
+        //alert(tt);//if (type == 'polygon') {}
+
+        //var tmpLine = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+        //var tmpPoint = turf.point([1, 2]);
+        //var tmpRes = turf.booleanContains(tmpLine, tmpPoint);
+        //alert(tmpRes);
+
+        //var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
+        //var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+        //var point = turf.centroid(polygon);
+
+        //alert(turf.booleanContains(polygon, point));
+
+        map.addLayer({
+            'id': 'maine' + id,
+            'type': 'fill',
+            'source': {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Polygon',
+                        'coordinates': [[[-67.13734351262877, 45.137451890638886],
+                        [-66.96466, 44.8097],
+                        [-68.03252, 44.3252],
+                        [-69.06, 43.98],
+                        [-70.11617, 43.68405],
+                        [-70.64573401557249, 43.090083319667144],
+                        [-70.75102474636725, 43.08003225358635],
+                        [-70.79761105007827, 43.21973948828747],
+                        [-70.98176001655037, 43.36789581966826],
+                        [-70.94416541205806, 43.46633942318431],
+                        [-71.08482, 45.3052400000002],
+                        [-70.6600225491012, 45.46022288673396],
+                        [-70.30495378282376, 45.914794623389355],
+                        [-70.00014034695016, 46.69317088478567],
+                        [-69.23708614772835, 47.44777598732787],
+                        [-68.90478084987546, 47.184794623394396],
+                        [-68.23430497910454, 47.35462921812177],
+                        [-67.79035274928509, 47.066248887716995],
+                        [-67.79141211614706, 45.702585354182816],
+                        [-67.13734351262877, 45.137451890638886]]]
+                    }
+                }
+            },
+            'layout': {},
+            'paint': {
+                'fill-color': '#088',
+                'fill-opacity': 0.8
+            }
+        });
+
+        //varValidationStatus = false;
+        //$('#MapJEOJSON').val(JSON.stringify(featureGroup.toGeoJSON()));
+
+        return false;
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

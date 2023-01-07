@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Create_caseDescription" xml:space="preserve">
+    <value>التوصيف</value>
+  </data>
+  <data name="Create_caseDescription_Val_length" xml:space="preserve">
+    <value>طول الحقل ألزامى 5 - 1000 حرف</value>
+  </data>
+  <data name="Create_caseDescription_Val_Required" xml:space="preserve">
+    <value>حقل ألزامى</value>
+  </data>
+  <data name="Create_Comments" xml:space="preserve">
+    <value>التعليق: </value>
+  </data>
+  <data name="Create_CR" xml:space="preserve">
+    <value>طلب الفحص: </value>
+  </data>
+  <data name="Create_CRRegistrationDate" xml:space="preserve">
+    <value>تاريخ تسجيل طلب الفحص: </value>
+  </data>
+  <data name="Create_Project" xml:space="preserve">
+    <value>المشروع: </value>
+  </data>
+  <data name="Create_RCVAssignDate" xml:space="preserve">
+    <value>تاريخ توجيه الفحص العشوائي</value>
+  </data>
+  <data name="Create_RCV_Attachments" xml:space="preserve">
+    <value>المرفقات</value>
+  </data>
+  <data name="Create_RetrieveRCVSuccess" xml:space="preserve">
+    <value>تم أستعاده بيانات الفحص العشوائي</value>
+  </data>
+  <data name="Create_Sample1_Header" xml:space="preserve">
+    <value>بيانات العينه 1</value>
+  </data>
+  <data name="Create_Sample1_Location_Header" xml:space="preserve">
+    <value>موقع العينه 1</value>
+  </data>
+  <data name="Create_Sample2_Header" xml:space="preserve">
+    <value>بيانات العينه 2</value>
+  </data>
+  <data name="Create_Sample2_Location_Header" xml:space="preserve">
+    <value>موقع العينه 2</value>
+  </data>
+  <data name="Create_ScreenHeader" xml:space="preserve">
+    <value>أنشاء حاله عدم تطابق</value>
+  </data>
+  <data name="Create_Title" xml:space="preserve">
+    <value>أنشاء حاله عدم تطابق</value>
+  </data>
+  <data name="Edit_ID_Not_Available_inDB" xml:space="preserve">
+    <value>حاله عدم التطابق غير متاحه بقاعده البيانات !</value>
+  </data>
+  <data name="Map_CRSample1_Validation_Location" xml:space="preserve">
+    <value>حدود موقع العينه 1 لا يجب ان تتعدى حدود الموقع</value>
+  </data>
+  <data name="Map_CRSample2_Validation_Location" xml:space="preserve">
+    <value>حدود موقع العينه 2 لا يجب ان تتعدى حدود الموقع</value>
+  </data>
+  <data name="RCVMM_Added_Success" xml:space="preserve">
+    <value>تم الانشاء بنجاح</value>
+  </data>
+  <data name="RCVMM_Updated_Success" xml:space="preserve">
+    <value>تم التعديل بنجاح</value>
+  </data>
+  <data name="RCVNotValidMissmatch" xml:space="preserve">
+    <value>حاله الفحص العشوائي غير متاحه لأنشاء حاله عدم تطابق</value>
+  </data>
+  <data name="RCV_Missmatch_Case" xml:space="preserve">
+    <value>حاله عدم التطابق: </value>
+  </data>
+  <data name="Reply_ReplyMessage_Val_Length" xml:space="preserve">
+    <value>طول الحقل ألزامى 5 - 1000 حرف</value>
+  </data>
+  <data name="Reply_ReplyMessage_Val_Required" xml:space="preserve">
+    <value>حقل ألزامى</value>
+  </data>
+  <data name="Sample1_Fields_Mandatory_Val" xml:space="preserve">
+    <value>بيانات العينه 1 ألزامى طالما تما أدخال أحد بيانات العينه</value>
+  </data>
+  <data name="Sample_Field_Required_val" xml:space="preserve">
+    <value>حقل ألزامى</value>
+  </data>
+  <data name="Sample_Maker_Length_val" xml:space="preserve">
+    <value>حقل صانع العينه يجب أن يكون بين 3 - 50 حرف</value>
+  </data>
+  <data name="Sample_SizeLength_Length_val" xml:space="preserve">
+    <value>طول الحق بين 1 - 10 حرف</value>
+  </data>
+  <data name="Sample_Unit_Required_Val" xml:space="preserve">
+    <value>يرجى أختيار وحده القياس</value>
+  </data>
+  <data name="SearchRes_Case_Desc" xml:space="preserve">
+    <value>وصف الحاله</value>
+  </data>
+  <data name="SearchRes_Close_Date" xml:space="preserve">
+    <value>تاريخ أغلاق الحدث</value>
+  </data>
+  <data name="SearchRes_Comments" xml:space="preserve">
+    <value>تعليقات</value>
+  </data>
+  <data name="SearchRes_Conversation" xml:space="preserve">
+    <value>سير الحاله</value>
+  </data>
+  <data name="SearchRes_CR_ID" xml:space="preserve">
+    <value>كود طلب الفحص</value>
+  </data>
+  <data name="SearchRes_CR_RegDate" xml:space="preserve">
+    <value>تاريخ تسجيل طلب الفحص</value>
+  </data>
+  <data name="SearchRes_CR_Status" xml:space="preserve">
+    <value>حاله طلب الفحص</value>
+  </data>
+  <data name="SearchRes_Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="SearchRes_Edit_NA" xml:space="preserve">
+    <value>غير متاح</value>
+  </data>
+  <data name="SearchRes_Is_RCV" xml:space="preserve">
+    <value>فحص عشوائي</value>
+  </data>
+  <data name="SearchRes_Maker" xml:space="preserve">
+    <value>منشىء الحاله</value>
+  </data>
+  <data name="SearchRes_PendingOn" xml:space="preserve">
+    <value>معلق على</value>
+  </data>
+  <data name="SearchRes_Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="SearchRes_Project_Item" xml:space="preserve">
+    <value>بند المشروع</value>
+  </data>
+  <data name="SearchRes_RCV_CreateDate" xml:space="preserve">
+    <value>تاريخ الفحص العشوائي</value>
+  </data>
+  <data name="SearchRes_RCV_ID" xml:space="preserve">
+    <value>كود الفحص العشوائي</value>
+  </data>
+  <data name="SearchRes_Status" xml:space="preserve">
+    <value>الحاله</value>
+  </data>
+  <data name="Search_CRID" xml:space="preserve">
+    <value>طلب الفحص: </value>
+  </data>
+  <data name="Search_PendingOn" xml:space="preserve">
+    <value>معلق على: </value>
+  </data>
+  <data name="Search_ProfileID" xml:space="preserve">
+    <value>المستخدم: </value>
+  </data>
+  <data name="Search_ProjectID" xml:space="preserve">
+    <value>المشروع: </value>
+  </data>
+  <data name="Search_RCVID" xml:space="preserve">
+    <value>حاله الفحص العشوائي: </value>
+  </data>
+  <data name="Search_RCVMM_Status" xml:space="preserve">
+    <value>الحاله: </value>
+  </data>
+  <data name="Search_SearchCases" xml:space="preserve">
+    <value>بحث حالات عدم التطابق</value>
+  </data>
+  <data name="View_MMC_Details" xml:space="preserve">
+    <value>بيانات حاله عدم التطابق</value>
+  </data>
+</root>

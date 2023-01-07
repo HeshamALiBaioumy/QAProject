@@ -1,0 +1,435 @@
+﻿@model QA.Entities.View_Entities.Vw_UserProfile
+
+@{
+    bool isUpdate = (Model != null && Model.userProfile.UserProfileID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.UserProfile.UserProfileAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.UserProfile.UpdateUserProfile : Localization.UserProfile.CreateUserProfile)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.UserProfile.UserProfileDetails</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "UserProfile", FormMethod.Post, new
+                        {
+                            @class = "form-horizontal form-label-left"
+                            ,
+                            @id = "UserProfileForm",
+                            @name = "UserProfileForm"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.userProfile.UserProfileID)
+
+                            <!-- Smart Wizard -->
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step1 <br /><small> @Localization.UserProfile.Wizard_UserDetails </small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step2 <br /><small> @Localization.UserProfile.Wizard_ContactDetails </small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step3 <br /><small> @Localization.UserProfile.Wizard_LoginDetails </small></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="step-1">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.userTypeID, htmlAttributes:
+                                                new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.userTypeID
+                                                    , new SelectList(Model.lOVUserTypes, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => model.userProfile.userTypeID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.employeeName
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => model.userProfile.employeeName, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => model.userProfile.employeeName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.nationalityTypeID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.nationalityTypeID
+                                                    , new SelectList(Model.lOVNationalityTypes, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => model.userProfile.nationalityTypeID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.nationalityID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.nationalityID
+                                                    , new SelectList(Model.lOVNationalities, "idStr", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => model.userProfile.nationalityID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.nationalId
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => model.userProfile.nationalId, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => model.userProfile.nationalId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.employeeId
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => model.userProfile.employeeId, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => model.userProfile.employeeId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.isAssistantUser, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-9 col-sm-9 col-12">
+                                                <div class="">
+                                                    <label>
+                                                        @Html.CheckBoxFor(model => model.userProfile.isAssistantUser, htmlAttributes: new
+                                                        {
+                                                            @class = "js-switch",
+                                                            //@disabled = "disabled",
+                                                            //@readonly = "readonly",
+                                                            @checked = "checked"
+                                                        })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.superUserID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.superUserID
+                                                    , new SelectList(Model.lOVSuperUsers, "id", "value")
+                                                    , htmlAttributes: new
+                                                    {
+                                                        @class = "select2_single form-control col-md-7 col-12",
+                                                        //@disabled = "disabled",
+                                                        //@readonly = "readonly",
+                                                        tabindex = "-1"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.userProfile.superUserID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.projectOwnerID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.projectOwnerID
+                                                    , new SelectList(Model.lOVProjectOwners, "id", "value")
+                                                    , htmlAttributes: new
+                                                    {
+                                                        @class = "select2_single form-control col-md-7 col-12",
+                                                        tabindex = "-1"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.userProfile.projectOwnerID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step-2">
+                                    <!-- Contact Details Section -->
+                                    @Html.Partial("_ContactDetails", Model.userProfile.contactDetails
+                                        , new ViewDataDictionary { TemplateInfo = new TemplateInfo { HtmlFieldPrefix = "userProfile.contactDetails" } })
+                                    <!-- End Contact Details Section -->
+                                </div>
+                                <div id="step-3">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.userName
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => model.userProfile.userName, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => model.userProfile.userName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.password
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => model.userProfile.password, new
+                                                {
+                                                    htmlAttributes = new
+                                                    {
+                                                        @class = "form-control col-md-7 col-12",
+                                                        @disabled = "disabled",
+                                                        @readonly = "readonly",
+                                                        @placeholder = "Default: " + @ViewData["UserDefaultPassword"]
+                                                    }
+                                                })
+                                                @Html.ValidationMessageFor(model => model.userProfile.password, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.roleID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => model.userProfile.roleID
+                                                    , new SelectList(Model.lOVRoles, "id", "value")
+                                                    , htmlAttributes: new
+                                                    {
+                                                        @class = "select2_single form-control col-md-7 col-12",
+                                                        tabindex = "-1"
+                                                    })
+                                                @Html.ValidationMessageFor(model => model.userProfile.roleID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.expiryDate
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                <div class="input-group date col-md-7 col-12" data-provide="datepicker">
+                                                    @Html.TextBoxFor(model => model.userProfile.expiryDate
+                                                        , @System.Configuration.ConfigurationManager.AppSettings["MachineDateFormat"].ToString()
+                                                        , new { @class = "form-control datetype", @readonly = "readonly" })
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.userProfile.expiryDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.isLocked, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-9 col-sm-9 col-12">
+                                                <div class="">
+                                                    <label>
+                                                        @Html.CheckBoxFor(model => model.userProfile.isLocked, htmlAttributes: new
+                                                        {
+                                                            @class = "js-switch",
+                                                            @disabled = "disabled",
+                                                            //@readonly = "readonly",
+                                                            //@checked = "checked"
+                                                        })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.userProfile.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-9 col-sm-9 col-12">
+                                                <div class="">
+                                                    <label>
+                                                        @Html.CheckBoxFor(model => model.userProfile.isActive, htmlAttributes: new
+                                                        {
+                                                            @class = "js-switch",
+                                                            @checked = "checked"
+                                                        })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var Wizard_Next_Label = "@Localization.Global.Wizard_Next_Label";
+    var Wizard_Previous_Label = "@Localization.Global.Wizard_Previous_Label";
+    var Wizard_Finish_Label = "@Localization.Global.Wizard_Finish_Label";
+
+    $(document).ready(function () {
+        $("#userProfile_expiryDate").datepicker({
+            dateFormat: "dd-mm-yy",
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+
+    $(function () {
+        $('#userProfile_userTypeID').on("change", function () {
+            var isAssistantVar = $('#userProfile_isAssistantUser');
+            var superUsersVar = $('#userProfile_superUserID');
+
+            var parameters = { userTypeID: $('#userProfile_userTypeID').val() };
+            AjaxCall('/UserProfile/getSuperUsersDetails', JSON.stringify(parameters), 'POST').done(function (response) {
+                $("#imgloader").hide();
+
+                var boolResIsAssistant = false;
+                boolResIsAssistant = response.isAssistantUser;
+
+                isAssistantVar.prop('disabled', !(boolResIsAssistant));
+                isAssistantVar.prop('readonly', !(boolResIsAssistant));
+
+                superUsersVar.prop('disabled', !(boolResIsAssistant));
+                superUsersVar.prop('readonly', !(boolResIsAssistant));
+                superUsersVar.rules('remove');
+
+                if (response.lOVSuperUsers.length > 0) {
+                    superUsersVar.empty();
+                    $.each(response.lOVSuperUsers, function (index, item) {
+                        superUsersVar.append($('<option></option>').val(item.id).text(item.value));
+                    });
+
+                    superUsersVar.rules('remove');
+                    superUsersVar.rules("add", {
+                        required: true,
+                        min: 0,
+                        messages: {
+                            required: '@Localization.UserProfile.valid_SuperID',
+                            min: '@Localization.UserProfile.valid_SuperID',
+                        }
+                    });
+                }
+            }).fail(function (error) {
+                $("#imgloader").hide();
+                alert(error.StatusText);
+            });
+        });
+    });
+
+    $(function () {
+        try {
+            var isUpdateForm = '@isUpdate';
+            if (isUpdateForm == 'True') {
+                var boolResIsAssistant = ('@Model.userProfile.isAssistantUser' === 'True');
+                var isAssistantVar = $('#userProfile_isAssistantUser');
+                var superUsersVar = $('#userProfile_superUserID');
+
+                isAssistantVar.prop('disabled', !(boolResIsAssistant));
+                isAssistantVar.prop('readonly', !(boolResIsAssistant));
+
+                superUsersVar.prop('disabled', !(boolResIsAssistant));
+                superUsersVar.prop('readonly', !(boolResIsAssistant));
+                setTimeout(function () {
+                    superUsersVar.rules('remove');
+                }, 0);
+
+                if (boolResIsAssistant == true) {
+                    setTimeout(function () {
+                        superUsersVar.rules('remove');
+                        superUsersVar.rules("add", {
+                            required: true,
+                            min: 0,
+                            messages: {
+                                required: '@Localization.UserProfile.valid_SuperID',
+                                min: '@Localization.UserProfile.valid_SuperID',
+                            }
+                        });
+                    }, 0);
+                }
+            }
+        } catch (e) {
+            alert(e);
+        }
+    });
+
+    function validateNextStep() { var isStepValid = true; isStepValid = $("form").valid(); return isStepValid; }
+    function customizedFormValidation() { var isStepValid = true; isStepValid = $("form").valid(); return isStepValid;}
+    function customizedFormSubmit() { $("form").submit(); }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

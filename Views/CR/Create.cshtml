@@ -1,0 +1,308 @@
+﻿@model QA.Entities.View_Entities.Vw_CR
+
+@{
+    bool isUpdate = (Model != null && Model.CR.CRID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.CR.CRAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/Loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.CR.UpdateCR : Localization.CR.CreateCR)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "CR", FormMethod.Post
+                            , new { @class = "form-horizontal form-label-left", @id = "CRForm", @name = "CRForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <!-- Smart Wizard -->
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step1 <br /><small>@Localization.CR.CR_Details</small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step2 <br /><small>@Localization.CR.Map_Location</small></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="step-1">
+                                    @Html.HiddenFor(model => Model.CR.CRID)
+                                    @if (isUpdate)
+                                    {
+                                        <div class="form-group">
+                                            <div class="row">
+                                                @Html.LabelFor(model => Model.CR.CRID
+                                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    @Html.EditorFor(model => Model.CR.CRID
+                                                        , new
+                                                        {
+                                                            htmlAttributes = new
+                                                            {
+                                                                @class = "form-control col-md-7 col-12",
+                                                                @disabled = "disabled",
+                                                                @readonly = "readonly"
+                                                            }
+                                                        })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.projectID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.projectID
+                                                    , new SelectList(Model.lOVProjects, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.projectID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.projectItemID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.projectItemID
+                                                    , new SelectList(Model.lOVProjectItems, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.projectItemID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.CRTypeMCID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.CRTypeMCID
+                                                    , new SelectList(Model.lOVCRTypeMCs, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.CRTypeMCID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.CRTypeGroupID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.CRTypeGroupID
+                                                    , new SelectList(Model.lOVCRGroups, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.CRTypeGroupID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.CRTypeID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.CRTypeID
+                                                    , new SelectList(Model.lOVCRTypes, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.CRTypeID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.CRStatus
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.CRStatus
+                                                    , new SelectList(Model.lOVCRStatuses, "id", "value")
+                                                    , htmlAttributes: new
+                                                    {
+                                                        @class = "select2_single form-control col-md-7 col-12",
+                                                        tabindex = "-1",
+                                                        @disabled = "disabled",
+                                                        @readonly = "readonly"
+                                                    })
+                                                @Html.ValidationMessageFor(model => Model.CR.CRStatus, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.sample.sampleMaker
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.CR.sample.sampleMaker
+                                                    , new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => Model.CR.sample.sampleMaker, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.sample.sampleSize
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.CR.sample.sampleSize
+                                                    , new
+                                                         {
+                                                             htmlAttributes = new
+                                                             {
+                                                                 @class = "form-control col-md-7 col-12",
+                                                                 @type = "number",
+                                                                 @step = "0.01"
+                                                             }
+                                                         })
+                                                @Html.ValidationMessageFor(model => Model.CR.sample.sampleSize, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.sample.sampleLength
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.CR.sample.sampleLength
+                                                    , new
+                                                         {
+                                                             htmlAttributes = new
+                                                             {
+                                                                 @class = "form-control col-md-7 col-12",
+                                                                 @type = "number",
+                                                                 @step = "0.01"
+                                                             }
+                                                         })
+                                                @Html.ValidationMessageFor(model => Model.CR.sample.sampleLength, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.CR.sample.sampleUnitID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.CR.sample.sampleUnitID
+                                                    , new SelectList(Model.lOVSampleUnits, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.CR.sample.sampleUnitID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if (isUpdate)
+                                    {
+                                        <div class="form-group">
+                                            <div class="row">
+                                                @Html.LabelFor(model => Model.CR.rejectReason
+                                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    @Html.EditorFor(model => Model.CR.rejectReason
+                                                    , new
+                                                    {
+                                                        htmlAttributes = new
+                                                        {
+                                                            @class = "form-control col-md-7 col-12",
+                                                            @disabled = "disabled",
+                                                            @readonly = "readonly"
+                                                        }
+                                                    })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <br /><br /><br />
+                                </div>
+                                <div id="step-2" style="height: 100%;">
+                                    <div id='map' class="col-12" style="height: 98%;"></div>
+                                    @Html.HiddenFor(model => Model.CR.mapSelection.centerLatitude, new { id = "MapCenterLatitude" })
+                                    @Html.HiddenFor(model => Model.CR.mapSelection.centerLongitude, new { id = "MapCenterLongitude" })
+                                    @Html.HiddenFor(model => Model.CR.mapSelection.zoomLevel, new { id = "MapZoomLevel" })
+                                    @Html.HiddenFor(model => Model.CR.mapSelection.exportJEOJSON, new { id = "MapJEOJSON" })
+                                    @Html.HiddenFor(model => Model.CR.mapSelection.turfCoordinates, new { id = "turfCoordinates" })
+                                </div>
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Variables Declaration
+    var isCRUpdate = '@isUpdate' == 'True' ? true : false;
+
+    var Wizard_Next_Label = "@Localization.Global.Wizard_Next_Label";
+    var Wizard_Previous_Label = "@Localization.Global.Wizard_Previous_Label";
+    var Wizard_Finish_Label = "@Localization.Global.Wizard_Finish_Label";
+
+    function localizedAlerts(ErrorCode) {
+        if (ErrorCode == 'Map_Validation_Location') {
+            alert('@Localization.CR.Map_Validation_Location');
+        }else if (ErrorCode == 'Map_CR_Validation_Location') {
+            alert('@Localization.CR.Map_CR_Validation_Location');
+        }
+    }
+</script>
+<script src="~/Design_Template/vendors/turf.min.js" charset="utf-8"></script>
+<script src="~/Design_Template/build/js/SoftaEngineers_CRScreen.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

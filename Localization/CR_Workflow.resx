@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accept_CR" xml:space="preserve">
+    <value>Accept CR</value>
+  </data>
+  <data name="AddAttachments" xml:space="preserve">
+    <value>Add Attachments</value>
+  </data>
+  <data name="AddAttach_NotAllowed" xml:space="preserve">
+    <value>NA</value>
+  </data>
+  <data name="Add_Complaint" xml:space="preserve">
+    <value>Add Complaint</value>
+  </data>
+  <data name="Add_Complaint_NotAllowed" xml:space="preserve">
+    <value>NA</value>
+  </data>
+  <data name="AssignedCRRetrievedSuccess" xml:space="preserve">
+    <value>Assigned CR's Retrieved Successfully</value>
+  </data>
+  <data name="Assigned_To_Success" xml:space="preserve">
+    <value> Assigned to your user successfully</value>
+  </data>
+  <data name="Assign_Cr" xml:space="preserve">
+    <value>Assign CR</value>
+  </data>
+  <data name="AttachCRFiles" xml:space="preserve">
+    <value>Attach CR Files</value>
+  </data>
+  <data name="AttachFiles" xml:space="preserve">
+    <value>Add attachments</value>
+  </data>
+  <data name="AttachmentRetrievedSuccess" xml:space="preserve">
+    <value>Attachments Retrieved Successfuly</value>
+  </data>
+  <data name="CloseCR" xml:space="preserve">
+    <value>Close CR</value>
+  </data>
+  <data name="CloseCR_NotAllowed" xml:space="preserve">
+    <value>NA</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="CR" xml:space="preserve">
+    <value>CR </value>
+  </data>
+  <data name="CR Status" xml:space="preserve">
+    <value>CR status</value>
+  </data>
+  <data name="CRID" xml:space="preserve">
+    <value>CR ID</value>
+  </data>
+  <data name="CRMC" xml:space="preserve">
+    <value>CR Main-category</value>
+  </data>
+  <data name="CR_Assigned_Successfully" xml:space="preserve">
+    <value>CR Assigned Successfully</value>
+  </data>
+  <data name="CR_Group" xml:space="preserve">
+    <value>CR Group</value>
+  </data>
+  <data name="CR_Recieved_Successfully" xml:space="preserve">
+    <value>CR Recieved Successfully</value>
+  </data>
+  <data name="CR_Type" xml:space="preserve">
+    <value>CR Type</value>
+  </data>
+  <data name="ExecuteCR" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="ExecuteCR_Header" xml:space="preserve">
+    <value>Execute CR</value>
+  </data>
+  <data name="Map_CRSample_Validation_Location" xml:space="preserve">
+    <value>CR Sample Geographical Premises should be within CR premises</value>
+  </data>
+  <data name="NotAssignedCR" xml:space="preserve">
+    <value>CR not exist or not assigned to the user !</value>
+  </data>
+  <data name="PendingReceieved" xml:space="preserve">
+    <value>Pending CR's Receievd Successfully</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Project_Item" xml:space="preserve">
+    <value>Project Item</value>
+  </data>
+  <data name="provide_sampleLength" xml:space="preserve">
+    <value>Please provide sample length</value>
+  </data>
+  <data name="provide_sampleMaker" xml:space="preserve">
+    <value>Please provide sample maker</value>
+  </data>
+  <data name="provide_sampleSize" xml:space="preserve">
+    <value>Please provide sample Size</value>
+  </data>
+  <data name="provide_sampleUnit" xml:space="preserve">
+    <value>Please provide sample Unit</value>
+  </data>
+  <data name="Receieve_CR" xml:space="preserve">
+    <value>Recieve</value>
+  </data>
+  <data name="Registration_Date" xml:space="preserve">
+    <value>Registration date</value>
+  </data>
+  <data name="RejectCR_RejectReason_Validation" xml:space="preserve">
+    <value>Please provide Reject Reason</value>
+  </data>
+  <data name="Reject_CR" xml:space="preserve">
+    <value>Reject CR</value>
+  </data>
+  <data name="Reject_Reason" xml:space="preserve">
+    <value>Reject Reason</value>
+  </data>
+  <data name="sampleLength" xml:space="preserve">
+    <value>Sample Length: </value>
+  </data>
+  <data name="sampleLength_validation" xml:space="preserve">
+    <value>Sample length between 5 - 50 digits</value>
+  </data>
+  <data name="sampleMaker" xml:space="preserve">
+    <value>Sample Maker: </value>
+  </data>
+  <data name="sampleSize" xml:space="preserve">
+    <value>Sample Size: </value>
+  </data>
+  <data name="sampleSize_validation" xml:space="preserve">
+    <value>Sample size length between 5 - 50 digits</value>
+  </data>
+  <data name="sampleUnit" xml:space="preserve">
+    <value>Sample unit: </value>
+  </data>
+  <data name="Sample_Location_Validation" xml:space="preserve">
+    <value>Sample Location should be determined</value>
+  </data>
+  <data name="SearchAllCrs" xml:space="preserve">
+    <value>Search All CR's</value>
+  </data>
+  <data name="SearchAssignedCrs" xml:space="preserve">
+    <value>Search Assigned CR's</value>
+  </data>
+  <data name="SearchPendingCrs" xml:space="preserve">
+    <value>Search Pending CR's</value>
+  </data>
+  <data name="UpdateCR" xml:space="preserve">
+    <value>Update CR</value>
+  </data>
+  <data name="ViewAttachments_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ViewAttachments_Download_NotAvailable" xml:space="preserve">
+    <value>NA</value>
+  </data>
+  <data name="ViewAttachments_Maker" xml:space="preserve">
+    <value>Attachment Maker</value>
+  </data>
+  <data name="ViewAttachments_SampleCategory" xml:space="preserve">
+    <value>Sample Category</value>
+  </data>
+  <data name="ViewAttachments_SampleCode" xml:space="preserve">
+    <value>Sample Code</value>
+  </data>
+  <data name="ViewAttachments_SampleResult" xml:space="preserve">
+    <value>Sample Result</value>
+  </data>
+  <data name="ViewAttachments_SampleTest" xml:space="preserve">
+    <value>Sample Test</value>
+  </data>
+  <data name="ViewCR_CR_DateTime" xml:space="preserve">
+    <value>تاريخ الطلب: </value>
+  </data>
+  <data name="ViewCR_CR_ID" xml:space="preserve">
+    <value>رقم الطلب: </value>
+  </data>
+  <data name="ViewCR_CR_Owner" xml:space="preserve">
+    <value>المقاول: </value>
+  </data>
+  <data name="ViewCR_CR_Type" xml:space="preserve">
+    <value>تفاصيل الطلب: </value>
+  </data>
+  <data name="ViewCR_PageHeader_ReportName" xml:space="preserve">
+    <value>طلب فحص</value>
+  </data>
+  <data name="ViewCR_PO_AuthLab" xml:space="preserve">
+    <value>المختبر الخاص: </value>
+  </data>
+  <data name="ViewCR_PO_ConsultantEng" xml:space="preserve">
+    <value>الأستشارى: </value>
+  </data>
+  <data name="ViewCR_PO_Department" xml:space="preserve">
+    <value>الأداره: </value>
+  </data>
+  <data name="ViewCR_PO_DepSection" xml:space="preserve">
+    <value>الوحده: </value>
+  </data>
+  <data name="ViewCR_PO_ProjectOwner" xml:space="preserve">
+    <value>الجهه المشرفه:</value>
+  </data>
+  <data name="ViewCR_PO_SuperEng" xml:space="preserve">
+    <value>مهندس مشرف: </value>
+  </data>
+  <data name="ViewCR_Project_Date" xml:space="preserve">
+    <value>تاريخ: </value>
+  </data>
+  <data name="ViewCR_Project_MileStone" xml:space="preserve">
+    <value>بند المشروع: </value>
+  </data>
+  <data name="ViewCR_Project_Name" xml:space="preserve">
+    <value>أسم المشروع: </value>
+  </data>
+  <data name="ViewCR_Sample_Length" xml:space="preserve">
+    <value>سمك العينه: </value>
+  </data>
+  <data name="ViewCR_Sample_Maker" xml:space="preserve">
+    <value>صانع العينه: </value>
+  </data>
+  <data name="ViewCR_Sample_Size" xml:space="preserve">
+    <value>حجم العينه: </value>
+  </data>
+  <data name="ViewCR_Sample_Unit" xml:space="preserve">
+    <value>وحده القياس: </value>
+  </data>
+  <data name="ViewCR_ScreenTitle" xml:space="preserve">
+    <value>عرض طلب الفحص</value>
+  </data>
+  <data name="ViewCR_SubHeader_CRDetails" xml:space="preserve">
+    <value>بيانات الطلب</value>
+  </data>
+  <data name="ViewCR_SubHeader_ProjectDetails" xml:space="preserve">
+    <value>بيانات المشروع</value>
+  </data>
+  <data name="ViewCR_SubHeader_ProjectOwner" xml:space="preserve">
+    <value>بيانات الجهه المشرفه</value>
+  </data>
+  <data name="ViewCR_SubHeader_SampleDetails" xml:space="preserve">
+    <value>بيانات العينه</value>
+  </data>
+  <data name="View_Attachments" xml:space="preserve">
+    <value>View Attachments</value>
+  </data>
+  <data name="View_Attachments_NotAllowed" xml:space="preserve">
+    <value>NA</value>
+  </data>
+  <data name="View_CR_Report" xml:space="preserve">
+    <value>View CR</value>
+  </data>
+</root>

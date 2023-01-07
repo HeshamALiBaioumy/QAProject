@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="authorizedLabID" xml:space="preserve">
+    <value>المختبر المؤهل</value>
+  </data>
+  <data name="authorizedLabID_Search" xml:space="preserve">
+    <value>المختبر المؤهل</value>
+  </data>
+  <data name="authorizedLabID_ViewSearch" xml:space="preserve">
+    <value>المختبر المؤهل</value>
+  </data>
+  <data name="consultantAssistantID" xml:space="preserve">
+    <value>مساعد الاستشاري</value>
+  </data>
+  <data name="consultantAssistantID_Search" xml:space="preserve">
+    <value>مساعد الاستشاري</value>
+  </data>
+  <data name="consultantAssistantID_ViewSearch" xml:space="preserve">
+    <value>مساعد الاستشاري</value>
+  </data>
+  <data name="consultantID" xml:space="preserve">
+    <value>الاستشاري</value>
+  </data>
+  <data name="consultantID_Search" xml:space="preserve">
+    <value>الاستشاري</value>
+  </data>
+  <data name="consultantID_ViewSearch" xml:space="preserve">
+    <value>الاستشاري</value>
+  </data>
+  <data name="contractorAssistantID" xml:space="preserve">
+    <value>مساعد المقاول</value>
+  </data>
+  <data name="contractorAssistantID_Search" xml:space="preserve">
+    <value>مساعد المقاول</value>
+  </data>
+  <data name="contractorAssistantID_ViewSearch" xml:space="preserve">
+    <value>مساعد المقاول</value>
+  </data>
+  <data name="contractorID" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="contractorID_Search" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="contractorID_ViewSearch" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="CreateProject" xml:space="preserve">
+    <value>انشاء مشروع</value>
+  </data>
+  <data name="departmentID" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="departmentID_Search" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="departmentID_ViewSearch" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="departmentSectionID" xml:space="preserve">
+    <value>الوحدة</value>
+  </data>
+  <data name="departmentSectionID_Search" xml:space="preserve">
+    <value>الوحدة</value>
+  </data>
+  <data name="departmentSectionID_ViewSearch" xml:space="preserve">
+    <value>الوحدة</value>
+  </data>
+  <data name="endDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="endDate_Search" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="endDate_Search_From" xml:space="preserve">
+    <value>تاريخ البدأ</value>
+  </data>
+  <data name="endDate_Search_To" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="endDate_ViewSearch" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>مسلسل المشروع</value>
+  </data>
+  <data name="Map_Validation_ProjectLocation" xml:space="preserve">
+    <value>من فضلك حدد موقع المشروع</value>
+  </data>
+  <data name="MileStones_Validation" xml:space="preserve">
+    <value>من فضلك حدد بنود المشروع</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>اسم المشروع</value>
+  </data>
+  <data name="NameAlreadyExist" xml:space="preserve">
+    <value>اسم المشروع موجود فى قاعدة البيانات</value>
+  </data>
+  <data name="Name_length_Validation" xml:space="preserve">
+    <value>عدد الاحرف يجب ان يكون بين  5 - 50 حرف</value>
+  </data>
+  <data name="Name_Required_Validation" xml:space="preserve">
+    <value>من فضلك ادخل اسم المشروع الصحيح</value>
+  </data>
+  <data name="name_Search" xml:space="preserve">
+    <value>اسم المشروع</value>
+  </data>
+  <data name="name_ViewSearch" xml:space="preserve">
+    <value>اسم المشروع</value>
+  </data>
+  <data name="ProjectAddedSuccessfully" xml:space="preserve">
+    <value>تم اضافة المشروع بنجاح</value>
+  </data>
+  <data name="ProjectDetails" xml:space="preserve">
+    <value>بيانات المشروع</value>
+  </data>
+  <data name="projectID_Not_Available_inDB" xml:space="preserve">
+    <value>مسلسل المشروع غير متاح فى قاعدة البيانات</value>
+  </data>
+  <data name="ProjectLocation" xml:space="preserve">
+    <value>موقع المشروع</value>
+  </data>
+  <data name="ProjectMileStones" xml:space="preserve">
+    <value>بنود المشروع</value>
+  </data>
+  <data name="projectOwnerID" xml:space="preserve">
+    <value>الجهة المالكة</value>
+  </data>
+  <data name="projectOwnerID_Search" xml:space="preserve">
+    <value>الجهة المالكة</value>
+  </data>
+  <data name="projectOwnerID_ViewSearch" xml:space="preserve">
+    <value>الجهة المالكة</value>
+  </data>
+  <data name="ProjectShapeNotAdded" xml:space="preserve">
+    <value>من فضلك ادخل موقع المشروع الصحيح</value>
+  </data>
+  <data name="ProjectStakeholders" xml:space="preserve">
+    <value>الأطراف المعنيه</value>
+  </data>
+  <data name="provide_avalid_AuthorizedLab" xml:space="preserve">
+    <value>اختر المختبر المؤهل</value>
+  </data>
+  <data name="provide_avalid_Consultant" xml:space="preserve">
+    <value>اختر الاستشارى</value>
+  </data>
+  <data name="provide_avalid_ConsultantAssistant" xml:space="preserve">
+    <value>اختر مساعد الاستشارى</value>
+  </data>
+  <data name="provide_avalid_Contractor" xml:space="preserve">
+    <value>اختر المقاول</value>
+  </data>
+  <data name="provide_avalid_ContractorAssistant" xml:space="preserve">
+    <value>اختر مساعد المقاول</value>
+  </data>
+  <data name="provide_avalid_Department" xml:space="preserve">
+    <value>اختر الادارة</value>
+  </data>
+  <data name="provide_avalid_DepartmentSection" xml:space="preserve">
+    <value>اختر الوحدة</value>
+  </data>
+  <data name="provide_avalid_EndDate" xml:space="preserve">
+    <value>من فضلك اختر تاريخ الانتهاء الصحيح</value>
+  </data>
+  <data name="provide_avalid_projectOwner" xml:space="preserve">
+    <value>اختر الجهة </value>
+  </data>
+  <data name="provide_avalid_QAtechnician" xml:space="preserve">
+    <value>اختر فنى وكالة ضبط الجودة</value>
+  </data>
+  <data name="provide_avalid_QualityEng" xml:space="preserve">
+    <value>يرجى اختيار مهندس الجوده</value>
+  </data>
+  <data name="provide_avalid_StartDate" xml:space="preserve">
+    <value>من فضلك اختر تاريخ البدأ الصحيح</value>
+  </data>
+  <data name="provide_avalid_SupervisorEng" xml:space="preserve">
+    <value>اختر المهندس المشرف</value>
+  </data>
+  <data name="provide_valid_RegistrationDate" xml:space="preserve">
+    <value>من فضلك اختر تاريخ البدأ الصحيح</value>
+  </data>
+  <data name="QATechnicianID" xml:space="preserve">
+    <value>فنى وكالة ضبط الجودة المختص</value>
+  </data>
+  <data name="QATechnicianID_Search" xml:space="preserve">
+    <value>الفنى</value>
+  </data>
+  <data name="QATechnicianID_ViewSearch" xml:space="preserve">
+    <value>الفنى</value>
+  </data>
+  <data name="QualityAssuranceEngID" xml:space="preserve">
+    <value>مهندس الجوده: *</value>
+  </data>
+  <data name="QualityEngineerID_Search" xml:space="preserve">
+    <value>مهندس الجوده: </value>
+  </data>
+  <data name="QualityEngineerID_ViewSearch" xml:space="preserve">
+    <value>مهندس الجوده: </value>
+  </data>
+  <data name="registerDate" xml:space="preserve">
+    <value>تاريخ استلام الموقع</value>
+  </data>
+  <data name="registerDate_Search" xml:space="preserve">
+    <value>تاريخ استلام الموقع</value>
+  </data>
+  <data name="registerDate_Search_From" xml:space="preserve">
+    <value>تاريخ استلام الموقع من</value>
+  </data>
+  <data name="registerDate_Search_To" xml:space="preserve">
+    <value>تاريخ استلام الموقع الى</value>
+  </data>
+  <data name="registerDate_ViewSearch" xml:space="preserve">
+    <value>تاريخ استلام الموقع</value>
+  </data>
+  <data name="Report_ProjectDetails_AuthLab" xml:space="preserve">
+    <value>المختبر: </value>
+  </data>
+  <data name="Report_ProjectDetails_Complaint_Closed" xml:space="preserve">
+    <value>منتهي</value>
+  </data>
+  <data name="Report_ProjectDetails_Complaint_Details" xml:space="preserve">
+    <value>عدد حالات عدم التطابق: </value>
+  </data>
+  <data name="Report_ProjectDetails_Complaint_Total" xml:space="preserve">
+    <value>إجمالى</value>
+  </data>
+  <data name="Report_ProjectDetails_Complaint_WIP" xml:space="preserve">
+    <value>جاري</value>
+  </data>
+  <data name="Report_ProjectDetails_ConsEng" xml:space="preserve">
+    <value>الأستشارى: </value>
+  </data>
+  <data name="Report_ProjectDetails_Contractor" xml:space="preserve">
+    <value>المقاول: </value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_Accepted" xml:space="preserve">
+    <value>تم الموافقه</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_AuthLab" xml:space="preserve">
+    <value>المختبر الخاص</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_ConsEng" xml:space="preserve">
+    <value>الإستشاري</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_Pending" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_Recieved" xml:space="preserve">
+    <value>مستلم</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_Rejected" xml:space="preserve">
+    <value>تم الرفض</value>
+  </data>
+  <data name="Report_ProjectDetails_CRStat_SuperEng" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="Report_ProjectDetails_CR_Closed" xml:space="preserve">
+    <value>منتهى: </value>
+  </data>
+  <data name="Report_ProjectDetails_CR_Status" xml:space="preserve">
+    <value>حالات طلبات الفحص :</value>
+  </data>
+  <data name="Report_ProjectDetails_CR_Total" xml:space="preserve">
+    <value>عدد طلبات الفحص: </value>
+  </data>
+  <data name="Report_ProjectDetails_CR_WIP" xml:space="preserve">
+    <value>جارى العمل: </value>
+  </data>
+  <data name="Report_ProjectDetails_Department" xml:space="preserve">
+    <value>الأداره: </value>
+  </data>
+  <data name="Report_ProjectDetails_ProjectOwner" xml:space="preserve">
+    <value>الجهه المالكه: </value>
+  </data>
+  <data name="Report_ProjectDetails_ReportHeader" xml:space="preserve">
+    <value>تقرير عن مشروع</value>
+  </data>
+  <data name="Report_ProjectDetails_ReportName" xml:space="preserve">
+    <value>تقرير عن مشروع</value>
+  </data>
+  <data name="Report_ProjectDetails_Samples_Accepted" xml:space="preserve">
+    <value>المطابق</value>
+  </data>
+  <data name="Report_ProjectDetails_Samples_Details" xml:space="preserve">
+    <value>العينات :</value>
+  </data>
+  <data name="Report_ProjectDetails_Samples_Empty" xml:space="preserve">
+    <value>لا توجد بيانات عينات</value>
+  </data>
+  <data name="Report_ProjectDetails_Samples_Rejected" xml:space="preserve">
+    <value>غير المطابق</value>
+  </data>
+  <data name="Report_ProjectDetails_Samples_Type" xml:space="preserve">
+    <value>نوع العينة</value>
+  </data>
+  <data name="Report_ProjectDetails_SuperEng" xml:space="preserve">
+    <value>المهندس المشرف: </value>
+  </data>
+  <data name="SearchProjects" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="SearchRes_CreateMissmatch" xml:space="preserve">
+    <value>حاله عدم تطابق</value>
+  </data>
+  <data name="startDate" xml:space="preserve">
+    <value>تاريخ بدأ المشروع</value>
+  </data>
+  <data name="startDate_Search" xml:space="preserve">
+    <value>تاريخ بدأ المشروع</value>
+  </data>
+  <data name="startDate_Search_From" xml:space="preserve">
+    <value>تاريخ بدأ المشروع من</value>
+  </data>
+  <data name="startDate_Search_To" xml:space="preserve">
+    <value>تاريخ بدأ المشروع الى</value>
+  </data>
+  <data name="startDate_ViewSearch" xml:space="preserve">
+    <value>تاريخ البدأ </value>
+  </data>
+  <data name="supervisorEngID" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="supervisorEngID_Search" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="supervisorEngID_ViewSearch" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="tbl_ProjMlstone_Add" xml:space="preserve">
+    <value>أضافه</value>
+  </data>
+  <data name="tbl_ProjMlstone_Amount" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="tbl_ProjMlstone_AmtUnit_KG" xml:space="preserve">
+    <value>كيلو جرام</value>
+  </data>
+  <data name="tbl_ProjMlstone_AmtUnit_KM" xml:space="preserve">
+    <value>كيلو متر</value>
+  </data>
+  <data name="tbl_ProjMlstone_AmtUnit_M" xml:space="preserve">
+    <value>متر</value>
+  </data>
+  <data name="tbl_ProjMlstone_AmtUnit_Select" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="tbl_ProjMlstone_Amt_Unit" xml:space="preserve">
+    <value>الوحدة</value>
+  </data>
+  <data name="tbl_ProjMlstone_Description" xml:space="preserve">
+    <value>التوصيف</value>
+  </data>
+  <data name="tbl_ProjMlstone_FieldsError" xml:space="preserve">
+    <value>خطأ فى البيانات المدخله</value>
+  </data>
+  <data name="tbl_ProjMlstone_MileStone" xml:space="preserve">
+    <value>البنود</value>
+  </data>
+  <data name="tbl_ProjMlstone_Percentage" xml:space="preserve">
+    <value>نسبه البند</value>
+  </data>
+  <data name="tbl_ProjMlstone_Percentage_Validation" xml:space="preserve">
+    <value>مجموع نسبة البند يجب ان يكون 100%</value>
+  </data>
+  <data name="tbl_ProjMlstone_Remove" xml:space="preserve">
+    <value>ازاله</value>
+  </data>
+  <data name="tbl_ProjMlstone_Remove_Btn" xml:space="preserve">
+    <value>ــ</value>
+  </data>
+  <data name="tbl_ProjMlstone_Serial" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="tbl_ProjMlstone_Val_Length" xml:space="preserve">
+    <value>عدد الاحرف يجب ان يكون بين  5 - 50 حرف</value>
+  </data>
+  <data name="tbl_ProjMlstone_Val_NumericField" xml:space="preserve">
+    <value>حروف رقميه فقط</value>
+  </data>
+  <data name="tbl_ProjMlstone_Val_Required" xml:space="preserve">
+    <value>حقل الزامي</value>
+  </data>
+  <data name="tbl_ProjMlstone_Val_SpecialCharacters" xml:space="preserve">
+    <value>غير متاح استخدام الحروف الخاصة</value>
+  </data>
+  <data name="UpdateProject" xml:space="preserve">
+    <value>تعديل المشروع</value>
+  </data>
+  <data name="View_Project_Report" xml:space="preserve">
+    <value>طباعه</value>
+  </data>
+</root>

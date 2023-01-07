@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="closurenDate" xml:space="preserve">
+    <value>تاريخ أغلاق الطلب: </value>
+  </data>
+  <data name="CRAddedSuccessfully" xml:space="preserve">
+    <value>تم الاضافة بنجاح</value>
+  </data>
+  <data name="CRDetails" xml:space="preserve">
+    <value>بيانات الطلب</value>
+  </data>
+  <data name="CreateCR" xml:space="preserve">
+    <value>انشاء طلب</value>
+  </data>
+  <data name="CRGroupID_Search" xml:space="preserve">
+    <value>مجموعة الطلب</value>
+  </data>
+  <data name="CRID" xml:space="preserve">
+    <value>مسلسل الطلب</value>
+  </data>
+  <data name="CRID_Not_Available_inDB" xml:space="preserve">
+    <value>الطلب غير متاح فى قاعدة البيانات</value>
+  </data>
+  <data name="CRID_Search" xml:space="preserve">
+    <value>بحث الطلب</value>
+  </data>
+  <data name="CRID_Search_Lbl" xml:space="preserve">
+    <value>رقم الطلب: </value>
+  </data>
+  <data name="CRID_ViewSearch" xml:space="preserve">
+    <value>عرض الطلبات</value>
+  </data>
+  <data name="CRMCID_Search" xml:space="preserve">
+    <value>تصنيف الطلبات</value>
+  </data>
+  <data name="CRStatus" xml:space="preserve">
+    <value>حاله الطلب</value>
+  </data>
+  <data name="CRTypeGroupID" xml:space="preserve">
+    <value>مجموعة الطلب</value>
+  </data>
+  <data name="CRTypeID" xml:space="preserve">
+    <value>انواع الطلبات</value>
+  </data>
+  <data name="CRTypeID_Search" xml:space="preserve">
+    <value>انواع الطلبات</value>
+  </data>
+  <data name="CRTypeMCID" xml:space="preserve">
+    <value>تصنيف الطلبات</value>
+  </data>
+  <data name="CR_Details" xml:space="preserve">
+    <value>بيانات الطلب</value>
+  </data>
+  <data name="DDL_CRStatus_Accepted" xml:space="preserve">
+    <value>تم الموافقه والاعتماد</value>
+  </data>
+  <data name="DDL_CRStatus_NewCR" xml:space="preserve">
+    <value>طلب جديد</value>
+  </data>
+  <data name="DDL_CRStatus_Rejected" xml:space="preserve">
+    <value>تم الرفض والاعتماد</value>
+  </data>
+  <data name="DDL_CRStatus_WIP" xml:space="preserve">
+    <value>جاري العمل</value>
+  </data>
+  <data name="description_ViewSearch" xml:space="preserve">
+    <value>بحث التوصيف</value>
+  </data>
+  <data name="Map_CR_Validation_Location" xml:space="preserve">
+    <value>حدود موقع طلب الفحص لا يجب ان تتعدى حدود موقع المشروع</value>
+  </data>
+  <data name="Map_Location" xml:space="preserve">
+    <value>تحديد موقع العمل</value>
+  </data>
+  <data name="Map_Validation_Location" xml:space="preserve">
+    <value>من فضلك حدد نطاق العمل</value>
+  </data>
+  <data name="Modal_RejectCR_Reason" xml:space="preserve">
+    <value>سبب الرفض</value>
+  </data>
+  <data name="name_ViewSearch" xml:space="preserve">
+    <value>بحث الاسم</value>
+  </data>
+  <data name="projectID" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="projectID_Search" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="projectItemID" xml:space="preserve">
+    <value>بنود المشروع</value>
+  </data>
+  <data name="projectItemID_Search" xml:space="preserve">
+    <value>بنود المشروع</value>
+  </data>
+  <data name="provide_avalid_CRTypeID" xml:space="preserve">
+    <value>من فضلك ادخل نوع الطلب</value>
+  </data>
+  <data name="provide_avalid_FromDate" xml:space="preserve">
+    <value>يرجى تحديد تاريخ بدايه البحث</value>
+  </data>
+  <data name="provide_avalid_ToDate" xml:space="preserve">
+    <value>يرجى تحديد تاريخ نهايه البحث</value>
+  </data>
+  <data name="provide_valid_projectID" xml:space="preserve">
+    <value>من فضلك اختار المشروع</value>
+  </data>
+  <data name="provide_valid_projectItemID" xml:space="preserve">
+    <value>من فضلك اختر بنود المشروع</value>
+  </data>
+  <data name="registrationDate" xml:space="preserve">
+    <value>تاريخ استلام الموقع</value>
+  </data>
+  <data name="registrationDate_Search_From" xml:space="preserve">
+    <value>تاريخ بدأ الاعمال</value>
+  </data>
+  <data name="registrationDate_Search_To" xml:space="preserve">
+    <value>تاريخ انهاء الاعمار</value>
+  </data>
+  <data name="rejectReason" xml:space="preserve">
+    <value>سبب الرفض: </value>
+  </data>
+  <data name="RejectReason_length_validation" xml:space="preserve">
+    <value>يجب ان يكون عدد احرف سبب الرفض بين 5 - 250 حرف</value>
+  </data>
+  <data name="Report_SearchAll_Contractor" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="Report_SearchAll_CRID" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="Report_SearchAll_CRStatus" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="Report_SearchAll_CRType" xml:space="preserve">
+    <value>تفاصيل الطلب</value>
+  </data>
+  <data name="Report_SearchAll_Date_From" xml:space="preserve">
+    <value>من تاريخ: </value>
+  </data>
+  <data name="Report_SearchAll_Date_To" xml:space="preserve">
+    <value>إلي تاريخ: </value>
+  </data>
+  <data name="Report_SearchAll_EmptyResult" xml:space="preserve">
+    <value>لا توجد طلبات فحص فى محددات البحث</value>
+  </data>
+  <data name="Report_SearchAll_LastStatusDate" xml:space="preserve">
+    <value>تاريخ اخر حالة</value>
+  </data>
+  <data name="Report_SearchAll_Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="Report_SearchAll_RegDate" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="Report_SearchAll_SearchParameters" xml:space="preserve">
+    <value>بحث طلبات الفحص</value>
+  </data>
+  <data name="Report_SearchAll_Title" xml:space="preserve">
+    <value>بحث طلبات الفحص</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_AuthLab" xml:space="preserve">
+    <value>المختبر : </value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_AuthLabFeedback" xml:space="preserve">
+    <value>نتيجة الإختبار</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_AuthLabFeedbackDate" xml:space="preserve">
+    <value>تاريخ النتيجة</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_Commenst" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_ConsEng" xml:space="preserve">
+    <value>الإستشاري : </value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_Contractor" xml:space="preserve">
+    <value>المقاول : </value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_CRID" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_CRStatus" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_CRType" xml:space="preserve">
+    <value>نوع الاختبار</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_Date_From" xml:space="preserve">
+    <value>من تاريخ:</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_Date_To" xml:space="preserve">
+    <value>إلي تاريخ:</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_EmptyResult" xml:space="preserve">
+    <value>لا توجد طلبات فحص فى محددات البحث</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_LabFeed_Accept" xml:space="preserve">
+    <value>مقبول</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_LabFeed_Reject" xml:space="preserve">
+    <value>مرفوض</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_RegDate" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_ReportName" xml:space="preserve">
+    <value>تقرير عن نتائج العينات لمشروع </value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_SampleID" xml:space="preserve">
+    <value>رقم العينة</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_SampleType" xml:space="preserve">
+    <value>نوع العينه</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_SearchParameters" xml:space="preserve">
+    <value>تقرير عن نتائج العينات</value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_SuperEng" xml:space="preserve">
+    <value>المهندس المشرف : </value>
+  </data>
+  <data name="Report_SearchCRSamplesDetailed_Title" xml:space="preserve">
+    <value>تقرير عن نتائج العينات</value>
+  </data>
+  <data name="Report_SearchCRSamples_AuthLabFeedback" xml:space="preserve">
+    <value>نتيجة الإختبار</value>
+  </data>
+  <data name="Report_SearchCRSamples_AuthLabFeedbackDate" xml:space="preserve">
+    <value>تاريخ النتيجة</value>
+  </data>
+  <data name="Report_SearchCRSamples_Commenst" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="Report_SearchCRSamples_Contractor" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="Report_SearchCRSamples_CRID" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="Report_SearchCRSamples_CRStatus" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="Report_SearchCRSamples_CRType" xml:space="preserve">
+    <value>نوع الاختبار</value>
+  </data>
+  <data name="Report_SearchCRSamples_Date_From" xml:space="preserve">
+    <value>من تاريخ:</value>
+  </data>
+  <data name="Report_SearchCRSamples_Date_To" xml:space="preserve">
+    <value>إلي تاريخ:</value>
+  </data>
+  <data name="Report_SearchCRSamples_EmptyResult" xml:space="preserve">
+    <value>لا توجد طلبات فحص فى محددات البحث</value>
+  </data>
+  <data name="Report_SearchCRSamples_LabFeed_Accept" xml:space="preserve">
+    <value>مقبول</value>
+  </data>
+  <data name="Report_SearchCRSamples_LabFeed_Reject" xml:space="preserve">
+    <value>مرفوض</value>
+  </data>
+  <data name="Report_SearchCRSamples_Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="Report_SearchCRSamples_RegDate" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="Report_SearchCRSamples_ReportName" xml:space="preserve">
+    <value>تقرير عن نتائج العينات</value>
+  </data>
+  <data name="Report_SearchCRSamples_SampleID" xml:space="preserve">
+    <value>رقم العينة</value>
+  </data>
+  <data name="Report_SearchCRSamples_SampleType" xml:space="preserve">
+    <value>نوع العينه</value>
+  </data>
+  <data name="Report_SearchCRSamples_SearchParameters" xml:space="preserve">
+    <value>تقرير عن نتائج العينات</value>
+  </data>
+  <data name="Report_SearchCRSamples_Title" xml:space="preserve">
+    <value>تقرير عن نتائج العينات</value>
+  </data>
+  <data name="Report_SearchProjCr_AuthLab" xml:space="preserve">
+    <value>المختبر : </value>
+  </data>
+  <data name="Report_SearchProjCr_ConsEng" xml:space="preserve">
+    <value>الإستشاري : </value>
+  </data>
+  <data name="Report_SearchProjCr_Contractor" xml:space="preserve">
+    <value>المقاول : </value>
+  </data>
+  <data name="Report_SearchProjCr_CRID" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
+  <data name="Report_SearchProjCr_CRStatus" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="Report_SearchProjCr_CRType" xml:space="preserve">
+    <value>تفاصيل الطلب</value>
+  </data>
+  <data name="Report_SearchProjCr_Date_From" xml:space="preserve">
+    <value>من تاريخ:</value>
+  </data>
+  <data name="Report_SearchProjCr_Date_To" xml:space="preserve">
+    <value>إلي تاريخ:</value>
+  </data>
+  <data name="Report_SearchProjCr_LabEntry" xml:space="preserve">
+    <value>مدخل النتيجة / المختبر</value>
+  </data>
+  <data name="Report_SearchProjCr_LastStatusDate" xml:space="preserve">
+    <value>تاريخ اخر حالة</value>
+  </data>
+  <data name="Report_SearchProjCr_Project" xml:space="preserve">
+    <value>المشروع: </value>
+  </data>
+  <data name="Report_SearchProjCr_provide_avalid_Project" xml:space="preserve">
+    <value>يرجى اختيار مشروع</value>
+  </data>
+  <data name="Report_SearchProjCr_RegDate" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="Report_SearchProjCr_ReportName" xml:space="preserve">
+    <value>تقرير عن طلبات الفحص لمشروع </value>
+  </data>
+  <data name="Report_SearchProjCr_SearchParameters" xml:space="preserve">
+    <value>طلبات الفحص لمشروع</value>
+  </data>
+  <data name="Report_SearchProjCr_SuperEng" xml:space="preserve">
+    <value>المهندس المشرف : </value>
+  </data>
+  <data name="Report_SearchProjCr_Title" xml:space="preserve">
+    <value>طلبات الفحص لمشروع </value>
+  </data>
+  <data name="Search_Crs" xml:space="preserve">
+    <value>بحث الطلب</value>
+  </data>
+  <data name="Search_Crs_Title" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="status_Search" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="UpdateCR" xml:space="preserve">
+    <value>تعديل الطلب</value>
+  </data>
+</root>

@@ -1,0 +1,339 @@
+﻿@model QA.Entities.View_Entities.Vw_CheckListFlow_Master
+
+@{
+    bool isUpdate = (Model != null && Model.CheckListFlow_Master.ID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.CheckListFlow_Master.CLF_AddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.CheckListFlow_Master.Update_CLF
+                        : Localization.CheckListFlow_Master.Create_CLF)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.CheckListFlow_Master.Flow_Details</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "CLWF", FormMethod.Post
+                            , new { @class = "form-horizontal form-label-left", @id = "CLFForm", @name = "CLFForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.CheckListFlow_Master.ID)
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.cLID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.CheckListFlow_Master.cLID
+                                            , new SelectList(Model.lOVCheckLists, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.CheckListFlow_Master.cLID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.CLParty
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.CheckListFlow_Master.CLParty
+                                            , new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => model.CheckListFlow_Master.CLParty, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.cLSequenceID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.CheckListFlow_Master.cLSequenceID
+                                            , new SelectList(Model.lOVCheckListSequences, "id", "value")
+                                            , htmlAttributes: new
+                                                 {
+                                                     @class = "select2_single form-control col-md-7 col-12"
+                                            ,
+                                                     tabindex = "-1"
+                                                 })
+                                        @Html.ValidationMessageFor(model => model.CheckListFlow_Master.cLSequenceID, ""
+                                       , new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.CLFlowStatus
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.CheckListFlow_Master.CLFlowStatus
+                                            , new SelectList(Model.lOVCLFlowStatuses, "id", "value")
+                                            , htmlAttributes: new
+                                                 {
+                                                     @class = "select2_single form-control col-md-7 col-12",
+                                                     @disabled = "disabled",
+                                                        @readonly = "readonly",
+                                                     tabindex = "-1"
+                                                 })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.registrationDate
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.CheckListFlow_Master.strRegistrationDate
+                                            , new
+                                                 {
+                                                     htmlAttributes = new
+                                                     {
+                                                         @class = "form-control col-md-7 col-12",
+                                                         @readonly = "readonly"
+                                                     }
+                                                 })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.CheckListFlow_Master.closurenDate
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextBoxFor(model => model.CheckListFlow_Master.strClosurenDate, "{0:yyyy-MM-dd}"
+                                       , new { @class = "form-control col-md-7 col-12", @type = "date", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.technicianID
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.DropDownListFor(model => model.CheckListFlow_Master.technicianID
+                                                , new SelectList(Model.lOVTechnicianUsers, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.technician_maxDays
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => model.CheckListFlow_Master.technician_maxDays
+                                                , new { htmlAttributes = new { @class = "form-control col-md-7 col-12", @type = "number" } })
+                                            @Html.ValidationMessageFor(model => model.CheckListFlow_Master.technician_maxDays, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.supervisorEngID
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.DropDownListFor(model => model.CheckListFlow_Master.supervisorEngID
+                                                , new SelectList(Model.lOVSupervisorEngUsers, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.superEng_maxDays
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => model.CheckListFlow_Master.superEng_maxDays
+                                                , new { htmlAttributes = new { @class = "form-control col-md-7 col-12", @type = "number" } })
+                                            @Html.ValidationMessageFor(model => model.CheckListFlow_Master.superEng_maxDays, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.qALabID
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.DropDownListFor(model => model.CheckListFlow_Master.qALabID
+                                                , new SelectList(Model.lOVQALabUsers, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.qALab_maxDays
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => model.CheckListFlow_Master.qALab_maxDays
+                                                , new { htmlAttributes = new { @class = "form-control col-md-7 col-12", @type = "number" } })
+                                            @Html.ValidationMessageFor(model => model.CheckListFlow_Master.qALab_maxDays, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.representitiveSuperID
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.DropDownListFor(model => model.CheckListFlow_Master.representitiveSuperID
+                                                , new SelectList(Model.lOVRepresentitiveSuperUsers, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.CheckListFlow_Master.repSuper_maxDays
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => model.CheckListFlow_Master.repSuper_maxDays
+                                                , new { htmlAttributes = new { @class = "form-control col-md-7 col-12", @type = "number" } })
+                                            @Html.ValidationMessageFor(model => model.CheckListFlow_Master.repSuper_maxDays, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $("#CLFForm").on("submit", function () {
+            var isValidForm = $('#CLFForm').valid();
+
+            if (isValidForm == true) {
+                var technicianID = $('#CheckListFlow_Master_technicianID').val();
+                var technicianMaxDays = $('#CheckListFlow_Master_technician_maxDays').val();
+
+                var supervisorEngID = $('#CheckListFlow_Master_supervisorEngID').val();
+                var supervisorEngMaxDays = $('#CheckListFlow_Master_superEng_maxDays').val();
+
+                var qALabID = $('#CheckListFlow_Master_qALabID').val();
+                var qALabMaxDays = $('#CheckListFlow_Master_qALab_maxDays').val();
+
+                var representitiveSuperID = $('#CheckListFlow_Master_representitiveSuperID').val();
+                var representitiveSuperMaxDays = $('#CheckListFlow_Master_repSuper_maxDays').val();
+
+                if (technicianID == -1 && supervisorEngID == -1) {
+                    isValidForm = false;
+                    alert('@Localization.CheckListFlow_Master.Error_MissedMaker');
+                }
+
+                if (supervisorEngID == -1 && qALabID == -1 && representitiveSuperID == -1) {
+                    isValidForm = false;
+                    alert('@Localization.CheckListFlow_Master.Error_MissedAuthorizer');
+                }
+
+                if (technicianID == -1 && qALabID == -1 && representitiveSuperID == -1 && supervisorEngID != -1) {
+                    isValidForm = false;
+                    alert('@Localization.CheckListFlow_Master.Error_MakerCantBeChecker');
+                }
+
+                if (technicianID != -1) {
+                    if (technicianMaxDays == null || technicianMaxDays == ""
+                        || technicianMaxDays < 0 || technicianMaxDays > 10) {
+                        isValidForm = false;
+                        alert('@Localization.CheckListFlow_Master.Error_TechnicianMaxDays_NotInput');
+                    }
+                }
+
+                if (supervisorEngID != -1) {
+                    if (supervisorEngMaxDays == null || supervisorEngMaxDays == ""
+                        || supervisorEngMaxDays < 0 || supervisorEngMaxDays > 10) {
+                        isValidForm = false;
+                        alert('@Localization.CheckListFlow_Master.Error_SuperEngMaxDays_NotInput');
+                    }
+                }
+
+                if (qALabID != -1) {
+                    if (qALabMaxDays == null || qALabMaxDays == ""
+                        || qALabMaxDays < 0 || qALabMaxDays > 10) {
+                        isValidForm = false;
+                        alert('@Localization.CheckListFlow_Master.Error_QALabMaxDays_NotInput');
+                    }
+                }
+
+                if (representitiveSuperID != -1) {
+                    if (representitiveSuperMaxDays == null || representitiveSuperMaxDays == ""
+                        || representitiveSuperMaxDays < 0 || representitiveSuperMaxDays > 10) {
+                        isValidForm = false;
+                        alert('@Localization.CheckListFlow_Master.Error_RepSuperMaxDays_NotInput');
+                    }
+                }
+            }
+
+            return isValidForm;
+        })
+    </script>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

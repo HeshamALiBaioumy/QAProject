@@ -1,0 +1,182 @@
+﻿@model QA.Entities.View_Entities.Vw_ProjectOwnerType
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.Global.SearchDataRetrievedSuccessfully',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<script>
+    function ajaxSearchBegin() {
+        
+    }
+
+    function ajaxSearchSuccess() {
+        new PNotify({
+            title: '@Localization.Global.SearchDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+    }
+
+    function ajaxSearchError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+
+    function ajaxViewBegin() {
+
+    }
+
+    function ajaxViewSuccess() {
+        new PNotify({
+            title: '@Localization.Global.ViewDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+
+        $('#divViewItemModal').modal('toggle');
+    }
+
+    function ajaxViewError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+</script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.PROJECT_OWNER_TYPE.SearchProjectOwnersTypes</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.Global.SearchParameters</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Ajax.BeginForm("searchprojectOwnerType", "projectOwnerType", new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "Get",
+                            LoadingElementId = "imgloader",
+                            OnBegin = "ajaxSearchBegin",
+                            OnSuccess = "ajaxSearchSuccess",
+                            OnFailure = "ajaxSearchError",
+                            UpdateTargetId = "divSearchResults",
+                        }))
+                        {
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.searchName, Localization.PROJECT_OWNER_TYPE.POT_name_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                                    <div class="col-md-3 col-sm-12 col-12 form-group">
+                                        @Html.EditorFor(model => model.searchName, new { htmlAttributes = new { @class = "form-control col-md-12 col-sm-12 col-12" } })
+                                    </div>
+                                    <div class="col-md-1 col-sm-12 col-12 form-group"></div>
+                                    @Html.LabelFor(model => model.searchDescription, Localization.PROJECT_OWNER_TYPE.POT_Description_Search
+                                        , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                                    <div class="col-md-3 col-sm-12 col-12 form-group">
+                                        @Html.EditorFor(model => model.searchDescription, new { htmlAttributes = new { @class = "form-control col-md-12 col-sm-12 col-12" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => model.searchIsVendor, Localization.PROJECT_OWNER_TYPE.POT_IsVendor_Search
+                                            , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                                        <div class="col-md-3 col-sm-12 col-12 form-group">
+                                            <select name="searchIsVendor" id="searchIsVendor" class="select2_single form-control col-md-12 col-12" tabindex="-1">
+                                                <option value="-1" selected="selected">@Localization.PROJECT_OWNER_TYPE.DDLIsVendor_Select</option>
+                                                <option value="0">@Localization.PROJECT_OWNER_TYPE.DDLIsVendor_Vendor</option>
+                                                <option value="1">@Localization.PROJECT_OWNER_TYPE.DDLIsVendor_NotVendor</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-12 col-12 form-group"></div>
+                                        @Html.LabelFor(model => model.searchIsActive, Localization.Global.boolIsActive
+                                            , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                                        <div class="col-md-3 col-sm-12 col-12 form-group">
+                                            <select name="searchIsActive" id="searchIsActive" class="select2_single form-control col-md-12 col-12" tabindex="-1">
+                                                <option value="-1" selected="selected">@Localization.Global.SearchISActive</option>
+                                                <option value="0">@Localization.Global.SearchISActive_Active</option>
+                                                <option value="1">@Localization.Global.SearchISActive_InActive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-6 col-12 col-md-offset-3" style="text-align: center;">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSearch</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="divSearchResults" class="col-md-12 col-sm-12 col-12">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

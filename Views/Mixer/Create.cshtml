@@ -1,0 +1,190 @@
+﻿@model QA.Entities.View_Entities.Vw_Mixer
+
+@{
+    bool isUpdate = (Model != null && Model.mixer.mixerID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.Mixer.MixerAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.Mixer.UpdateMixer : Localization.Mixer.CreateMixer)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.Mixer.Mixer_Details</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "Mixer", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => Model.mixer.mixerID)
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.factoryID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => Model.mixer.factoryID
+                                            , new SelectList(Model.lOVFactories, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => Model.mixer.factoryID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.mixerTypeID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => Model.mixer.mixerTypeID
+                                            , new SelectList(Model.lOVMixerTypes, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => Model.mixer.mixerTypeID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.name
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => Model.mixer.name, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => Model.mixer.name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.description, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextAreaFor(model => Model.mixer.description, 1, 0, htmlAttributes: new { @class = "form-control col-md-7 col-12" })
+                                        @Html.ValidationMessageFor(model => Model.mixer.description, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.mixerCode
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => Model.mixer.mixerCode, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => Model.mixer.mixerCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.mixerModel
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => Model.mixer.mixerModel, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => Model.mixer.mixerModel, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.mixerPower
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => Model.mixer.mixerPower, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => Model.mixer.mixerPower, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.mixerStatus, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.TextAreaFor(model => Model.mixer.mixerStatus, 1, 0, htmlAttributes: new { @class = "form-control col-md-7 col-12" })
+                                        @Html.ValidationMessageFor(model => Model.mixer.mixerStatus, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => Model.mixer.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-9 col-sm-9 col-12">
+                                        <div class="">
+                                            <label>
+                                                @Html.CheckBoxFor(model => Model.mixer.isActive, htmlAttributes: new { @class = "js-switch", @checked = "checked" })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

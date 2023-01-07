@@ -1,0 +1,366 @@
+﻿@using QA.Entities.Session_Entities;
+
+<!DOCTYPE html>
+<html lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700|Open+Sans+Condensed:300,700|PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Design_Template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Design_Template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Design_Template/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Design_Template/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="~/Design_Template/vendors/google-code-prettify/src/prettify.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="~/Design_Template/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="~/Design_Template/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Design_Template/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- bootstrap-datepicker -->
+    <link src="~/Design_Template/vendors/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Design_Template/build/css/custom.css" rel="stylesheet">
+    <link href="~/Design_Template/build/css/SoftaEngineers.css" rel="stylesheet">
+    <link href="~/Design_Template/build/css/style-extra-bs4.css" rel="stylesheet">
+
+    <!-- PNotify -->
+    <link href="~/Design_Template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="~/Design_Template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/datatables.net-responsive-bs/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/datatables.net-scroller-bs/css/scroller.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/Design_Template/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+
+    <!-- Smart Wizard -->
+    <link href="~/Design_Template/vendors/jQuery-Smart-Wizard/styles/smart_wizard.css" rel="stylesheet" type="text/css">
+
+    <!-- JQVMap -->
+    <link href="~/Design_Template/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+
+    <!--Add mapbox.js -->
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+
+    <!--Add mapbox draw plugin -->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.4.10/leaflet.draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.4.10/leaflet.draw.css' />
+
+
+    <!-- Ion.RangeSlider -->
+    <link href="~/Design_Template/vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="~/Design_Template/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <!-- SoftaEngineers Script -->
+    <script src="~/Design_Template/build/js/SoftaEngineers.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="nav-md">
+    <div class="body">
+        <div class="main_container container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 left_col">
+                    <div class="left_col">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="#" class="site_title">
+                                <i class="fa fa-chrome"></i>
+                                <span>@Localization.Global.Project_Quality_Control</span>
+                            </a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="~/Design_Template/production/images/img.jpg" alt="App User" class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>@Localization.Global.WelcomeUser</span> <h2>@Session["currentUser"].ToString()</h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+                        <!-- sidebar menu -->
+                        @Html.Partial("_Sidebar_Menu")
+                        <!-- /sidebar menu -->
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer col-lg-2 hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <span class="fa fa-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="fa fa-arrows-alt" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                                <span class="fa fa-eye-slash" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" 
+                               href="@Url.Action("logout", "Login")">
+                                <span class="fa fa-power-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+                <!-- right col -->
+                <div class="col-lg-10 col-md-12 right_col_wrapper">
+                    <div class="row">
+                        <!-- top navigation -->
+                        <div class="col-lg-12 top_nav">
+                            <div class="nav_menu">
+                                <nav>
+                                    <div class="nav toggle">
+                                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                                    </div>
+
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="">
+                                            <a href="javascript:;" class="user-profile dropdown-toggle"
+                                               data-toggle="dropdown"
+                                               aria-expanded="false">
+                                                <img src="~/Design_Template/production/images/img.jpg" alt="">@Session["currentUser"].ToString()
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                                <li>
+                                                    <a href="@Url.Action("logout", "Login")">
+                                                        <i class="fa fa-sign-out pull-right"></i>
+                                                        @Localization.Global.UserActions_Logout
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("ResetPassword", "Login")">
+                                                        <i class="fa fa-lock pull-right"></i>
+                                                        @Localization.Global.UserActions_ChangePassword
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="">
+                                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                               aria-expanded="false">
+                                                @Localization.Global.AppLanguage
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                                <li>@Html.ActionLink(Localization.Global.Lang_English, "SetCulture", "Login", new { culture = "en-us", returnURL = HttpContext.Current.Request.RawUrl }, null)</li>
+                                                <li>@Html.ActionLink(Localization.Global.Lang_Arabic, "SetCulture", "Login", new { culture = "ar-EG", returnURL = HttpContext.Current.Request.RawUrl }, null)</li>
+                                            </ul>
+                                        </li>
+
+                                        <li role="presentation" class="dropdown">
+                                            <a href="javascript:;" class="dropdown-toggle info-number"
+                                               data-toggle="dropdown"
+                                               aria-expanded="false">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <span class="badge bg-green">0</span>
+                                            </a>
+                                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                                @*<li>
+                                                        <a>
+                                                            <span class="image">
+                                                                <img src="~/Design_Template/production/images/img.jpg"
+                                                                     alt="Profile Image" />
+                                                            </span>
+                                                            <span>
+                                                                <span>Test User</span>
+                                                                <span class="time">3 mins ago</span>
+                                                            </span>
+                                                            <span class="message">
+                                                                Notification Message
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <div class="text-center">
+                                                            <a>
+                                                                <strong>See All Alerts</strong>
+                                                                <i class="fa fa-angle-right"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>*@
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- /top navigation -->
+                        <!-- page content -->
+                        @RenderBody()
+                        <!-- /page content -->
+                        <!-- footer content -->
+                        <footer>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="footer-content footer-left">
+                                        <p>@Localization.Global.CopyRights</p> <a href="#" class="text-green">@Localization.Global.CopyRightSW</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="footer-content footer-right">
+                                        @Html.ActionLink(Localization.Global.Lang_English, "SetCulture", "Login", new { culture = "en-us", returnURL = HttpContext.Current.Request.RawUrl }, null)
+                                        @Html.ActionLink(Localization.Global.Lang_Arabic, "SetCulture", "Login", new { culture = "ar", returnURL = HttpContext.Current.Request.RawUrl }, null)
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div> <!-- /right col -->
+            </div>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Design_Template/vendors/jquery/dist/jquery.js"></script>
+    <!-- Popper -->
+    <script src="~/Design_Template/vendors/popper/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Design_Template/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Design_Template/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Design_Template/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="~/Design_Template/vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Design_Template/vendors/moment/min/moment.min.js"></script>
+    <script src="~/Design_Template/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="~/Design_Template/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+
+    <!--  Colorpicker -->
+    <script src="~/Design_Template/vendors/farbelous-bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="~/Design_Template/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="~/Design_Template/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="~/Design_Template/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="~/Design_Template/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="~/Design_Template/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Design_Template/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="~/Design_Template/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="~/Design_Template/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="~/Design_Template/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="~/Design_Template/vendors/starrr/dist/starrr.js"></script>
+
+    <!-- PNotify -->
+    <script src="~/Design_Template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="~/Design_Template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="~/Design_Template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/Design_Template/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-bs/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-buttons-bs/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Design_Template/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-responsive-bs/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Design_Template/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="~/Design_Template/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="~/Design_Template/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+    <script src="~/Design_Template/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Design_Template/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Design_Template/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <!-- bootstrap-progressbar -->
+    <script src="~/Design_Template/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+
+    <!-- jQuery Navigation -->
+    <script src="~/Design_Template/build/js/navigition.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Design_Template/build/js/custom.js"></script>
+
+    <!-- Custom Class For Direction Css Scripts -->
+    <script>
+        $('.datetype').removeAttr("data-val-date");
+
+        $(document).ready(function () {
+            $("html[lang=ar]").attr("dir", "rtl")
+                .find("body").addClass("right-to-left");
+        });
+    </script>
+
+    <!-- jQuery Smart Wizard -->
+    <script src="~/Design_Template/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+    <!-- Popper -->
+    <script src="~/Design_Template/vendors/popper/popper.min.js"></script>
+
+    <!-- jQuery Knob -->
+    <script src="~/Design_Template/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+
+    <!--                   Dashboard Scripts          -->
+    <!-- DateJS -->
+    <script src="~/Design_Template/vendors/DateJS/build/date.js"></script>
+
+    <!-- Chart.js -->
+    <script src="~/Design_Template/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Design_Template/vendors/gauge.js/dist/gauge.min.js"></script>
+
+    <!-- Skycons -->
+    <script src="~/Design_Template/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/Design_Template/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Design_Template/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Design_Template/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Design_Template/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Design_Template/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/Design_Template/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/Design_Template/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/Design_Template/vendors/flot.curvedlines/curvedLines.js"></script>
+
+    <!-- ECharts -->
+    <script src="~/Design_Template/vendors/echarts/dist/echarts.min.js"></script>
+    <script src="~/Design_Template/vendors/echarts/map/js/world.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

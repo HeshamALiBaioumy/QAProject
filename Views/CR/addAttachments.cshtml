@@ -1,0 +1,222 @@
+﻿@model QA.Entities.Business_Entities.Ent_Attachment
+
+@{
+    ViewBag.Title = Localization.Attachment.AddAttachments;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.Attachment.AttachAddedSuccess',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+
+    if (Session["attachFileNotExist"] != null)
+    {
+        if ((bool)Session["attachFileNotExist"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.Attachment.MissingAttachFile_Header',
+                        text: '@Localization.Attachment.MissingAttachFile',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+        Session["attachFileNotExist"] = null;
+    }
+}
+
+<script>
+    $(function () {
+        $('#sampleTestCategoryID').on("change", function () {
+            var sampleTests = $('#sampleTestID');
+            var parameters = { categoryID: $('#sampleTestCategoryID').val() };
+            AjaxCall('/CR/getSampleCategoryTests', JSON.stringify(parameters), 'POST').done(function (response) {
+                $("#imgloader").hide();
+                if (response.length > 0) {
+                    sampleTests.empty();
+                    $.each(response, function (index, item) {
+                        sampleTests.append($('<option></option>').val(item.id).text(item.value));
+                    });
+                }
+            }).fail(function (error) {
+                $("#imgloader").hide();
+                alert(error.StatusText);
+            });
+        });
+    });
+</script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @Localization.Attachment.AddAttachments
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4>
+                            <small>@Localization.Attachment.AddAttachments</small>
+                        </h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("addAttachments", "CR", FormMethod.Post, new
+                        {
+                            @class = "form-horizontal form-label-left"
+                            ,
+                            @enctype = "multipart/form-data"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.parentID, Localization.Attachment.CRID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.parentID, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control col-md-7 col-12",
+                                           //@disabled = "disabled",
+                                           @readonly = "readonly"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.sampleCode
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.EditorFor(model => model.sampleCode, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                        @Html.ValidationMessageFor(model => model.sampleCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.sampleTestCategoryID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.sampleTestCategoryID
+                                            , new SelectList(Model.lOVSampleTestCategories, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.sampleTestCategoryID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.sampleTestID
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.sampleTestID
+                                            , new SelectList(Model.lOVSampleTests, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.sampleTestID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.sampleResult
+                                        , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        @Html.DropDownListFor(model => model.sampleResult
+                                            , new SelectList(Model.lOVSampleTestResult, "id", "value")
+                                            , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                        @Html.ValidationMessageFor(model => model.sampleResult, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-upload">
+                                <div class="row">
+                                    <div class="control-label col-md-3 col-sm-3 col-12">@Localization.Attachment.Attachment_AddAttached</div>
+                                    <div class="col-md-6 col-sm-5 col-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fa fa-cloud-upload"></i> @Localization.Global.Attachment_Upload </span>
+                                            </div>
+                                            <div class="custom-file col-md-5 col-sm-6 col-12">
+                                                <input type="file" name="attachFile" id="attachFile" class="custom-file-input col-md-5 col-12"
+                                                       aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="attachFile">@Localization.Global.Attachment_ChooseFile</label>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.attachFile, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

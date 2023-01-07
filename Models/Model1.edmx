@@ -1,0 +1,2449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QualityDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_CONFIG">
+          <Key>
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="APP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="1000" />
+          <Property Name="VALUES" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ATTACHMENTS">
+          <Key>
+            <PropertyRef Name="ATTACHMENT_ID" />
+          </Key>
+          <Property Name="ATTACHMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="30" />
+          <Property Name="PARENT_ID" Type="int" />
+          <Property Name="PARENT_SUB_ID" Type="int" />
+          <Property Name="ATTACHEMENT_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="ATTACHEMENT_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="SAMPLE_CODE" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAMPLE_TEST_ID" Type="int" />
+          <Property Name="SAMPLE_RESULT" Type="char" MaxLength="1" />
+          <Property Name="MAKERID" Type="int" />
+        </EntityType>
+        <EntityType Name="CHECK_LIST">
+          <Key>
+            <PropertyRef Name="CHECK_LIST_ID" />
+          </Key>
+          <Property Name="CHECK_LIST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="1000" />
+          <Property Name="GROUPS_ID" Type="nvarchar" MaxLength="100" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CHECK_LIST_GROUPS">
+          <Key>
+            <PropertyRef Name="CHECK_LIST_GROUPS_ID" />
+          </Key>
+          <Property Name="CHECK_LIST_GROUPS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ITEMS_ID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW">
+          <Key>
+            <PropertyRef Name="CL_FLOW_SEQ" />
+          </Key>
+          <Property Name="CL_FLOW_SEQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CL_FLOW_ID" Type="int" />
+          <Property Name="CL_ID" Type="int" />
+          <Property Name="CL_GROUP_ID" Type="int" />
+          <Property Name="CL_ITEM_ID" Type="int" />
+          <Property Name="AVAILABLE_ITEM" Type="bit" Nullable="false" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ATTACHMENT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CHECKLISTID" Type="int" />
+          <Property Name="CL_PARTY" Type="nvarchar" MaxLength="250" />
+          <Property Name="CL_SEQUENCEID" Type="int" />
+          <Property Name="TECHNICIANID" Type="int" />
+          <Property Name="TECHNICIAN_MAXDAYS" Type="int" />
+          <Property Name="TECHNICIAN_ACTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="TECHNICIAN_ACTION_DATE" Type="datetime" />
+          <Property Name="SUPERVISORENGID" Type="int" />
+          <Property Name="SUPERENG_MAXDAYS" Type="int" />
+          <Property Name="SUPERENG_ACTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUPERENG_ACTION_DATE" Type="datetime" />
+          <Property Name="QALABID" Type="int" />
+          <Property Name="QALAB_MAXDAYS" Type="int" />
+          <Property Name="QALAB_ACTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="QALAB_ACTION_DATE" Type="datetime" />
+          <Property Name="REPRESENTITIVESUPERID" Type="int" />
+          <Property Name="REPSUPER_MAXDAYS" Type="int" />
+          <Property Name="RS_ACTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="RS_ACTION_DATE" Type="datetime" />
+          <Property Name="REGISTRATIONDATE" Type="datetime" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="CLOSURENDATE" Type="datetime" />
+          <Property Name="MAKERID" Type="int" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW_SEQUENCE">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SEQUENCE_NAME" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DESCREPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TECHNICIANID" Type="int" />
+          <Property Name="TECHNICIAN_MAXDAYS" Type="int" />
+          <Property Name="SUPERVISORENGID" Type="int" />
+          <Property Name="SUPERENG_MAXDAYS" Type="int" />
+          <Property Name="QALABID" Type="int" />
+          <Property Name="QALAB_MAXDAYS" Type="int" />
+          <Property Name="REPRESENTITIVESUPERID" Type="int" />
+          <Property Name="REPSUPER_MAXDAYS" Type="int" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CL_FLOW_STATUSES">
+          <Key>
+            <PropertyRef Name="STATUS_SEQ_ID" />
+          </Key>
+          <Property Name="STATUS_SEQ_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_ENG_DESC" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATUS_ARA_DESC" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CL_GROUPS_ITEMS">
+          <Key>
+            <PropertyRef Name="CL_GROUPS_ITEMS_ID" />
+          </Key>
+          <Property Name="CL_GROUPS_ITEMS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="COMPLAINTS">
+          <Key>
+            <PropertyRef Name="COMPLAINTS_ID" />
+          </Key>
+          <Property Name="COMPLAINTS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CR_ID" Type="int" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOTIFICATION_LIST" Type="nvarchar" MaxLength="255" />
+          <Property Name="ATTACHMENT_ID" Type="int" />
+          <Property Name="COMPLAINT_STATUS" Type="int" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CONTACT_ID">
+          <Key>
+            <PropertyRef Name="CONTACT_ID" />
+          </Key>
+          <Property Name="CONTACT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PHONE_int" Type="nvarchar" MaxLength="30" />
+          <Property Name="WORK_PHONE_NUBER" Type="nvarchar" MaxLength="30" />
+          <Property Name="WORK_EXTENTION" Type="nvarchar" MaxLength="10" />
+          <Property Name="MOBILE_int" Type="nvarchar" MaxLength="30" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="255" />
+          <Property Name="WORK_PLACE" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="COUNTRIES">
+          <Key>
+            <PropertyRef Name="COUNTRY_CODE" />
+          </Key>
+          <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ARABICNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="ENGLISHNAME" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QualityDb.dbo.CR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CR">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="int" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="int" />
+          <Property Name="PROJECT_ITEM_ID" Type="int" />
+          <Property Name="REGISTER_DATE" Type="date" />
+          <Property Name="CR_TYPE_ID" Type="int" />
+          <Property Name="FLOW_ID" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="SAMPLE_ID" Type="int" />
+          <Property Name="CLOSURE_DATE" Type="date" />
+          <Property Name="MAP_SELECTION_ID" Type="int" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CR_FLOW">
+          <Key>
+            <PropertyRef Name="FLOW_ID" />
+          </Key>
+          <Property Name="FLOW_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CRTF_ID" Type="int" />
+          <Property Name="IS_SUPERVISOR_ENG" Type="bit" Nullable="false" />
+          <Property Name="SUPERVISOR_DATE" Type="datetime" />
+          <Property Name="SUPERVISOR_ENG_ID" Type="int" />
+          <Property Name="SUPERVISOR_FEEDBACK" Type="datetime" />
+          <Property Name="IS_CONSULTANT" Type="bit" Nullable="false" />
+          <Property Name="CONSULTANT_ASSIGN" Type="date" />
+          <Property Name="CONSULTANT_ID" Type="int" />
+          <Property Name="CONSULTANT_FEEDBACK" Type="date" />
+          <Property Name="IS_LAB" Type="bit" Nullable="false" />
+          <Property Name="LAB_ASSIGN" Type="datetime" />
+          <Property Name="LAB_ID" Type="int" />
+          <Property Name="LAB_FEEDBACK" Type="datetime" />
+          <Property Name="MAKER" Type="bit" Nullable="false" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CR_STATUSES">
+          <Key>
+            <PropertyRef Name="STATUS_SEQ_ID" />
+          </Key>
+          <Property Name="STATUS_SEQ_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_ENG_DESC" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATUS_ARA_DESC" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CR_TYPE_GROUPS">
+          <Key>
+            <PropertyRef Name="CR_TYPE_GROUPS_ID" />
+          </Key>
+          <Property Name="CR_TYPE_GROUPS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CRTMC_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CR_TYPES">
+          <Key>
+            <PropertyRef Name="CR_TYPE_ID" />
+          </Key>
+          <Property Name="CR_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CRTG_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="CATEGORY" Type="int" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CR_TYPES_FLOW">
+          <Key>
+            <PropertyRef Name="CRTF_ID" />
+          </Key>
+          <Property Name="CRTF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CRTF_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_SUPERVISOR_ENG" Type="bit" Nullable="false" />
+          <Property Name="SUPERVISOR_ENG_PERIOD" Type="nvarchar" MaxLength="30" />
+          <Property Name="IS_CONSULTANT" Type="bit" />
+          <Property Name="CONSULTANT_PERION" Type="nvarchar" MaxLength="30" />
+          <Property Name="IS_LAB" Type="bit" Nullable="false" />
+          <Property Name="LAB_PERIOD" Type="nvarchar" MaxLength="30" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CR_TYPES_MAIN_CATEGORIES">
+          <Key>
+            <PropertyRef Name="CR_TYPE_MC_ID" />
+          </Key>
+          <Property Name="CR_TYPE_MC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_ID" />
+          </Key>
+          <Property Name="DEPARTMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJECT_OWNER_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCREPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT_SECTION">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_SECTION_ID" />
+          </Key>
+          <Property Name="DEPARTMENT_SECTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPARTMENT_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FACTORY">
+          <Key>
+            <PropertyRef Name="FACTORY_ID" />
+          </Key>
+          <Property Name="FACTORY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FACTORY_CODA" Type="nvarchar" MaxLength="60" />
+          <Property Name="TYPE_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="255" />
+          <Property Name="FACTORY_POWER" Type="nvarchar" MaxLength="30" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FACTORY_TYPES">
+          <Key>
+            <PropertyRef Name="FACTORY_TYPE_ID" />
+          </Key>
+          <Property Name="FACTORY_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DATT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LOG_MESSAGES">
+          <Key>
+            <PropertyRef Name="IDSEQUENCE" />
+          </Key>
+          <Property Name="IDSEQUENCE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERID" Type="nvarchar" MaxLength="50" />
+          <Property Name="FUNCTIONNAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DATETIME" Type="datetime" />
+          <Property Name="INPUTPARAMETERS" Type="nvarchar" MaxLength="2000" />
+          <Property Name="OUTPUTPARAMETERS" Type="nvarchar" MaxLength="2000" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="LT_INITIALSCREENS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCREENNAME_ENG" Type="nvarchar" MaxLength="50" />
+          <Property Name="SCREENNAME_ARA" Type="nvarchar" MaxLength="50" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LT_MEASURE_UNITS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAP_POINTS">
+          <Key>
+            <PropertyRef Name="MAP_ID" />
+          </Key>
+          <Property Name="MAP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POINT_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="LATITUDE" Type="nvarchar" MaxLength="150" />
+          <Property Name="LONGITUDE" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QualityDb.dbo.MAP_SELECTIONS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MAP_SELECTIONS">
+          <Key>
+            <PropertyRef Name="MAP_SELECTION_ID" />
+          </Key>
+          <Property Name="MAP_SELECTION_ID" Type="int" Nullable="false" />
+          <Property Name="ZOOM_LEVEL" Type="int" />
+          <Property Name="CENTER_LAT" Type="nvarchar" MaxLength="255" />
+          <Property Name="CENTER_LONG" Type="nvarchar" MaxLength="255" />
+          <Property Name="SELECTION_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="CIRCLE_DIAMETER" Type="nvarchar" MaxLength="200" />
+          <Property Name="GEOMETRY_SHAPE" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MIXER">
+          <Key>
+            <PropertyRef Name="MIXER_ID" />
+          </Key>
+          <Property Name="MIXER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPE_ID" Type="int" />
+          <Property Name="FACTORY_ID" Type="int" />
+          <Property Name="MIXER_CODE" Type="nvarchar" MaxLength="100" />
+          <Property Name="MIXER_MODEL" Type="nvarchar" MaxLength="100" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="MIXER_STATUS" Type="nvarchar" MaxLength="100" />
+          <Property Name="MIXER_POWER" Type="nvarchar" MaxLength="30" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIME" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MIXER_TYPES">
+          <Key>
+            <PropertyRef Name="MIXER_TYPE_ID" />
+          </Key>
+          <Property Name="MIXER_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NAIONAL_TYPE">
+          <Key>
+            <PropertyRef Name="NATIONAL_TYPE_ID" />
+          </Key>
+          <Property Name="NATIONAL_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NATIONAL_DESC" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NATIONALITY">
+          <Key>
+            <PropertyRef Name="NATIONALITY_ID" />
+          </Key>
+          <Property Name="NATIONALITY_ID" Type="int" Nullable="false" />
+          <Property Name="NATIONALITY_DESC" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NOTES">
+          <Key>
+            <PropertyRef Name="NOTES_ID" />
+          </Key>
+          <Property Name="NOTES_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="30" />
+          <Property Name="CR_ID" Type="int" />
+          <Property Name="TEXT" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PROJECT_ITEMS">
+          <Key>
+            <PropertyRef Name="PROJECT_ITEMS_ID" />
+          </Key>
+          <Property Name="PROJECT_ITEMS_ID" Type="int" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="AMOUNT" Type="int" />
+          <Property Name="UNIT_ID" Type="int" />
+          <Property Name="ITEM_PERCENTAGE" Type="int" />
+        </EntityType>
+        <EntityType Name="PROJECT_OWNER">
+          <Key>
+            <PropertyRef Name="PROJEC_OWNER_ID" />
+          </Key>
+          <Property Name="PROJEC_OWNER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJ_OWN_TYP_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_OWNER" Type="bit" Nullable="false" />
+          <Property Name="ACCOUNTABLE" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTACT_DETAILS_ID" Type="int" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PROJECT_OWNER_TYPE">
+          <Key>
+            <PropertyRef Name="PROJ_OWN_TYP_ID" />
+          </Key>
+          <Property Name="PROJ_OWN_TYP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_VENDOR" Type="bit" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROJECTS">
+          <Key>
+            <PropertyRef Name="PROJECTS_ID" />
+          </Key>
+          <Property Name="PROJECTS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="PROJECT_OWNER_ID" Type="int" />
+          <Property Name="SUPERVISOR_ENG_ID" Type="int" />
+          <Property Name="SECTION_ID" Type="int" />
+          <Property Name="CONSULTANT_ID" Type="int" />
+          <Property Name="CONSULANT_ASSIST_ID" Type="int" />
+          <Property Name="CONTRACTOR_ID" Type="int" />
+          <Property Name="CONTRACTOR_ASSIST_ID" Type="int" />
+          <Property Name="AUTH_LAB_ID" Type="int" />
+          <Property Name="QA_TECHNICIAN_ID" Type="int" />
+          <Property Name="QUALITY_ENG_ID" Type="int" />
+          <Property Name="START_DATE" Type="datetime" />
+          <Property Name="END_DATE" Type="datetime" />
+          <Property Name="REGISTER_DATE" Type="datetime" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAP_SELECTION_ID" Type="int" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RCV_STATUS_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_ENG" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATUS_ARA" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="RCVMM_ASSIGNED_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSIGNED_TO_ENG" Type="nvarchar" MaxLength="255" />
+          <Property Name="ASSIGNED_TO_ARA" Type="nvarchar" MaxLength="255" />
+          <Property Name="SUCCESS_ASSIGN_TO" Type="nvarchar" MaxLength="50" />
+          <Property Name="REJECT_ASSIGN_TO" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RCVMM_STATUS_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_ENG" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATUS_ARA" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TEST">
+          <Key>
+            <PropertyRef Name="SAMPLE_TEST_ID" />
+          </Key>
+          <Property Name="SAMPLE_TEST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TEST_CATEGORIES">
+          <Key>
+            <PropertyRef Name="SAMPLE_TEST_CATEGORIES_ID" />
+          </Key>
+          <Property Name="SAMPLE_TEST_CATEGORIES_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TYPE">
+          <Key>
+            <PropertyRef Name="SAMPLE_TYPE_ID" />
+          </Key>
+          <Property Name="SAMPLE_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SAMPLES">
+          <Key>
+            <PropertyRef Name="SAMPLE_ID" />
+          </Key>
+          <Property Name="SAMPLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CR_ID" Type="int" />
+          <Property Name="SAMPLE_MAKER" Type="nvarchar" MaxLength="255" />
+          <Property Name="SAMPLE_SIZE" Type="nvarchar" MaxLength="30" />
+          <Property Name="SAMPLE_LENGTH" Type="nvarchar" MaxLength="30" />
+          <Property Name="SAMPLE_UNIT_ID" Type="int" />
+          <Property Name="MAP_SELECTION_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SUPER_USERS">
+          <Key>
+            <PropertyRef Name="SUPER_USER_ID" />
+          </Key>
+          <Property Name="SUPER_USER_ID" Type="int" Nullable="false" />
+          <Property Name="SUPER_USER_DESC" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TEST_SPATIAL_DATA">
+          <Key>
+            <PropertyRef Name="COL_ID" />
+          </Key>
+          <Property Name="COL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MY_TYPE" Type="nvarchar" MaxLength="500" />
+          <Property Name="SHAPE" Type="geometry" />
+        </EntityType>
+        <EntityType Name="USER_PROFILE_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="TYPE_CODE" Type="nvarchar" MaxLength="100" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
+          <Property Name="IS_ASSISTANT" Type="nvarchar" MaxLength="2" />
+          <Property Name="PARENT_TYPE_ID" Type="int" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="MAKER_DT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USER_ROLES">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="INITIAL_SCREEN_ID" Type="int" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="MAKER" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MAKER_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNER_CREATE" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNER_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNER_VIEW" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNER_EDIT" Type="bit" Nullable="false" />
+          <Property Name="FACTORYTYPE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="FACTORYTYPE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="FACTORYTYPE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="FACTORYTYPE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="FACTORY_CREATE" Type="bit" Nullable="false" />
+          <Property Name="FACTORY_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="FACTORY_VIEW" Type="bit" Nullable="false" />
+          <Property Name="FACTORY_EDIT" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENT_CREATE" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENT_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENT_VIEW" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENT_EDIT" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_CREATE" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_VIEW" Type="bit" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_EDIT" Type="bit" Nullable="false" />
+          <Property Name="MIXERTYPE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="MIXERTYPE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="MIXERTYPE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="MIXERTYPE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="MIXER_CREATE" Type="bit" Nullable="false" />
+          <Property Name="MIXER_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="MIXER_VIEW" Type="bit" Nullable="false" />
+          <Property Name="MIXER_EDIT" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_CREATE" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_VIEW" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_EDIT" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETEST_CREATE" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETEST_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETEST_VIEW" Type="bit" Nullable="false" />
+          <Property Name="SAMPLETEST_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEMC_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEMC_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEMC_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEMC_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEGROUP_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEGROUP_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEGROUP_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CRTYPEGROUP_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CRTYPE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CRTYPE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CRTYPE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CRTYPE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEM_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEM_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEM_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEM_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTS_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTS_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTS_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CHECKLISTS_EDIT" Type="bit" Nullable="false" />
+          <Property Name="USERPROFILE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="USERPROFILE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="USERPROFILE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="USERPROFILE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="USERROLES_CREATE" Type="bit" Nullable="false" />
+          <Property Name="USERROLES_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="USERROLES_VIEW" Type="bit" Nullable="false" />
+          <Property Name="USERROLES_EDIT" Type="bit" Nullable="false" />
+          <Property Name="PROJECT_CREATE" Type="bit" Nullable="false" />
+          <Property Name="PROJECT_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="PROJECT_VIEW" Type="bit" Nullable="false" />
+          <Property Name="PROJECT_EDIT" Type="bit" Nullable="false" />
+          <Property Name="COMPLAINT_CREATE" Type="bit" Nullable="false" />
+          <Property Name="COMPLAINT_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="COMPLAINT_VIEW" Type="bit" Nullable="false" />
+          <Property Name="COMPLAINT_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CLWF_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CLWF_MAKER" Type="bit" Nullable="false" />
+          <Property Name="CLWF_CHECKER" Type="bit" Nullable="false" />
+          <Property Name="CR_CREATE" Type="bit" Nullable="false" />
+          <Property Name="CR_EDIT" Type="bit" Nullable="false" />
+          <Property Name="CR_ACTION" Type="bit" Nullable="false" />
+          <Property Name="CR_ADDATTACHMENTS" Type="bit" Nullable="false" />
+          <Property Name="CR_VIEWATTACHMENTS" Type="bit" Nullable="false" />
+          <Property Name="CR_VIEW" Type="bit" Nullable="false" />
+          <Property Name="CR_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_SUPERENG" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_CONSULTANTENG" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_AUTHLAB" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_TECHNICIAN" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_CEO" Type="bit" Nullable="false" />
+          <Property Name="DASHBOARD_QUALITYENG" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_CR_VIEW" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_PROJECT_VIEW" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_CR_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_CR_PROJECTS_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_CR_SAMPLES_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="REPORTS_CR_SMPL_SRCHDET" Type="bit" Nullable="false" />
+          <Property Name="RCV_RANDOMSEARCH" Type="bit" Nullable="false" />
+          <Property Name="RCV_ACTION" Type="bit" Nullable="false" />
+          <Property Name="RCV_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="RCV_EDIT" Type="bit" Nullable="false" />
+          <Property Name="RCVMM_CREATE" Type="bit" Nullable="false" />
+          <Property Name="RCVMM_SEARCH" Type="bit" Nullable="false" />
+          <Property Name="RCVMM_EDIT" Type="bit" Nullable="false" />
+          <Property Name="RCVMM_VIEW" Type="bit" Nullable="false" />
+          <Property Name="RCV_CONV_VIEW" Type="bit" Nullable="false" />
+          <Property Name="RCV_CONV_REPLY" Type="bit" Nullable="false" />
+          <Property Name="RCV_CONV_CLOSE" Type="bit" Nullable="false" />
+          <Property Name="RCV_CONV_ESCALATION" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS_LOGIN">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="HASHE_PASS" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="SALT" Type="nvarchar" MaxLength="100" />
+          <Property Name="ROLE_ID" Type="int" />
+          <Property Name="EXPIRY_DATE" Type="datetime" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="RECORD_STAT" Type="bit" Nullable="false" />
+          <Property Name="INITIAL_STAT" Type="bit" Nullable="false" />
+          <Property Name="IS_LOCKED" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS_PROFILE">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_TYPE_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTACT_DETAILS_ID" Type="int" />
+          <Property Name="NATIONALITY_TYPE_ID" Type="int" />
+          <Property Name="NATIONAL_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="NATIONALITY_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUPER_USER_ID" Type="int" />
+          <Property Name="IS_PROJECTOWNER_MEMBER" Type="bit" Nullable="false" />
+          <Property Name="PROJECTOWNER_ID" Type="int" />
+          <Property Name="MAKER_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAKER_DT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="QualityDbModelStoreContainer">
+          <EntitySet Name="APP_CONFIG" EntityType="Self.APP_CONFIG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ATTACHMENTS" EntityType="Self.ATTACHMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHECK_LIST" EntityType="Self.CHECK_LIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHECK_LIST_GROUPS" EntityType="Self.CHECK_LIST_GROUPS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHECKLIST_FLOW" EntityType="Self.CHECKLIST_FLOW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHECKLIST_FLOW_MASTER" EntityType="Self.CHECKLIST_FLOW_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHECKLIST_FLOW_SEQUENCE" EntityType="Self.CHECKLIST_FLOW_SEQUENCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CL_FLOW_STATUSES" EntityType="Self.CL_FLOW_STATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CL_GROUPS_ITEMS" EntityType="Self.CL_GROUPS_ITEMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPLAINTS" EntityType="Self.COMPLAINTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACT_ID" EntityType="Self.CONTACT_ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COUNTRIES" EntityType="Self.COUNTRIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_FLOW" EntityType="Self.CR_FLOW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_STATUSES" EntityType="Self.CR_STATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_TYPE_GROUPS" EntityType="Self.CR_TYPE_GROUPS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_TYPES" EntityType="Self.CR_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_TYPES_FLOW" EntityType="Self.CR_TYPES_FLOW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_TYPES_MAIN_CATEGORIES" EntityType="Self.CR_TYPES_MAIN_CATEGORIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENT_SECTION" EntityType="Self.DEPARTMENT_SECTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTORY" EntityType="Self.FACTORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTORY_TYPES" EntityType="Self.FACTORY_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_MESSAGES" EntityType="Self.LOG_MESSAGES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LT_INITIALSCREENS" EntityType="Self.LT_INITIALSCREENS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LT_MEASURE_UNITS" EntityType="Self.LT_MEASURE_UNITS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAP_POINTS" EntityType="Self.MAP_POINTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIXER" EntityType="Self.MIXER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MIXER_TYPES" EntityType="Self.MIXER_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NAIONAL_TYPE" EntityType="Self.NAIONAL_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NATIONALITY" EntityType="Self.NATIONALITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOTES" EntityType="Self.NOTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROJECT_OWNER" EntityType="Self.PROJECT_OWNER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="Self.PROJECT_OWNER_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCV_STATUS_LOV" EntityType="Self.RCV_STATUS_LOV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="Self.RCVMM_ASSIGNED_LOV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCVMM_STATUS_LOV" EntityType="Self.RCVMM_STATUS_LOV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAMPLE_TEST" EntityType="Self.SAMPLE_TEST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAMPLE_TEST_CATEGORIES" EntityType="Self.SAMPLE_TEST_CATEGORIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAMPLE_TYPE" EntityType="Self.SAMPLE_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAMPLES" EntityType="Self.SAMPLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUPER_USERS" EntityType="Self.SUPER_USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEST_SPATIAL_DATA" EntityType="Self.TEST_SPATIAL_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_PROFILE_TYPE" EntityType="Self.USER_PROFILE_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ROLES" EntityType="Self.USER_ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS_LOGIN" EntityType="Self.USERS_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS_PROFILE" EntityType="Self.USERS_PROFILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR" EntityType="Self.CR" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CR].[CR_ID] AS [CR_ID], 
+[CR].[PROJECT_ID] AS [PROJECT_ID], 
+[CR].[PROJECT_ITEM_ID] AS [PROJECT_ITEM_ID], 
+[CR].[REGISTER_DATE] AS [REGISTER_DATE], 
+[CR].[CR_TYPE_ID] AS [CR_TYPE_ID], 
+[CR].[FLOW_ID] AS [FLOW_ID], 
+[CR].[STATUS] AS [STATUS], 
+[CR].[SAMPLE_ID] AS [SAMPLE_ID], 
+[CR].[CLOSURE_DATE] AS [CLOSURE_DATE], 
+[CR].[MAP_SELECTION_ID] AS [MAP_SELECTION_ID], 
+[CR].[MAKER] AS [MAKER]
+FROM [dbo].[CR] AS [CR]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MAP_SELECTIONS" EntityType="Self.MAP_SELECTIONS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[MAP_SELECTIONS].[MAP_SELECTION_ID] AS [MAP_SELECTION_ID], 
+[MAP_SELECTIONS].[ZOOM_LEVEL] AS [ZOOM_LEVEL], 
+[MAP_SELECTIONS].[CENTER_LAT] AS [CENTER_LAT], 
+[MAP_SELECTIONS].[CENTER_LONG] AS [CENTER_LONG], 
+[MAP_SELECTIONS].[SELECTION_TYPE] AS [SELECTION_TYPE], 
+[MAP_SELECTIONS].[CIRCLE_DIAMETER] AS [CIRCLE_DIAMETER], 
+[MAP_SELECTIONS].[GEOMETRY_SHAPE] AS [GEOMETRY_SHAPE]
+FROM [dbo].[MAP_SELECTIONS] AS [MAP_SELECTIONS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PROJECT_ITEMS" EntityType="Self.PROJECT_ITEMS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[PROJECT_ITEMS].[PROJECT_ITEMS_ID] AS [PROJECT_ITEMS_ID], 
+[PROJECT_ITEMS].[PROJECT_ID] AS [PROJECT_ID], 
+[PROJECT_ITEMS].[NAME] AS [NAME], 
+[PROJECT_ITEMS].[DESCRIPTION] AS [DESCRIPTION], 
+[PROJECT_ITEMS].[AMOUNT] AS [AMOUNT], 
+[PROJECT_ITEMS].[UNIT_ID] AS [UNIT_ID], 
+[PROJECT_ITEMS].[ITEM_PERCENTAGE] AS [ITEM_PERCENTAGE]
+FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QualityDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QualityDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_CONFIG" EntityType="QualityDbModel.APP_CONFIG" />
+          <EntitySet Name="ATTACHMENTS" EntityType="QualityDbModel.ATTACHMENT" />
+          <EntitySet Name="CHECK_LIST" EntityType="QualityDbModel.CHECK_LIST" />
+          <EntitySet Name="CHECK_LIST_GROUPS" EntityType="QualityDbModel.CHECK_LIST_GROUPS" />
+          <EntitySet Name="CHECKLIST_FLOW" EntityType="QualityDbModel.CHECKLIST_FLOW" />
+          <EntitySet Name="CHECKLIST_FLOW_MASTER" EntityType="QualityDbModel.CHECKLIST_FLOW_MASTER" />
+          <EntitySet Name="CHECKLIST_FLOW_SEQUENCE" EntityType="QualityDbModel.CHECKLIST_FLOW_SEQUENCE" />
+          <EntitySet Name="CL_FLOW_STATUSES" EntityType="QualityDbModel.CL_FLOW_STATUSES" />
+          <EntitySet Name="CL_GROUPS_ITEMS" EntityType="QualityDbModel.CL_GROUPS_ITEMS" />
+          <EntitySet Name="COMPLAINTS" EntityType="QualityDbModel.COMPLAINT" />
+          <EntitySet Name="CONTACT_ID" EntityType="QualityDbModel.CONTACT_ID" />
+          <EntitySet Name="COUNTRIES" EntityType="QualityDbModel.COUNTRy" />
+          <EntitySet Name="CR_FLOW" EntityType="QualityDbModel.CR_FLOW" />
+          <EntitySet Name="CR_STATUSES" EntityType="QualityDbModel.CR_STATUSES" />
+          <EntitySet Name="CR_TYPE_GROUPS" EntityType="QualityDbModel.CR_TYPE_GROUPS" />
+          <EntitySet Name="CR_TYPES" EntityType="QualityDbModel.CR_TYPES" />
+          <EntitySet Name="CR_TYPES_FLOW" EntityType="QualityDbModel.CR_TYPES_FLOW" />
+          <EntitySet Name="CR_TYPES_MAIN_CATEGORIES" EntityType="QualityDbModel.CR_TYPES_MAIN_CATEGORIES" />
+          <EntitySet Name="DEPARTMENTs" EntityType="QualityDbModel.DEPARTMENT" />
+          <EntitySet Name="DEPARTMENT_SECTION" EntityType="QualityDbModel.DEPARTMENT_SECTION" />
+          <EntitySet Name="FACTORies" EntityType="QualityDbModel.FACTORY" />
+          <EntitySet Name="FACTORY_TYPES" EntityType="QualityDbModel.FACTORY_TYPES" />
+          <EntitySet Name="LOG_MESSAGES" EntityType="QualityDbModel.LOG_MESSAGES" />
+          <EntitySet Name="LT_INITIALSCREENS" EntityType="QualityDbModel.LT_INITIALSCREENS" />
+          <EntitySet Name="LT_MEASURE_UNITS" EntityType="QualityDbModel.LT_MEASURE_UNITS" />
+          <EntitySet Name="MAP_POINTS" EntityType="QualityDbModel.MAP_POINTS" />
+          <EntitySet Name="MIXERs" EntityType="QualityDbModel.MIXER" />
+          <EntitySet Name="MIXER_TYPES" EntityType="QualityDbModel.MIXER_TYPES" />
+          <EntitySet Name="NAIONAL_TYPE" EntityType="QualityDbModel.NAIONAL_TYPE" />
+          <EntitySet Name="NATIONALITies" EntityType="QualityDbModel.NATIONALITY" />
+          <EntitySet Name="NOTES" EntityType="QualityDbModel.NOTE" />
+          <EntitySet Name="PROJECT_OWNER" EntityType="QualityDbModel.PROJECT_OWNER" />
+          <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="QualityDbModel.PROJECT_OWNER_TYPE" />
+          <EntitySet Name="PROJECTS" EntityType="QualityDbModel.PROJECT" />
+          <EntitySet Name="RCV_STATUS_LOV" EntityType="QualityDbModel.RCV_STATUS_LOV" />
+          <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="QualityDbModel.RCVMM_ASSIGNED_LOV" />
+          <EntitySet Name="RCVMM_STATUS_LOV" EntityType="QualityDbModel.RCVMM_STATUS_LOV" />
+          <EntitySet Name="SAMPLE_TEST" EntityType="QualityDbModel.SAMPLE_TEST" />
+          <EntitySet Name="SAMPLE_TEST_CATEGORIES" EntityType="QualityDbModel.SAMPLE_TEST_CATEGORIES" />
+          <EntitySet Name="SAMPLE_TYPE" EntityType="QualityDbModel.SAMPLE_TYPE" />
+          <EntitySet Name="SAMPLES" EntityType="QualityDbModel.SAMPLE" />
+          <EntitySet Name="SUPER_USERS" EntityType="QualityDbModel.SUPER_USERS" />
+          <EntitySet Name="TEST_SPATIAL_DATA" EntityType="QualityDbModel.TEST_SPATIAL_DATA" />
+          <EntitySet Name="USER_PROFILE_TYPE" EntityType="QualityDbModel.USER_PROFILE_TYPE" />
+          <EntitySet Name="USER_ROLES" EntityType="QualityDbModel.USER_ROLES" />
+          <EntitySet Name="USERS_LOGIN" EntityType="QualityDbModel.USERS_LOGIN" />
+          <EntitySet Name="USERS_PROFILE" EntityType="QualityDbModel.USERS_PROFILE" />
+          <EntitySet Name="CRs" EntityType="QualityDbModel.CR" />
+          <EntitySet Name="MAP_SELECTIONS" EntityType="QualityDbModel.MAP_SELECTIONS" />
+          <EntitySet Name="PROJECT_ITEMS" EntityType="QualityDbModel.PROJECT_ITEMS" />
+        </EntityContainer>
+        <EntityType Name="APP_CONFIG">
+          <Key>
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="APP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="VALUES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ATTACHMENT_ID" />
+          </Key>
+          <Property Name="ATTACHMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_ID" Type="Int32" />
+          <Property Name="PARENT_SUB_ID" Type="Int32" />
+          <Property Name="ATTACHEMENT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ATTACHEMENT_PATH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_TEST_ID" Type="Int32" />
+          <Property Name="SAMPLE_RESULT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MAKERID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CHECK_LIST">
+          <Key>
+            <PropertyRef Name="CHECK_LIST_ID" />
+          </Key>
+          <Property Name="CHECK_LIST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="GROUPS_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CHECK_LIST_GROUPS">
+          <Key>
+            <PropertyRef Name="CHECK_LIST_GROUPS_ID" />
+          </Key>
+          <Property Name="CHECK_LIST_GROUPS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ITEMS_ID" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW">
+          <Key>
+            <PropertyRef Name="CL_FLOW_SEQ" />
+          </Key>
+          <Property Name="CL_FLOW_SEQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CL_FLOW_ID" Type="Int32" />
+          <Property Name="CL_ID" Type="Int32" />
+          <Property Name="CL_GROUP_ID" Type="Int32" />
+          <Property Name="CL_ITEM_ID" Type="Int32" />
+          <Property Name="AVAILABLE_ITEM" Type="Boolean" Nullable="false" />
+          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ATTACHMENT_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CHECKLISTID" Type="Int32" />
+          <Property Name="CL_PARTY" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CL_SEQUENCEID" Type="Int32" />
+          <Property Name="TECHNICIANID" Type="Int32" />
+          <Property Name="TECHNICIAN_MAXDAYS" Type="Int32" />
+          <Property Name="TECHNICIAN_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TECHNICIAN_ACTION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SUPERVISORENGID" Type="Int32" />
+          <Property Name="SUPERENG_MAXDAYS" Type="Int32" />
+          <Property Name="SUPERENG_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SUPERENG_ACTION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="QALABID" Type="Int32" />
+          <Property Name="QALAB_MAXDAYS" Type="Int32" />
+          <Property Name="QALAB_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QALAB_ACTION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="REPRESENTITIVESUPERID" Type="Int32" />
+          <Property Name="REPSUPER_MAXDAYS" Type="Int32" />
+          <Property Name="RS_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RS_ACTION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="REGISTRATIONDATE" Type="DateTime" Precision="3" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="CLOSURENDATE" Type="DateTime" Precision="3" />
+          <Property Name="MAKERID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CHECKLIST_FLOW_SEQUENCE">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SEQUENCE_NAME" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DESCREPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TECHNICIANID" Type="Int32" />
+          <Property Name="TECHNICIAN_MAXDAYS" Type="Int32" />
+          <Property Name="SUPERVISORENGID" Type="Int32" />
+          <Property Name="SUPERENG_MAXDAYS" Type="Int32" />
+          <Property Name="QALABID" Type="Int32" />
+          <Property Name="QALAB_MAXDAYS" Type="Int32" />
+          <Property Name="REPRESENTITIVESUPERID" Type="Int32" />
+          <Property Name="REPSUPER_MAXDAYS" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CL_FLOW_STATUSES">
+          <Key>
+            <PropertyRef Name="STATUS_SEQ_ID" />
+          </Key>
+          <Property Name="STATUS_SEQ_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_ENG_DESC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_ARA_DESC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CL_GROUPS_ITEMS">
+          <Key>
+            <PropertyRef Name="CL_GROUPS_ITEMS_ID" />
+          </Key>
+          <Property Name="CL_GROUPS_ITEMS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="COMPLAINT">
+          <Key>
+            <PropertyRef Name="COMPLAINTS_ID" />
+          </Key>
+          <Property Name="COMPLAINTS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CR_ID" Type="Int32" />
+          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NOTIFICATION_LIST" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ATTACHMENT_ID" Type="Int32" />
+          <Property Name="COMPLAINT_STATUS" Type="Int32" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CONTACT_ID">
+          <Key>
+            <PropertyRef Name="CONTACT_ID1" />
+          </Key>
+          <Property Name="CONTACT_ID1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PHONE_int" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WORK_PHONE_NUBER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WORK_EXTENTION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MOBILE_int" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FAX" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WORK_PLACE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="COUNTRy">
+          <Key>
+            <PropertyRef Name="COUNTRY_CODE" />
+          </Key>
+          <Property Name="COUNTRY_CODE" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="ARABICNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ENGLISHNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CR_FLOW">
+          <Key>
+            <PropertyRef Name="FLOW_ID" />
+          </Key>
+          <Property Name="FLOW_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CRTF_ID" Type="Int32" />
+          <Property Name="IS_SUPERVISOR_ENG" Type="Boolean" Nullable="false" />
+          <Property Name="SUPERVISOR_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SUPERVISOR_ENG_ID" Type="Int32" />
+          <Property Name="SUPERVISOR_FEEDBACK" Type="DateTime" Precision="3" />
+          <Property Name="IS_CONSULTANT" Type="Boolean" Nullable="false" />
+          <Property Name="CONSULTANT_ASSIGN" Type="DateTime" Precision="0" />
+          <Property Name="CONSULTANT_ID" Type="Int32" />
+          <Property Name="CONSULTANT_FEEDBACK" Type="DateTime" Precision="0" />
+          <Property Name="IS_LAB" Type="Boolean" Nullable="false" />
+          <Property Name="LAB_ASSIGN" Type="DateTime" Precision="3" />
+          <Property Name="LAB_ID" Type="Int32" />
+          <Property Name="LAB_FEEDBACK" Type="DateTime" Precision="3" />
+          <Property Name="MAKER" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CR_STATUSES">
+          <Key>
+            <PropertyRef Name="STATUS_SEQ_ID" />
+          </Key>
+          <Property Name="STATUS_SEQ_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_ENG_DESC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_ARA_DESC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CR_TYPE_GROUPS">
+          <Key>
+            <PropertyRef Name="CR_TYPE_GROUPS_ID" />
+          </Key>
+          <Property Name="CR_TYPE_GROUPS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CRTMC_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CR_TYPES">
+          <Key>
+            <PropertyRef Name="CR_TYPE_ID" />
+          </Key>
+          <Property Name="CR_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CRTG_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CR_TYPES_FLOW">
+          <Key>
+            <PropertyRef Name="CRTF_ID" />
+          </Key>
+          <Property Name="CRTF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CRTF_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_SUPERVISOR_ENG" Type="Boolean" Nullable="false" />
+          <Property Name="SUPERVISOR_ENG_PERIOD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IS_CONSULTANT" Type="Boolean" />
+          <Property Name="CONSULTANT_PERION" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IS_LAB" Type="Boolean" Nullable="false" />
+          <Property Name="LAB_PERIOD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CR_TYPES_MAIN_CATEGORIES">
+          <Key>
+            <PropertyRef Name="CR_TYPE_MC_ID" />
+          </Key>
+          <Property Name="CR_TYPE_MC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_ID" />
+          </Key>
+          <Property Name="DEPARTMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJECT_OWNER_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCREPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT_SECTION">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_SECTION_ID" />
+          </Key>
+          <Property Name="DEPARTMENT_SECTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMENT_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FACTORY">
+          <Key>
+            <PropertyRef Name="FACTORY_ID" />
+          </Key>
+          <Property Name="FACTORY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FACTORY_CODA" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FACTORY_POWER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FACTORY_TYPES">
+          <Key>
+            <PropertyRef Name="FACTORY_TYPE_ID" />
+          </Key>
+          <Property Name="FACTORY_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DATT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LOG_MESSAGES">
+          <Key>
+            <PropertyRef Name="IDSEQUENCE" />
+          </Key>
+          <Property Name="IDSEQUENCE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FUNCTIONNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DATETIME" Type="DateTime" Precision="3" />
+          <Property Name="INPUTPARAMETERS" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="OUTPUTPARAMETERS" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LT_INITIALSCREENS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCREENNAME_ENG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SCREENNAME_ARA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LT_MEASURE_UNITS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VALUE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAP_POINTS">
+          <Key>
+            <PropertyRef Name="MAP_ID" />
+          </Key>
+          <Property Name="MAP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POINT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LATITUDE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LONGITUDE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MIXER">
+          <Key>
+            <PropertyRef Name="MIXER_ID" />
+          </Key>
+          <Property Name="MIXER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPE_ID" Type="Int32" />
+          <Property Name="FACTORY_ID" Type="Int32" />
+          <Property Name="MIXER_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MIXER_MODEL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MIXER_STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MIXER_POWER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIME" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MIXER_TYPES">
+          <Key>
+            <PropertyRef Name="MIXER_TYPE_ID" />
+          </Key>
+          <Property Name="MIXER_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NAIONAL_TYPE">
+          <Key>
+            <PropertyRef Name="NATIONAL_TYPE_ID" />
+          </Key>
+          <Property Name="NATIONAL_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NATIONAL_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NATIONALITY">
+          <Key>
+            <PropertyRef Name="NATIONALITY_ID" />
+          </Key>
+          <Property Name="NATIONALITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="NATIONALITY_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NOTE">
+          <Key>
+            <PropertyRef Name="NOTES_ID" />
+          </Key>
+          <Property Name="NOTES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CR_ID" Type="Int32" />
+          <Property Name="TEXT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PROJECT_OWNER">
+          <Key>
+            <PropertyRef Name="PROJEC_OWNER_ID" />
+          </Key>
+          <Property Name="PROJEC_OWNER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJ_OWN_TYP_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_OWNER" Type="Boolean" Nullable="false" />
+          <Property Name="ACCOUNTABLE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTACT_DETAILS_ID" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PROJECT_OWNER_TYPE">
+          <Key>
+            <PropertyRef Name="PROJ_OWN_TYP_ID" />
+          </Key>
+          <Property Name="PROJ_OWN_TYP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_VENDOR" Type="Boolean" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="PROJECTS_ID" />
+          </Key>
+          <Property Name="PROJECTS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PROJECT_OWNER_ID" Type="Int32" />
+          <Property Name="SUPERVISOR_ENG_ID" Type="Int32" />
+          <Property Name="SECTION_ID" Type="Int32" />
+          <Property Name="CONSULTANT_ID" Type="Int32" />
+          <Property Name="CONSULANT_ASSIST_ID" Type="Int32" />
+          <Property Name="CONTRACTOR_ID" Type="Int32" />
+          <Property Name="CONTRACTOR_ASSIST_ID" Type="Int32" />
+          <Property Name="AUTH_LAB_ID" Type="Int32" />
+          <Property Name="QA_TECHNICIAN_ID" Type="Int32" />
+          <Property Name="QUALITY_ENG_ID" Type="Int32" />
+          <Property Name="START_DATE" Type="DateTime" Precision="3" />
+          <Property Name="END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="REGISTER_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAP_SELECTION_ID" Type="Int32" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RCV_STATUS_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_ENG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_ARA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RCVMM_ASSIGNED_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSIGNED_TO_ENG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ASSIGNED_TO_ARA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SUCCESS_ASSIGN_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REJECT_ASSIGN_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RCVMM_STATUS_LOV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_ENG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_ARA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TEST">
+          <Key>
+            <PropertyRef Name="SAMPLE_TEST_ID" />
+          </Key>
+          <Property Name="SAMPLE_TEST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TEST_CATEGORIES">
+          <Key>
+            <PropertyRef Name="SAMPLE_TEST_CATEGORIES_ID" />
+          </Key>
+          <Property Name="SAMPLE_TEST_CATEGORIES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SAMPLE_TYPE">
+          <Key>
+            <PropertyRef Name="SAMPLE_TYPE_ID" />
+          </Key>
+          <Property Name="SAMPLE_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SAMPLE">
+          <Key>
+            <PropertyRef Name="SAMPLE_ID" />
+          </Key>
+          <Property Name="SAMPLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CR_ID" Type="Int32" />
+          <Property Name="SAMPLE_MAKER" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_SIZE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_LENGTH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_UNIT_ID" Type="Int32" />
+          <Property Name="MAP_SELECTION_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SUPER_USERS">
+          <Key>
+            <PropertyRef Name="SUPER_USER_ID" />
+          </Key>
+          <Property Name="SUPER_USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SUPER_USER_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TEST_SPATIAL_DATA">
+          <Key>
+            <PropertyRef Name="COL_ID" />
+          </Key>
+          <Property Name="COL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MY_TYPE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SHAPE" Type="Geometry" />
+        </EntityType>
+        <EntityType Name="USER_PROFILE_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ASSISTANT" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_TYPE_ID" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USER_ROLES">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INITIAL_SCREEN_ID" Type="Int32" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="MAKER" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DATETIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PROJECTOWNERTYPE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNERTYPE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNER_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNER_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNER_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNER_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORYTYPE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORYTYPE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORYTYPE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORYTYPE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORY_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORY_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORY_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="FACTORY_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENT_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENT_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENT_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENT_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="DEPARTMENTSECTION_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="MIXERTYPE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="MIXERTYPE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="MIXERTYPE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="MIXERTYPE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="MIXER_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="MIXER_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="MIXER_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="MIXER_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETESTCATEGORY_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETEST_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETEST_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETEST_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="SAMPLETEST_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEMC_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEMC_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEMC_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEMC_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEGROUP_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEGROUP_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEGROUP_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPEGROUP_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CRTYPE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEM_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEM_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEM_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEM_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTITEMGROUP_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTS_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTS_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTS_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKLISTS_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="USERPROFILE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="USERPROFILE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="USERPROFILE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="USERPROFILE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="USERROLES_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="USERROLES_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="USERROLES_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="USERROLES_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECT_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECT_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECT_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECT_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="COMPLAINT_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="COMPLAINT_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="COMPLAINT_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="COMPLAINT_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CLWFSEQUENCE_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CLWF_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CLWF_MAKER" Type="Boolean" Nullable="false" />
+          <Property Name="CLWF_CHECKER" Type="Boolean" Nullable="false" />
+          <Property Name="CR_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="CR_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="CR_ACTION" Type="Boolean" Nullable="false" />
+          <Property Name="CR_ADDATTACHMENTS" Type="Boolean" Nullable="false" />
+          <Property Name="CR_VIEWATTACHMENTS" Type="Boolean" Nullable="false" />
+          <Property Name="CR_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="CR_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_SUPERENG" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_CONSULTANTENG" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_AUTHLAB" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_TECHNICIAN" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_CEO" Type="Boolean" Nullable="false" />
+          <Property Name="DASHBOARD_QUALITYENG" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_CR_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_PROJECT_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_CR_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_CR_PROJECTS_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_CR_SAMPLES_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="REPORTS_CR_SMPL_SRCHDET" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_RANDOMSEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_ACTION" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="RCVMM_CREATE" Type="Boolean" Nullable="false" />
+          <Property Name="RCVMM_SEARCH" Type="Boolean" Nullable="false" />
+          <Property Name="RCVMM_EDIT" Type="Boolean" Nullable="false" />
+          <Property Name="RCVMM_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_CONV_VIEW" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_CONV_REPLY" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_CONV_CLOSE" Type="Boolean" Nullable="false" />
+          <Property Name="RCV_CONV_ESCALATION" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS_LOGIN">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="HASHE_PASS" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="SALT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE_ID" Type="Int32" />
+          <Property Name="EXPIRY_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="RECORD_STAT" Type="Boolean" Nullable="false" />
+          <Property Name="INITIAL_STAT" Type="Boolean" Nullable="false" />
+          <Property Name="IS_LOCKED" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS_PROFILE">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_TYPE_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTACT_DETAILS_ID" Type="Int32" />
+          <Property Name="NATIONALITY_TYPE_ID" Type="Int32" />
+          <Property Name="NATIONAL_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NATIONALITY_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SUPER_USER_ID" Type="Int32" />
+          <Property Name="IS_PROJECTOWNER_MEMBER" Type="Boolean" Nullable="false" />
+          <Property Name="PROJECTOWNER_ID" Type="Int32" />
+          <Property Name="MAKER_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAKER_DT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CR">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="Int32" />
+          <Property Name="PROJECT_ITEM_ID" Type="Int32" />
+          <Property Name="REGISTER_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CR_TYPE_ID" Type="Int32" />
+          <Property Name="FLOW_ID" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="SAMPLE_ID" Type="Int32" />
+          <Property Name="CLOSURE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="MAP_SELECTION_ID" Type="Int32" />
+          <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MAP_SELECTIONS">
+          <Key>
+            <PropertyRef Name="MAP_SELECTION_ID" />
+          </Key>
+          <Property Name="MAP_SELECTION_ID" Type="Int32" Nullable="false" />
+          <Property Name="ZOOM_LEVEL" Type="Int32" />
+          <Property Name="CENTER_LAT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CENTER_LONG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SELECTION_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CIRCLE_DIAMETER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GEOMETRY_SHAPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PROJECT_ITEMS">
+          <Key>
+            <PropertyRef Name="PROJECT_ITEMS_ID" />
+          </Key>
+          <Property Name="PROJECT_ITEMS_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AMOUNT" Type="Int32" />
+          <Property Name="UNIT_ID" Type="Int32" />
+          <Property Name="ITEM_PERCENTAGE" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QualityDbModelStoreContainer" CdmEntityContainer="QualityDbEntities">
+          <EntitySetMapping Name="APP_CONFIG">
+            <EntityTypeMapping TypeName="QualityDbModel.APP_CONFIG">
+              <MappingFragment StoreEntitySet="APP_CONFIG">
+                <ScalarProperty Name="VALUES" ColumnName="VALUES" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="APP_ID" ColumnName="APP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ATTACHMENTS">
+            <EntityTypeMapping TypeName="QualityDbModel.ATTACHMENT">
+              <MappingFragment StoreEntitySet="ATTACHMENTS">
+                <ScalarProperty Name="MAKERID" ColumnName="MAKERID" />
+                <ScalarProperty Name="SAMPLE_RESULT" ColumnName="SAMPLE_RESULT" />
+                <ScalarProperty Name="SAMPLE_TEST_ID" ColumnName="SAMPLE_TEST_ID" />
+                <ScalarProperty Name="SAMPLE_CODE" ColumnName="SAMPLE_CODE" />
+                <ScalarProperty Name="ATTACHEMENT_PATH" ColumnName="ATTACHEMENT_PATH" />
+                <ScalarProperty Name="ATTACHEMENT_NAME" ColumnName="ATTACHEMENT_NAME" />
+                <ScalarProperty Name="PARENT_SUB_ID" ColumnName="PARENT_SUB_ID" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="ATTACHMENT_ID" ColumnName="ATTACHMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHECK_LIST">
+            <EntityTypeMapping TypeName="QualityDbModel.CHECK_LIST">
+              <MappingFragment StoreEntitySet="CHECK_LIST">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="GROUPS_ID" ColumnName="GROUPS_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CHECK_LIST_ID" ColumnName="CHECK_LIST_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHECK_LIST_GROUPS">
+            <EntityTypeMapping TypeName="QualityDbModel.CHECK_LIST_GROUPS">
+              <MappingFragment StoreEntitySet="CHECK_LIST_GROUPS">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ITEMS_ID" ColumnName="ITEMS_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CHECK_LIST_GROUPS_ID" ColumnName="CHECK_LIST_GROUPS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHECKLIST_FLOW">
+            <EntityTypeMapping TypeName="QualityDbModel.CHECKLIST_FLOW">
+              <MappingFragment StoreEntitySet="CHECKLIST_FLOW">
+                <ScalarProperty Name="ATTACHMENT_ID" ColumnName="ATTACHMENT_ID" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="AVAILABLE_ITEM" ColumnName="AVAILABLE_ITEM" />
+                <ScalarProperty Name="CL_ITEM_ID" ColumnName="CL_ITEM_ID" />
+                <ScalarProperty Name="CL_GROUP_ID" ColumnName="CL_GROUP_ID" />
+                <ScalarProperty Name="CL_ID" ColumnName="CL_ID" />
+                <ScalarProperty Name="CL_FLOW_ID" ColumnName="CL_FLOW_ID" />
+                <ScalarProperty Name="CL_FLOW_SEQ" ColumnName="CL_FLOW_SEQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHECKLIST_FLOW_MASTER">
+            <EntityTypeMapping TypeName="QualityDbModel.CHECKLIST_FLOW_MASTER">
+              <MappingFragment StoreEntitySet="CHECKLIST_FLOW_MASTER">
+                <ScalarProperty Name="MAKERID" ColumnName="MAKERID" />
+                <ScalarProperty Name="CLOSURENDATE" ColumnName="CLOSURENDATE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="REGISTRATIONDATE" ColumnName="REGISTRATIONDATE" />
+                <ScalarProperty Name="RS_ACTION_DATE" ColumnName="RS_ACTION_DATE" />
+                <ScalarProperty Name="RS_ACTION" ColumnName="RS_ACTION" />
+                <ScalarProperty Name="REPSUPER_MAXDAYS" ColumnName="REPSUPER_MAXDAYS" />
+                <ScalarProperty Name="REPRESENTITIVESUPERID" ColumnName="REPRESENTITIVESUPERID" />
+                <ScalarProperty Name="QALAB_ACTION_DATE" ColumnName="QALAB_ACTION_DATE" />
+                <ScalarProperty Name="QALAB_ACTION" ColumnName="QALAB_ACTION" />
+                <ScalarProperty Name="QALAB_MAXDAYS" ColumnName="QALAB_MAXDAYS" />
+                <ScalarProperty Name="QALABID" ColumnName="QALABID" />
+                <ScalarProperty Name="SUPERENG_ACTION_DATE" ColumnName="SUPERENG_ACTION_DATE" />
+                <ScalarProperty Name="SUPERENG_ACTION" ColumnName="SUPERENG_ACTION" />
+                <ScalarProperty Name="SUPERENG_MAXDAYS" ColumnName="SUPERENG_MAXDAYS" />
+                <ScalarProperty Name="SUPERVISORENGID" ColumnName="SUPERVISORENGID" />
+                <ScalarProperty Name="TECHNICIAN_ACTION_DATE" ColumnName="TECHNICIAN_ACTION_DATE" />
+                <ScalarProperty Name="TECHNICIAN_ACTION" ColumnName="TECHNICIAN_ACTION" />
+                <ScalarProperty Name="TECHNICIAN_MAXDAYS" ColumnName="TECHNICIAN_MAXDAYS" />
+                <ScalarProperty Name="TECHNICIANID" ColumnName="TECHNICIANID" />
+                <ScalarProperty Name="CL_SEQUENCEID" ColumnName="CL_SEQUENCEID" />
+                <ScalarProperty Name="CL_PARTY" ColumnName="CL_PARTY" />
+                <ScalarProperty Name="CHECKLISTID" ColumnName="CHECKLISTID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHECKLIST_FLOW_SEQUENCE">
+            <EntityTypeMapping TypeName="QualityDbModel.CHECKLIST_FLOW_SEQUENCE">
+              <MappingFragment StoreEntitySet="CHECKLIST_FLOW_SEQUENCE">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="REPSUPER_MAXDAYS" ColumnName="REPSUPER_MAXDAYS" />
+                <ScalarProperty Name="REPRESENTITIVESUPERID" ColumnName="REPRESENTITIVESUPERID" />
+                <ScalarProperty Name="QALAB_MAXDAYS" ColumnName="QALAB_MAXDAYS" />
+                <ScalarProperty Name="QALABID" ColumnName="QALABID" />
+                <ScalarProperty Name="SUPERENG_MAXDAYS" ColumnName="SUPERENG_MAXDAYS" />
+                <ScalarProperty Name="SUPERVISORENGID" ColumnName="SUPERVISORENGID" />
+                <ScalarProperty Name="TECHNICIAN_MAXDAYS" ColumnName="TECHNICIAN_MAXDAYS" />
+                <ScalarProperty Name="TECHNICIANID" ColumnName="TECHNICIANID" />
+                <ScalarProperty Name="DESCREPTION" ColumnName="DESCREPTION" />
+                <ScalarProperty Name="SEQUENCE_NAME" ColumnName="SEQUENCE_NAME" />
+                <ScalarProperty Name="SEQUENCE_ID" ColumnName="SEQUENCE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CL_FLOW_STATUSES">
+            <EntityTypeMapping TypeName="QualityDbModel.CL_FLOW_STATUSES">
+              <MappingFragment StoreEntitySet="CL_FLOW_STATUSES">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="STATUS_ARA_DESC" ColumnName="STATUS_ARA_DESC" />
+                <ScalarProperty Name="STATUS_ENG_DESC" ColumnName="STATUS_ENG_DESC" />
+                <ScalarProperty Name="STATUS_SEQ_ID" ColumnName="STATUS_SEQ_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CL_GROUPS_ITEMS">
+            <EntityTypeMapping TypeName="QualityDbModel.CL_GROUPS_ITEMS">
+              <MappingFragment StoreEntitySet="CL_GROUPS_ITEMS">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CL_GROUPS_ITEMS_ID" ColumnName="CL_GROUPS_ITEMS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPLAINTS">
+            <EntityTypeMapping TypeName="QualityDbModel.COMPLAINT">
+              <MappingFragment StoreEntitySet="COMPLAINTS">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="COMPLAINT_STATUS" ColumnName="COMPLAINT_STATUS" />
+                <ScalarProperty Name="ATTACHMENT_ID" ColumnName="ATTACHMENT_ID" />
+                <ScalarProperty Name="NOTIFICATION_LIST" ColumnName="NOTIFICATION_LIST" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+                <ScalarProperty Name="COMPLAINTS_ID" ColumnName="COMPLAINTS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACT_ID">
+            <EntityTypeMapping TypeName="QualityDbModel.CONTACT_ID">
+              <MappingFragment StoreEntitySet="CONTACT_ID">
+                <ScalarProperty Name="WORK_PLACE" ColumnName="WORK_PLACE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="MOBILE_int" ColumnName="MOBILE_int" />
+                <ScalarProperty Name="WORK_EXTENTION" ColumnName="WORK_EXTENTION" />
+                <ScalarProperty Name="WORK_PHONE_NUBER" ColumnName="WORK_PHONE_NUBER" />
+                <ScalarProperty Name="PHONE_int" ColumnName="PHONE_int" />
+                <ScalarProperty Name="CONTACT_ID1" ColumnName="CONTACT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COUNTRIES">
+            <EntityTypeMapping TypeName="QualityDbModel.COUNTRy">
+              <MappingFragment StoreEntitySet="COUNTRIES">
+                <ScalarProperty Name="ENGLISHNAME" ColumnName="ENGLISHNAME" />
+                <ScalarProperty Name="ARABICNAME" ColumnName="ARABICNAME" />
+                <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_FLOW">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_FLOW">
+              <MappingFragment StoreEntitySet="CR_FLOW">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="LAB_FEEDBACK" ColumnName="LAB_FEEDBACK" />
+                <ScalarProperty Name="LAB_ID" ColumnName="LAB_ID" />
+                <ScalarProperty Name="LAB_ASSIGN" ColumnName="LAB_ASSIGN" />
+                <ScalarProperty Name="IS_LAB" ColumnName="IS_LAB" />
+                <ScalarProperty Name="CONSULTANT_FEEDBACK" ColumnName="CONSULTANT_FEEDBACK" />
+                <ScalarProperty Name="CONSULTANT_ID" ColumnName="CONSULTANT_ID" />
+                <ScalarProperty Name="CONSULTANT_ASSIGN" ColumnName="CONSULTANT_ASSIGN" />
+                <ScalarProperty Name="IS_CONSULTANT" ColumnName="IS_CONSULTANT" />
+                <ScalarProperty Name="SUPERVISOR_FEEDBACK" ColumnName="SUPERVISOR_FEEDBACK" />
+                <ScalarProperty Name="SUPERVISOR_ENG_ID" ColumnName="SUPERVISOR_ENG_ID" />
+                <ScalarProperty Name="SUPERVISOR_DATE" ColumnName="SUPERVISOR_DATE" />
+                <ScalarProperty Name="IS_SUPERVISOR_ENG" ColumnName="IS_SUPERVISOR_ENG" />
+                <ScalarProperty Name="CRTF_ID" ColumnName="CRTF_ID" />
+                <ScalarProperty Name="FLOW_ID" ColumnName="FLOW_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_STATUSES">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_STATUSES">
+              <MappingFragment StoreEntitySet="CR_STATUSES">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="STATUS_ARA_DESC" ColumnName="STATUS_ARA_DESC" />
+                <ScalarProperty Name="STATUS_ENG_DESC" ColumnName="STATUS_ENG_DESC" />
+                <ScalarProperty Name="STATUS_SEQ_ID" ColumnName="STATUS_SEQ_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_TYPE_GROUPS">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_TYPE_GROUPS">
+              <MappingFragment StoreEntitySet="CR_TYPE_GROUPS">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CRTMC_ID" ColumnName="CRTMC_ID" />
+                <ScalarProperty Name="CR_TYPE_GROUPS_ID" ColumnName="CR_TYPE_GROUPS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_TYPES">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_TYPES">
+              <MappingFragment StoreEntitySet="CR_TYPES">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CRTG_ID" ColumnName="CRTG_ID" />
+                <ScalarProperty Name="CR_TYPE_ID" ColumnName="CR_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_TYPES_FLOW">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_TYPES_FLOW">
+              <MappingFragment StoreEntitySet="CR_TYPES_FLOW">
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="LAB_PERIOD" ColumnName="LAB_PERIOD" />
+                <ScalarProperty Name="IS_LAB" ColumnName="IS_LAB" />
+                <ScalarProperty Name="CONSULTANT_PERION" ColumnName="CONSULTANT_PERION" />
+                <ScalarProperty Name="IS_CONSULTANT" ColumnName="IS_CONSULTANT" />
+                <ScalarProperty Name="SUPERVISOR_ENG_PERIOD" ColumnName="SUPERVISOR_ENG_PERIOD" />
+                <ScalarProperty Name="IS_SUPERVISOR_ENG" ColumnName="IS_SUPERVISOR_ENG" />
+                <ScalarProperty Name="CRTF_NAME" ColumnName="CRTF_NAME" />
+                <ScalarProperty Name="CRTF_ID" ColumnName="CRTF_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CR_TYPES_MAIN_CATEGORIES">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_TYPES_MAIN_CATEGORIES">
+              <MappingFragment StoreEntitySet="CR_TYPES_MAIN_CATEGORIES">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CR_TYPE_MC_ID" ColumnName="CR_TYPE_MC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENTs">
+            <EntityTypeMapping TypeName="QualityDbModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCREPTION" ColumnName="DESCREPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PROJECT_OWNER_ID" ColumnName="PROJECT_OWNER_ID" />
+                <ScalarProperty Name="DEPARTMENT_ID" ColumnName="DEPARTMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENT_SECTION">
+            <EntityTypeMapping TypeName="QualityDbModel.DEPARTMENT_SECTION">
+              <MappingFragment StoreEntitySet="DEPARTMENT_SECTION">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DEPARTMENT_ID" ColumnName="DEPARTMENT_ID" />
+                <ScalarProperty Name="DEPARTMENT_SECTION_ID" ColumnName="DEPARTMENT_SECTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTORies">
+            <EntityTypeMapping TypeName="QualityDbModel.FACTORY">
+              <MappingFragment StoreEntitySet="FACTORY">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="FACTORY_POWER" ColumnName="FACTORY_POWER" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="FACTORY_CODA" ColumnName="FACTORY_CODA" />
+                <ScalarProperty Name="FACTORY_ID" ColumnName="FACTORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTORY_TYPES">
+            <EntityTypeMapping TypeName="QualityDbModel.FACTORY_TYPES">
+              <MappingFragment StoreEntitySet="FACTORY_TYPES">
+                <ScalarProperty Name="MAKER_DATT_TIM" ColumnName="MAKER_DATT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="FACTORY_TYPE_ID" ColumnName="FACTORY_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_MESSAGES">
+            <EntityTypeMapping TypeName="QualityDbModel.LOG_MESSAGES">
+              <MappingFragment StoreEntitySet="LOG_MESSAGES">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="OUTPUTPARAMETERS" ColumnName="OUTPUTPARAMETERS" />
+                <ScalarProperty Name="INPUTPARAMETERS" ColumnName="INPUTPARAMETERS" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+                <ScalarProperty Name="FUNCTIONNAME" ColumnName="FUNCTIONNAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="IDSEQUENCE" ColumnName="IDSEQUENCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LT_INITIALSCREENS">
+            <EntityTypeMapping TypeName="QualityDbModel.LT_INITIALSCREENS">
+              <MappingFragment StoreEntitySet="LT_INITIALSCREENS">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="SCREENNAME_ARA" ColumnName="SCREENNAME_ARA" />
+                <ScalarProperty Name="SCREENNAME_ENG" ColumnName="SCREENNAME_ENG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LT_MEASURE_UNITS">
+            <EntityTypeMapping TypeName="QualityDbModel.LT_MEASURE_UNITS">
+              <MappingFragment StoreEntitySet="LT_MEASURE_UNITS">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAP_POINTS">
+            <EntityTypeMapping TypeName="QualityDbModel.MAP_POINTS">
+              <MappingFragment StoreEntitySet="MAP_POINTS">
+                <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+                <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+                <ScalarProperty Name="POINT_ID" ColumnName="POINT_ID" />
+                <ScalarProperty Name="MAP_ID" ColumnName="MAP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIXERs">
+            <EntityTypeMapping TypeName="QualityDbModel.MIXER">
+              <MappingFragment StoreEntitySet="MIXER">
+                <ScalarProperty Name="MAKER_DAT_TIME" ColumnName="MAKER_DAT_TIME" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="MIXER_POWER" ColumnName="MIXER_POWER" />
+                <ScalarProperty Name="MIXER_STATUS" ColumnName="MIXER_STATUS" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MIXER_MODEL" ColumnName="MIXER_MODEL" />
+                <ScalarProperty Name="MIXER_CODE" ColumnName="MIXER_CODE" />
+                <ScalarProperty Name="FACTORY_ID" ColumnName="FACTORY_ID" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="MIXER_ID" ColumnName="MIXER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIXER_TYPES">
+            <EntityTypeMapping TypeName="QualityDbModel.MIXER_TYPES">
+              <MappingFragment StoreEntitySet="MIXER_TYPES">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MIXER_TYPE_ID" ColumnName="MIXER_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NAIONAL_TYPE">
+            <EntityTypeMapping TypeName="QualityDbModel.NAIONAL_TYPE">
+              <MappingFragment StoreEntitySet="NAIONAL_TYPE">
+                <ScalarProperty Name="NATIONAL_DESC" ColumnName="NATIONAL_DESC" />
+                <ScalarProperty Name="NATIONAL_TYPE_ID" ColumnName="NATIONAL_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NATIONALITies">
+            <EntityTypeMapping TypeName="QualityDbModel.NATIONALITY">
+              <MappingFragment StoreEntitySet="NATIONALITY">
+                <ScalarProperty Name="NATIONALITY_DESC" ColumnName="NATIONALITY_DESC" />
+                <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTES">
+            <EntityTypeMapping TypeName="QualityDbModel.NOTE">
+              <MappingFragment StoreEntitySet="NOTES">
+                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="NOTES_ID" ColumnName="NOTES_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECT_OWNER">
+            <EntityTypeMapping TypeName="QualityDbModel.PROJECT_OWNER">
+              <MappingFragment StoreEntitySet="PROJECT_OWNER">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="CONTACT_DETAILS_ID" ColumnName="CONTACT_DETAILS_ID" />
+                <ScalarProperty Name="ACCOUNTABLE" ColumnName="ACCOUNTABLE" />
+                <ScalarProperty Name="IS_OWNER" ColumnName="IS_OWNER" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PROJ_OWN_TYP_ID" ColumnName="PROJ_OWN_TYP_ID" />
+                <ScalarProperty Name="PROJEC_OWNER_ID" ColumnName="PROJEC_OWNER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECT_OWNER_TYPE">
+            <EntityTypeMapping TypeName="QualityDbModel.PROJECT_OWNER_TYPE">
+              <MappingFragment StoreEntitySet="PROJECT_OWNER_TYPE">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IS_VENDOR" ColumnName="IS_VENDOR" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PROJ_OWN_TYP_ID" ColumnName="PROJ_OWN_TYP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECTS">
+            <EntityTypeMapping TypeName="QualityDbModel.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECTS">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="MAP_SELECTION_ID" ColumnName="MAP_SELECTION_ID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+                <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="QUALITY_ENG_ID" ColumnName="QUALITY_ENG_ID" />
+                <ScalarProperty Name="QA_TECHNICIAN_ID" ColumnName="QA_TECHNICIAN_ID" />
+                <ScalarProperty Name="AUTH_LAB_ID" ColumnName="AUTH_LAB_ID" />
+                <ScalarProperty Name="CONTRACTOR_ASSIST_ID" ColumnName="CONTRACTOR_ASSIST_ID" />
+                <ScalarProperty Name="CONTRACTOR_ID" ColumnName="CONTRACTOR_ID" />
+                <ScalarProperty Name="CONSULANT_ASSIST_ID" ColumnName="CONSULANT_ASSIST_ID" />
+                <ScalarProperty Name="CONSULTANT_ID" ColumnName="CONSULTANT_ID" />
+                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+                <ScalarProperty Name="SUPERVISOR_ENG_ID" ColumnName="SUPERVISOR_ENG_ID" />
+                <ScalarProperty Name="PROJECT_OWNER_ID" ColumnName="PROJECT_OWNER_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PROJECTS_ID" ColumnName="PROJECTS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCV_STATUS_LOV">
+            <EntityTypeMapping TypeName="QualityDbModel.RCV_STATUS_LOV">
+              <MappingFragment StoreEntitySet="RCV_STATUS_LOV">
+                <ScalarProperty Name="STATUS_ARA" ColumnName="STATUS_ARA" />
+                <ScalarProperty Name="STATUS_ENG" ColumnName="STATUS_ENG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCVMM_ASSIGNED_LOV">
+            <EntityTypeMapping TypeName="QualityDbModel.RCVMM_ASSIGNED_LOV">
+              <MappingFragment StoreEntitySet="RCVMM_ASSIGNED_LOV">
+                <ScalarProperty Name="REJECT_ASSIGN_TO" ColumnName="REJECT_ASSIGN_TO" />
+                <ScalarProperty Name="SUCCESS_ASSIGN_TO" ColumnName="SUCCESS_ASSIGN_TO" />
+                <ScalarProperty Name="ASSIGNED_TO_ARA" ColumnName="ASSIGNED_TO_ARA" />
+                <ScalarProperty Name="ASSIGNED_TO_ENG" ColumnName="ASSIGNED_TO_ENG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCVMM_STATUS_LOV">
+            <EntityTypeMapping TypeName="QualityDbModel.RCVMM_STATUS_LOV">
+              <MappingFragment StoreEntitySet="RCVMM_STATUS_LOV">
+                <ScalarProperty Name="STATUS_ARA" ColumnName="STATUS_ARA" />
+                <ScalarProperty Name="STATUS_ENG" ColumnName="STATUS_ENG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAMPLE_TEST">
+            <EntityTypeMapping TypeName="QualityDbModel.SAMPLE_TEST">
+              <MappingFragment StoreEntitySet="SAMPLE_TEST">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="SAMPLE_TEST_ID" ColumnName="SAMPLE_TEST_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAMPLE_TEST_CATEGORIES">
+            <EntityTypeMapping TypeName="QualityDbModel.SAMPLE_TEST_CATEGORIES">
+              <MappingFragment StoreEntitySet="SAMPLE_TEST_CATEGORIES">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SAMPLE_TEST_CATEGORIES_ID" ColumnName="SAMPLE_TEST_CATEGORIES_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAMPLE_TYPE">
+            <EntityTypeMapping TypeName="QualityDbModel.SAMPLE_TYPE">
+              <MappingFragment StoreEntitySet="SAMPLE_TYPE">
+                <ScalarProperty Name="MAKER_DAT_TIM" ColumnName="MAKER_DAT_TIM" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SAMPLE_TYPE_ID" ColumnName="SAMPLE_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAMPLES">
+            <EntityTypeMapping TypeName="QualityDbModel.SAMPLE">
+              <MappingFragment StoreEntitySet="SAMPLES">
+                <ScalarProperty Name="MAP_SELECTION_ID" ColumnName="MAP_SELECTION_ID" />
+                <ScalarProperty Name="SAMPLE_UNIT_ID" ColumnName="SAMPLE_UNIT_ID" />
+                <ScalarProperty Name="SAMPLE_LENGTH" ColumnName="SAMPLE_LENGTH" />
+                <ScalarProperty Name="SAMPLE_SIZE" ColumnName="SAMPLE_SIZE" />
+                <ScalarProperty Name="SAMPLE_MAKER" ColumnName="SAMPLE_MAKER" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+                <ScalarProperty Name="SAMPLE_ID" ColumnName="SAMPLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPER_USERS">
+            <EntityTypeMapping TypeName="QualityDbModel.SUPER_USERS">
+              <MappingFragment StoreEntitySet="SUPER_USERS">
+                <ScalarProperty Name="SUPER_USER_DESC" ColumnName="SUPER_USER_DESC" />
+                <ScalarProperty Name="SUPER_USER_ID" ColumnName="SUPER_USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEST_SPATIAL_DATA">
+            <EntityTypeMapping TypeName="QualityDbModel.TEST_SPATIAL_DATA">
+              <MappingFragment StoreEntitySet="TEST_SPATIAL_DATA">
+                <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+                <ScalarProperty Name="MY_TYPE" ColumnName="MY_TYPE" />
+                <ScalarProperty Name="COL_ID" ColumnName="COL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_PROFILE_TYPE">
+            <EntityTypeMapping TypeName="QualityDbModel.USER_PROFILE_TYPE">
+              <MappingFragment StoreEntitySet="USER_PROFILE_TYPE">
+                <ScalarProperty Name="MAKER_DT_TIM" ColumnName="MAKER_DT_TIM" />
+                <ScalarProperty Name="MAKER_ID" ColumnName="MAKER_ID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="PARENT_TYPE_ID" ColumnName="PARENT_TYPE_ID" />
+                <ScalarProperty Name="IS_ASSISTANT" ColumnName="IS_ASSISTANT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ROLES">
+            <EntityTypeMapping TypeName="QualityDbModel.USER_ROLES">
+              <MappingFragment StoreEntitySet="USER_ROLES">
+                <ScalarProperty Name="RCV_CONV_ESCALATION" ColumnName="RCV_CONV_ESCALATION" />
+                <ScalarProperty Name="RCV_CONV_CLOSE" ColumnName="RCV_CONV_CLOSE" />
+                <ScalarProperty Name="RCV_CONV_REPLY" ColumnName="RCV_CONV_REPLY" />
+                <ScalarProperty Name="RCV_CONV_VIEW" ColumnName="RCV_CONV_VIEW" />
+                <ScalarProperty Name="RCVMM_VIEW" ColumnName="RCVMM_VIEW" />
+                <ScalarProperty Name="RCVMM_EDIT" ColumnName="RCVMM_EDIT" />
+                <ScalarProperty Name="RCVMM_SEARCH" ColumnName="RCVMM_SEARCH" />
+                <ScalarProperty Name="RCVMM_CREATE" ColumnName="RCVMM_CREATE" />
+                <ScalarProperty Name="RCV_EDIT" ColumnName="RCV_EDIT" />
+                <ScalarProperty Name="RCV_SEARCH" ColumnName="RCV_SEARCH" />
+                <ScalarProperty Name="RCV_ACTION" ColumnName="RCV_ACTION" />
+                <ScalarProperty Name="RCV_RANDOMSEARCH" ColumnName="RCV_RANDOMSEARCH" />
+                <ScalarProperty Name="REPORTS_CR_SMPL_SRCHDET" ColumnName="REPORTS_CR_SMPL_SRCHDET" />
+                <ScalarProperty Name="REPORTS_CR_SAMPLES_SEARCH" ColumnName="REPORTS_CR_SAMPLES_SEARCH" />
+                <ScalarProperty Name="REPORTS_CR_PROJECTS_SEARCH" ColumnName="REPORTS_CR_PROJECTS_SEARCH" />
+                <ScalarProperty Name="REPORTS_CR_SEARCH" ColumnName="REPORTS_CR_SEARCH" />
+                <ScalarProperty Name="REPORTS_PROJECT_VIEW" ColumnName="REPORTS_PROJECT_VIEW" />
+                <ScalarProperty Name="REPORTS_CR_VIEW" ColumnName="REPORTS_CR_VIEW" />
+                <ScalarProperty Name="DASHBOARD_QUALITYENG" ColumnName="DASHBOARD_QUALITYENG" />
+                <ScalarProperty Name="DASHBOARD_CEO" ColumnName="DASHBOARD_CEO" />
+                <ScalarProperty Name="DASHBOARD_TECHNICIAN" ColumnName="DASHBOARD_TECHNICIAN" />
+                <ScalarProperty Name="DASHBOARD_AUTHLAB" ColumnName="DASHBOARD_AUTHLAB" />
+                <ScalarProperty Name="DASHBOARD_CONSULTANTENG" ColumnName="DASHBOARD_CONSULTANTENG" />
+                <ScalarProperty Name="DASHBOARD_SUPERENG" ColumnName="DASHBOARD_SUPERENG" />
+                <ScalarProperty Name="CR_SEARCH" ColumnName="CR_SEARCH" />
+                <ScalarProperty Name="CR_VIEW" ColumnName="CR_VIEW" />
+                <ScalarProperty Name="CR_VIEWATTACHMENTS" ColumnName="CR_VIEWATTACHMENTS" />
+                <ScalarProperty Name="CR_ADDATTACHMENTS" ColumnName="CR_ADDATTACHMENTS" />
+                <ScalarProperty Name="CR_ACTION" ColumnName="CR_ACTION" />
+                <ScalarProperty Name="CR_EDIT" ColumnName="CR_EDIT" />
+                <ScalarProperty Name="CR_CREATE" ColumnName="CR_CREATE" />
+                <ScalarProperty Name="CLWF_CHECKER" ColumnName="CLWF_CHECKER" />
+                <ScalarProperty Name="CLWF_MAKER" ColumnName="CLWF_MAKER" />
+                <ScalarProperty Name="CLWF_CREATE" ColumnName="CLWF_CREATE" />
+                <ScalarProperty Name="CLWFSEQUENCE_EDIT" ColumnName="CLWFSEQUENCE_EDIT" />
+                <ScalarProperty Name="CLWFSEQUENCE_VIEW" ColumnName="CLWFSEQUENCE_VIEW" />
+                <ScalarProperty Name="CLWFSEQUENCE_SEARCH" ColumnName="CLWFSEQUENCE_SEARCH" />
+                <ScalarProperty Name="CLWFSEQUENCE_CREATE" ColumnName="CLWFSEQUENCE_CREATE" />
+                <ScalarProperty Name="COMPLAINT_EDIT" ColumnName="COMPLAINT_EDIT" />
+                <ScalarProperty Name="COMPLAINT_VIEW" ColumnName="COMPLAINT_VIEW" />
+                <ScalarProperty Name="COMPLAINT_SEARCH" ColumnName="COMPLAINT_SEARCH" />
+                <ScalarProperty Name="COMPLAINT_CREATE" ColumnName="COMPLAINT_CREATE" />
+                <ScalarProperty Name="PROJECT_EDIT" ColumnName="PROJECT_EDIT" />
+                <ScalarProperty Name="PROJECT_VIEW" ColumnName="PROJECT_VIEW" />
+                <ScalarProperty Name="PROJECT_SEARCH" ColumnName="PROJECT_SEARCH" />
+                <ScalarProperty Name="PROJECT_CREATE" ColumnName="PROJECT_CREATE" />
+                <ScalarProperty Name="USERROLES_EDIT" ColumnName="USERROLES_EDIT" />
+                <ScalarProperty Name="USERROLES_VIEW" ColumnName="USERROLES_VIEW" />
+                <ScalarProperty Name="USERROLES_SEARCH" ColumnName="USERROLES_SEARCH" />
+                <ScalarProperty Name="USERROLES_CREATE" ColumnName="USERROLES_CREATE" />
+                <ScalarProperty Name="USERPROFILE_EDIT" ColumnName="USERPROFILE_EDIT" />
+                <ScalarProperty Name="USERPROFILE_VIEW" ColumnName="USERPROFILE_VIEW" />
+                <ScalarProperty Name="USERPROFILE_SEARCH" ColumnName="USERPROFILE_SEARCH" />
+                <ScalarProperty Name="USERPROFILE_CREATE" ColumnName="USERPROFILE_CREATE" />
+                <ScalarProperty Name="CHECKLISTS_EDIT" ColumnName="CHECKLISTS_EDIT" />
+                <ScalarProperty Name="CHECKLISTS_VIEW" ColumnName="CHECKLISTS_VIEW" />
+                <ScalarProperty Name="CHECKLISTS_SEARCH" ColumnName="CHECKLISTS_SEARCH" />
+                <ScalarProperty Name="CHECKLISTS_CREATE" ColumnName="CHECKLISTS_CREATE" />
+                <ScalarProperty Name="CHECKLISTITEMGROUP_EDIT" ColumnName="CHECKLISTITEMGROUP_EDIT" />
+                <ScalarProperty Name="CHECKLISTITEMGROUP_VIEW" ColumnName="CHECKLISTITEMGROUP_VIEW" />
+                <ScalarProperty Name="CHECKLISTITEMGROUP_SEARCH" ColumnName="CHECKLISTITEMGROUP_SEARCH" />
+                <ScalarProperty Name="CHECKLISTITEMGROUP_CREATE" ColumnName="CHECKLISTITEMGROUP_CREATE" />
+                <ScalarProperty Name="CHECKLISTITEM_EDIT" ColumnName="CHECKLISTITEM_EDIT" />
+                <ScalarProperty Name="CHECKLISTITEM_VIEW" ColumnName="CHECKLISTITEM_VIEW" />
+                <ScalarProperty Name="CHECKLISTITEM_SEARCH" ColumnName="CHECKLISTITEM_SEARCH" />
+                <ScalarProperty Name="CHECKLISTITEM_CREATE" ColumnName="CHECKLISTITEM_CREATE" />
+                <ScalarProperty Name="CRTYPE_EDIT" ColumnName="CRTYPE_EDIT" />
+                <ScalarProperty Name="CRTYPE_VIEW" ColumnName="CRTYPE_VIEW" />
+                <ScalarProperty Name="CRTYPE_SEARCH" ColumnName="CRTYPE_SEARCH" />
+                <ScalarProperty Name="CRTYPE_CREATE" ColumnName="CRTYPE_CREATE" />
+                <ScalarProperty Name="CRTYPEGROUP_EDIT" ColumnName="CRTYPEGROUP_EDIT" />
+                <ScalarProperty Name="CRTYPEGROUP_VIEW" ColumnName="CRTYPEGROUP_VIEW" />
+                <ScalarProperty Name="CRTYPEGROUP_SEARCH" ColumnName="CRTYPEGROUP_SEARCH" />
+                <ScalarProperty Name="CRTYPEGROUP_CREATE" ColumnName="CRTYPEGROUP_CREATE" />
+                <ScalarProperty Name="CRTYPEMC_EDIT" ColumnName="CRTYPEMC_EDIT" />
+                <ScalarProperty Name="CRTYPEMC_VIEW" ColumnName="CRTYPEMC_VIEW" />
+                <ScalarProperty Name="CRTYPEMC_SEARCH" ColumnName="CRTYPEMC_SEARCH" />
+                <ScalarProperty Name="CRTYPEMC_CREATE" ColumnName="CRTYPEMC_CREATE" />
+                <ScalarProperty Name="SAMPLETEST_EDIT" ColumnName="SAMPLETEST_EDIT" />
+                <ScalarProperty Name="SAMPLETEST_VIEW" ColumnName="SAMPLETEST_VIEW" />
+                <ScalarProperty Name="SAMPLETEST_SEARCH" ColumnName="SAMPLETEST_SEARCH" />
+                <ScalarProperty Name="SAMPLETEST_CREATE" ColumnName="SAMPLETEST_CREATE" />
+                <ScalarProperty Name="SAMPLETESTCATEGORY_EDIT" ColumnName="SAMPLETESTCATEGORY_EDIT" />
+                <ScalarProperty Name="SAMPLETESTCATEGORY_VIEW" ColumnName="SAMPLETESTCATEGORY_VIEW" />
+                <ScalarProperty Name="SAMPLETESTCATEGORY_SEARCH" ColumnName="SAMPLETESTCATEGORY_SEARCH" />
+                <ScalarProperty Name="SAMPLETESTCATEGORY_CREATE" ColumnName="SAMPLETESTCATEGORY_CREATE" />
+                <ScalarProperty Name="MIXER_EDIT" ColumnName="MIXER_EDIT" />
+                <ScalarProperty Name="MIXER_VIEW" ColumnName="MIXER_VIEW" />
+                <ScalarProperty Name="MIXER_SEARCH" ColumnName="MIXER_SEARCH" />
+                <ScalarProperty Name="MIXER_CREATE" ColumnName="MIXER_CREATE" />
+                <ScalarProperty Name="MIXERTYPE_EDIT" ColumnName="MIXERTYPE_EDIT" />
+                <ScalarProperty Name="MIXERTYPE_VIEW" ColumnName="MIXERTYPE_VIEW" />
+                <ScalarProperty Name="MIXERTYPE_SEARCH" ColumnName="MIXERTYPE_SEARCH" />
+                <ScalarProperty Name="MIXERTYPE_CREATE" ColumnName="MIXERTYPE_CREATE" />
+                <ScalarProperty Name="DEPARTMENTSECTION_EDIT" ColumnName="DEPARTMENTSECTION_EDIT" />
+                <ScalarProperty Name="DEPARTMENTSECTION_VIEW" ColumnName="DEPARTMENTSECTION_VIEW" />
+                <ScalarProperty Name="DEPARTMENTSECTION_SEARCH" ColumnName="DEPARTMENTSECTION_SEARCH" />
+                <ScalarProperty Name="DEPARTMENTSECTION_CREATE" ColumnName="DEPARTMENTSECTION_CREATE" />
+                <ScalarProperty Name="DEPARTMENT_EDIT" ColumnName="DEPARTMENT_EDIT" />
+                <ScalarProperty Name="DEPARTMENT_VIEW" ColumnName="DEPARTMENT_VIEW" />
+                <ScalarProperty Name="DEPARTMENT_SEARCH" ColumnName="DEPARTMENT_SEARCH" />
+                <ScalarProperty Name="DEPARTMENT_CREATE" ColumnName="DEPARTMENT_CREATE" />
+                <ScalarProperty Name="FACTORY_EDIT" ColumnName="FACTORY_EDIT" />
+                <ScalarProperty Name="FACTORY_VIEW" ColumnName="FACTORY_VIEW" />
+                <ScalarProperty Name="FACTORY_SEARCH" ColumnName="FACTORY_SEARCH" />
+                <ScalarProperty Name="FACTORY_CREATE" ColumnName="FACTORY_CREATE" />
+                <ScalarProperty Name="FACTORYTYPE_EDIT" ColumnName="FACTORYTYPE_EDIT" />
+                <ScalarProperty Name="FACTORYTYPE_VIEW" ColumnName="FACTORYTYPE_VIEW" />
+                <ScalarProperty Name="FACTORYTYPE_SEARCH" ColumnName="FACTORYTYPE_SEARCH" />
+                <ScalarProperty Name="FACTORYTYPE_CREATE" ColumnName="FACTORYTYPE_CREATE" />
+                <ScalarProperty Name="PROJECTOWNER_EDIT" ColumnName="PROJECTOWNER_EDIT" />
+                <ScalarProperty Name="PROJECTOWNER_VIEW" ColumnName="PROJECTOWNER_VIEW" />
+                <ScalarProperty Name="PROJECTOWNER_SEARCH" ColumnName="PROJECTOWNER_SEARCH" />
+                <ScalarProperty Name="PROJECTOWNER_CREATE" ColumnName="PROJECTOWNER_CREATE" />
+                <ScalarProperty Name="PROJECTOWNERTYPE_EDIT" ColumnName="PROJECTOWNERTYPE_EDIT" />
+                <ScalarProperty Name="PROJECTOWNERTYPE_VIEW" ColumnName="PROJECTOWNERTYPE_VIEW" />
+                <ScalarProperty Name="PROJECTOWNERTYPE_SEARCH" ColumnName="PROJECTOWNERTYPE_SEARCH" />
+                <ScalarProperty Name="PROJECTOWNERTYPE_CREATE" ColumnName="PROJECTOWNERTYPE_CREATE" />
+                <ScalarProperty Name="MAKER_DATETIME" ColumnName="MAKER_DATETIME" />
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="INITIAL_SCREEN_ID" ColumnName="INITIAL_SCREEN_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS_LOGIN">
+            <EntityTypeMapping TypeName="QualityDbModel.USERS_LOGIN">
+              <MappingFragment StoreEntitySet="USERS_LOGIN">
+                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+                <ScalarProperty Name="INITIAL_STAT" ColumnName="INITIAL_STAT" />
+                <ScalarProperty Name="RECORD_STAT" ColumnName="RECORD_STAT" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="EXPIRY_DATE" ColumnName="EXPIRY_DATE" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="SALT" ColumnName="SALT" />
+                <ScalarProperty Name="HASHE_PASS" ColumnName="HASHE_PASS" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS_PROFILE">
+            <EntityTypeMapping TypeName="QualityDbModel.USERS_PROFILE">
+              <MappingFragment StoreEntitySet="USERS_PROFILE">
+                <ScalarProperty Name="MAKER_DT_TIM" ColumnName="MAKER_DT_TIM" />
+                <ScalarProperty Name="MAKER_ID" ColumnName="MAKER_ID" />
+                <ScalarProperty Name="PROJECTOWNER_ID" ColumnName="PROJECTOWNER_ID" />
+                <ScalarProperty Name="IS_PROJECTOWNER_MEMBER" ColumnName="IS_PROJECTOWNER_MEMBER" />
+                <ScalarProperty Name="SUPER_USER_ID" ColumnName="SUPER_USER_ID" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="NATIONALITY_ID" ColumnName="NATIONALITY_ID" />
+                <ScalarProperty Name="NATIONAL_ID" ColumnName="NATIONAL_ID" />
+                <ScalarProperty Name="NATIONALITY_TYPE_ID" ColumnName="NATIONALITY_TYPE_ID" />
+                <ScalarProperty Name="CONTACT_DETAILS_ID" ColumnName="CONTACT_DETAILS_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRs">
+            <EntityTypeMapping TypeName="QualityDbModel.CR">
+              <MappingFragment StoreEntitySet="CR">
+                <ScalarProperty Name="MAKER" ColumnName="MAKER" />
+                <ScalarProperty Name="MAP_SELECTION_ID" ColumnName="MAP_SELECTION_ID" />
+                <ScalarProperty Name="CLOSURE_DATE" ColumnName="CLOSURE_DATE" />
+                <ScalarProperty Name="SAMPLE_ID" ColumnName="SAMPLE_ID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FLOW_ID" ColumnName="FLOW_ID" />
+                <ScalarProperty Name="CR_TYPE_ID" ColumnName="CR_TYPE_ID" />
+                <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+                <ScalarProperty Name="PROJECT_ITEM_ID" ColumnName="PROJECT_ITEM_ID" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAP_SELECTIONS">
+            <EntityTypeMapping TypeName="QualityDbModel.MAP_SELECTIONS">
+              <MappingFragment StoreEntitySet="MAP_SELECTIONS">
+                <ScalarProperty Name="GEOMETRY_SHAPE" ColumnName="GEOMETRY_SHAPE" />
+                <ScalarProperty Name="CIRCLE_DIAMETER" ColumnName="CIRCLE_DIAMETER" />
+                <ScalarProperty Name="SELECTION_TYPE" ColumnName="SELECTION_TYPE" />
+                <ScalarProperty Name="CENTER_LONG" ColumnName="CENTER_LONG" />
+                <ScalarProperty Name="CENTER_LAT" ColumnName="CENTER_LAT" />
+                <ScalarProperty Name="ZOOM_LEVEL" ColumnName="ZOOM_LEVEL" />
+                <ScalarProperty Name="MAP_SELECTION_ID" ColumnName="MAP_SELECTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECT_ITEMS">
+            <EntityTypeMapping TypeName="QualityDbModel.PROJECT_ITEMS">
+              <MappingFragment StoreEntitySet="PROJECT_ITEMS">
+                <ScalarProperty Name="ITEM_PERCENTAGE" ColumnName="ITEM_PERCENTAGE" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="PROJECT_ITEMS_ID" ColumnName="PROJECT_ITEMS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

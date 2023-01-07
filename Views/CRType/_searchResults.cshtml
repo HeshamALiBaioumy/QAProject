@@ -1,0 +1,84 @@
+﻿@model IEnumerable<QA.Entities.Business_Entities.Ent_CRType>
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@Localization.Global.SearchResults</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+               cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>@Localization.CRType.CRTMCID_ViewSearch</th>
+                    <th>@Localization.CRType.groupID_ViewSearch</th>
+                    <th>@Localization.CRType.name_ViewSearch</th>
+                    <th>@Localization.CRType.description_ViewSearch</th>
+                    <th>@Localization.CRType.Category_ViewSearch</th>
+                    <th>@Localization.Global.boolIsActive</th>
+                    <th>@Localization.Global.SearchTableActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Ajax.ActionLink(@item.CRTMCName, "View", "CRTypeMC"
+                                , new { ID = @item.CRTMCID }, new AjaxOptions()
+                                 {
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "Get",
+                                    LoadingElementId = "imgloader",
+                                    OnBegin = "ajaxViewBegin",
+                                    OnSuccess = "ajaxViewSuccess",
+                                    OnFailure = "ajaxViewError",
+                                    UpdateTargetId = "divViewItemModal",
+                        })
+                        </td>
+                        <td>
+                            @Ajax.ActionLink(@item.groupname, "View", "CRTypeGroup"
+                                    , new { ID = @item.groupID }, new AjaxOptions()
+                                     {
+                                        InsertionMode = InsertionMode.Replace,
+                                        HttpMethod = "Get",
+                                        LoadingElementId = "imgloader",
+                                        OnBegin = "ajaxViewBegin",
+                                        OnSuccess = "ajaxViewSuccess",
+                                        OnFailure = "ajaxViewError",
+                                        UpdateTargetId = "divViewItemModal",
+                            })
+                        </td>
+                        <td>@item.name</td>
+                        <td>@item.description</td>
+                        <td>@item.CRcategoryStr</td>
+                        <td>@item.isActive</td>
+                        <td>
+                            @Ajax.ActionLink(Localization.Global.SearchTableActions_View, "View", "CRType"
+                                , new { ID = @item.ID }, new AjaxOptions()
+                                 {
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "Get",
+                                    LoadingElementId = "imgloader",
+                                    OnBegin = "ajaxViewBegin",
+                                    OnSuccess = "ajaxViewSuccess",
+                                    OnFailure = "ajaxViewError",
+                                    UpdateTargetId = "divViewItemModal",
+                        }) | @Html.ActionLink(Localization.Global.SearchTableActions_Edit, "Edit", "CRType"
+, new { ID = @item.ID }, null)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="x_content">
+        <div id="divViewItemModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+             aria-hidden="true">
+        </div>
+    </div>
+</div>

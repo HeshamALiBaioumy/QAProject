@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AssignedRCVRetrievedSuccess" xml:space="preserve">
+    <value>تم استعاده طلبات الفحص العشوائيه الموجهه بنجاح</value>
+  </data>
+  <data name="Assigned_Success" xml:space="preserve">
+    <value>تم التوجيه بنجاح</value>
+  </data>
+  <data name="Assign_CR" xml:space="preserve">
+    <value>توجيه</value>
+  </data>
+  <data name="Assign_CR_NotAllowed" xml:space="preserve">
+    <value>غير متاح</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>المقاول</value>
+  </data>
+  <data name="CRID" xml:space="preserve">
+    <value>طلب الفحص</value>
+  </data>
+  <data name="CRMC" xml:space="preserve">
+    <value>CR Main-category</value>
+  </data>
+  <data name="CR_Assigned_RCV_Success" xml:space="preserve">
+    <value>تم توجيه طلب الفحص للفحص العشوائي بنجاح</value>
+  </data>
+  <data name="CR_Group" xml:space="preserve">
+    <value>CR Group</value>
+  </data>
+  <data name="CR_Type" xml:space="preserve">
+    <value>CR Type</value>
+  </data>
+  <data name="Edit_RCV_NotAvailable" xml:space="preserve">
+    <value>طلب الفحص العشوائي غير متاح للتعديل</value>
+  </data>
+  <data name="FeedBack_AcceptRCV" xml:space="preserve">
+    <value>مطابق</value>
+  </data>
+  <data name="FeedBack_Action_Success" xml:space="preserve">
+    <value>تم التنفيذ بنجاح</value>
+  </data>
+  <data name="Feedback_AddAttached" xml:space="preserve">
+    <value>أضافه مرفقات</value>
+  </data>
+  <data name="Feedback_AttachTable_Header" xml:space="preserve">
+    <value>المرفقات</value>
+  </data>
+  <data name="FeedBack_Comments" xml:space="preserve">
+    <value>بيانات اضافيه: </value>
+  </data>
+  <data name="FeedBack_Comments_LengthValidation" xml:space="preserve">
+    <value>عدد الاحرف يجب ان يكون بين  0- 200 حرف</value>
+  </data>
+  <data name="FeedBack_CRID" xml:space="preserve">
+    <value>طلب الفحص: </value>
+  </data>
+  <data name="FeedBack_CRRegistrationDate" xml:space="preserve">
+    <value>تاريخ تسجيل طلب الفحص: </value>
+  </data>
+  <data name="Feedback_Download" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+  <data name="FeedBack_Pending" xml:space="preserve">
+    <value>تم زياره الموقع وفى أنتظار رد المختبر</value>
+  </data>
+  <data name="FeedBack_Project" xml:space="preserve">
+    <value>المشروع: </value>
+  </data>
+  <data name="FeedBack_RCVAssignDate" xml:space="preserve">
+    <value>تاريخ التوجيه العشوائي: </value>
+  </data>
+  <data name="FeedBack_RejectRCV" xml:space="preserve">
+    <value>غير مطابق</value>
+  </data>
+  <data name="FeedBack_ScreenHeader" xml:space="preserve">
+    <value>تسجيل رد على طلب الفحص العشوائي</value>
+  </data>
+  <data name="FeedBack_Title" xml:space="preserve">
+    <value>تسجيل رد</value>
+  </data>
+  <data name="PendingCR_Action" xml:space="preserve">
+    <value>تسجيل رد</value>
+  </data>
+  <data name="PendingCR_Action_NotAllowed" xml:space="preserve">
+    <value>غير متاح</value>
+  </data>
+  <data name="PendingCR_AssignDate" xml:space="preserve">
+    <value>تاريخ التوجيه</value>
+  </data>
+  <data name="PendingCR_AssignUser" xml:space="preserve">
+    <value>الفنى</value>
+  </data>
+  <data name="PendingCR_CRID" xml:space="preserve">
+    <value>طلب الفحص</value>
+  </data>
+  <data name="PendingCR_CRRegistration_Date" xml:space="preserve">
+    <value>تاريخ التسجيل</value>
+  </data>
+  <data name="PendingCR_Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="Project_Item" xml:space="preserve">
+    <value>بند المشروع</value>
+  </data>
+  <data name="Random_CR" xml:space="preserve">
+    <value>طلب فحص عشوائي</value>
+  </data>
+  <data name="Registration_Date" xml:space="preserve">
+    <value>تاريخ التسجيل</value>
+  </data>
+  <data name="SearchRes_AssignUser" xml:space="preserve">
+    <value>الفنى</value>
+  </data>
+  <data name="SearchRes_ClosureDate" xml:space="preserve">
+    <value>تاريخ أنتهاء الفحص: </value>
+  </data>
+  <data name="SearchRes_Comments" xml:space="preserve">
+    <value>بيانات اضافيه</value>
+  </data>
+  <data name="SearchRes_CR" xml:space="preserve">
+    <value>طلب الفحص</value>
+  </data>
+  <data name="SearchRes_CRRegistrationDate" xml:space="preserve">
+    <value>تاريخ توجيه الطلب</value>
+  </data>
+  <data name="SearchRes_Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="SearchRes_Edit_NotAllowed" xml:space="preserve">
+    <value>غير متاح</value>
+  </data>
+  <data name="SearchRes_IsSampleRequired" xml:space="preserve">
+    <value>متاح عينات</value>
+  </data>
+  <data name="SearchRes_project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="SearchRes_RCVAssignDate" xml:space="preserve">
+    <value>تاريخ التوجيه</value>
+  </data>
+  <data name="SearchRes_RCVStatus" xml:space="preserve">
+    <value>الحاله</value>
+  </data>
+  <data name="SearchRes_View" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="Search_boolIsLabRequired" xml:space="preserve">
+    <value>العينات: </value>
+  </data>
+  <data name="Search_CRID" xml:space="preserve">
+    <value>طلب الفحص: </value>
+  </data>
+  <data name="Search_Head" xml:space="preserve">
+    <value>بحث طلبات الفحص العشوائيه</value>
+  </data>
+  <data name="Search_IsLabReq_NotRequired" xml:space="preserve">
+    <value>لا يحتوى على عينات</value>
+  </data>
+  <data name="Search_IsLabReq_Required" xml:space="preserve">
+    <value>يحتوى على عينات</value>
+  </data>
+  <data name="Search_IsLabReq_Select" xml:space="preserve">
+    <value> - أختيار - </value>
+  </data>
+  <data name="Search_Pending" xml:space="preserve">
+    <value>طلبات الفحص العشوائيه المعلقه</value>
+  </data>
+  <data name="Search_Pending_Title" xml:space="preserve">
+    <value>طلبات الفحص العشوائيه المعلقه</value>
+  </data>
+  <data name="Search_ProfileID" xml:space="preserve">
+    <value>الفنى: </value>
+  </data>
+  <data name="Search_projectID" xml:space="preserve">
+    <value>المشروع: </value>
+  </data>
+  <data name="Search_Random" xml:space="preserve">
+    <value>طلبات الفحص العشوائيه</value>
+  </data>
+  <data name="Search_Random_Title" xml:space="preserve">
+    <value>الفحص العشوائي</value>
+  </data>
+  <data name="Search_Status" xml:space="preserve">
+    <value>الحاله: </value>
+  </data>
+  <data name="Search_Title" xml:space="preserve">
+    <value>بحث طلبات الفحص العشوائيه</value>
+  </data>
+  <data name="View_Header" xml:space="preserve">
+    <value>عرض طلب فحص عشوائي</value>
+  </data>
+</root>

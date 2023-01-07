@@ -1,0 +1,646 @@
+﻿<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+
+        <h3>@Localization.Global.Quick_Links</h3>
+        <ul class="nav side-menu">
+            @{
+                QA.Entities.Business_Entities.Ent_UserRoles sideMenuRoles =
+                    (QA.Entities.Business_Entities.Ent_UserRoles)Session["SideMenuRoles"];
+            }
+            @if (sideMenuRoles.Dashboard)
+            {
+                <li>
+                    <a><i class="fa fa-home"></i> @Localization.Menu_Items.Menu_Home <span class="fa fa-chevron-down"></span></a>
+
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.Dashboard_SuperEng)
+                        {
+
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_SuperEng
+                           , "SuperEngDashboard", "Dashboard")
+                            </li>
+                        }
+                        @if (sideMenuRoles.Dashboard_QualityEng)
+                        {
+
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_QualityEng
+                                    , "QualityEngDashboard", "Dashboard")
+                            </li>
+                        }
+                        @if (sideMenuRoles.Dashboard_ConsultantEng)
+                        {
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_ConsultantEng
+                           , "ConsultantEngDashboard", "Dashboard")
+                            </li>
+                        }
+                        @if (sideMenuRoles.Dashboard_AuthLab)
+                        {
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_AuthLab
+                           , "AuthLabDashboard", "Dashboard")
+                            </li>
+                        }
+                        @if (sideMenuRoles.Dashboard_Technician)
+                        {
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_Technician
+                           , "TechnicianDashboard", "Dashboard")
+                            </li>
+                        }
+                        @if (sideMenuRoles.Dashboard_CEO)
+                        {
+                            <li>
+                                @Html.ActionLink(@Localization.Menu_Items.Sub_CEO
+                           , "CEODashboard", "Dashboard")
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.projectOwnerType || sideMenuRoles.ProjectOwner)
+            {
+                <li>
+                    <a><i class="fa fa-user"></i> @Localization.Menu_Items.Menu_Project_Owner <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.projectOwnerType)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Project_Owner_Type <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.projectOwnerType_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create
+                                       , "Create", "projectOwnerType")
+                                        </li>
+                                    }
+
+                                    @if (sideMenuRoles.projectOwnerType_Search)
+                                    {
+                                        <li>
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Search
+                                       , "Search", "projectOwnerType")
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.ProjectOwner)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Project_Owner <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu">
+                                        @Html.ActionLink(@Localization.Menu_Items.Sub_Create
+                                   , "Create", "ProjectOwner")
+                                    </li>
+                                    <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "ProjectOwner")</li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.Department || sideMenuRoles.DepartmentSection)
+            {
+                <li>
+                    <a><i class="fa fa-building"></i> @Localization.Menu_Items.Menu_Department <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.Department)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Department <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.Department_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "Department")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.Department_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "Department")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.DepartmentSection)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Department_Section <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.DepartmentSection_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "DepartmentSection")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.DepartmentSection_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "DepartmentSection")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.FactoryType || sideMenuRoles.Factory)
+            {
+                <li>
+                    <a><i class="fa fa-industry"></i> @Localization.Menu_Items.Menu_Factory <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.FactoryType)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Factory_Type <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.FactoryType_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "FactoryType")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.FactoryType_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "FactoryType")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.Factory)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Factory <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.Factory_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "Factory")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.Factory_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "Factory")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.MixerType || sideMenuRoles.Mixer)
+            {
+                <li>
+                    <a><i class="fa fa-usb"></i> @Localization.Menu_Items.Menu_Mixer <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.MixerType)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Mixer_Type <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.MixerType_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "MixerType")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.MixerType_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "MixerType")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.Mixer)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Mixer <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.Mixer_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "Mixer")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.Mixer_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "Mixer")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.SampleTestCategory || sideMenuRoles.SampleTest)
+            {
+                <li>
+                    <a><i class="fa fa-flask"></i> @Localization.Menu_Items.Menu_Sample_Test <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.SampleTestCategory)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Sample_test_Category <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.SampleTestCategory_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "SampleTestCategory")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.SampleTestCategory_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "SampleTestCategory")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.SampleTest)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Sample_Test <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.SampleTest_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "SampleTest")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.SampleTest_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "SampleTest")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.CRTYPEMC || sideMenuRoles.CRTypeGroup || sideMenuRoles.CRType)
+            {
+                <li>
+                    <a><i class="fa fa-bar-chart"></i> @Localization.Menu_Items.Menu_CR_Types <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.CRTYPEMC)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CR_Type_Categories <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CRTYPEMC_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CRTypeMC")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CRTYPEMC_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CRTypeMC")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CRTypeGroup)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CR_Type_Groups <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CRTypeGroup_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CRTypeGroup")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CRTypeGroup_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CRTypeGroup")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CRType)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CR_Types <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CRType_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CRType")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CRType_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CRType")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.Complaint)
+            {
+                <li>
+                    <a><i class="fa fa-commenting"></i> @Localization.Menu_Items.Menu_Complaints <span class="fa fa-chevron-down"></span></a>
+                    @if (sideMenuRoles.Complaint)
+                    {
+                        <ul class="nav child_menu">
+                            @if (sideMenuRoles.Complaint_Create)
+                            {
+                                <li>
+                                    @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "Complaint")
+                                </li>
+                            }
+                            @if (sideMenuRoles.Complaint_Search)
+                            {
+                                <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "Complaint")</li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+            @if (sideMenuRoles.CheckListItem || sideMenuRoles.CheckListItemGroup
+                || sideMenuRoles.CheckLists || sideMenuRoles.CLWF || sideMenuRoles.CLWF_Sequence)
+            {
+                <li>
+                    <a><i class="fa fa-list"></i> @Localization.Menu_Items.Menu_Check_lists <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.CheckListItem)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Check_list_Group_Items <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CheckListItem_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CheckListItem")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CheckListItem_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CheckListItem")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CheckListItemGroup)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Check_list_Groups <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CheckListItemGroup_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CheckListItemGroup")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CheckListItemGroup_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CheckListItemGroup")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CheckLists)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Check_lists <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CheckLists_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CheckLists")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CheckLists_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CheckLists")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CLWF_Sequence)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CLWF_Sequence <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CLWF_Sequence_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CheckListsWF_Sequence")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CLWF_Sequence_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "CheckListsWF_Sequence")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CLWF)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CheckList_Flow <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CLWF_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "CheckListsWFlow")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CLWF_Maker || sideMenuRoles.CLWF_Checker)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_ViewPending, "viewPending", "CheckListsWFlow")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.Project)
+            {
+                <li>
+                    <a><i class="fa fa-briefcase"></i> @Localization.Menu_Items.Menu_Projects <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.Project)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Projects <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.Project_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "Project")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.Project_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "Project")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.CR || sideMenuRoles.CR_Reports)
+            {
+                <li>
+                    <a><i class="fa fa-pie-chart"></i> @Localization.Menu_Items.Menu_CRs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.CR)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CRs <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.CR_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_CR_Create, "Create", "CR")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.CR_Search || sideMenuRoles.CR_Edit)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_Search, "Search", "CR")</li>
+                                    }
+                                    @if (sideMenuRoles.CR_Action || sideMenuRoles.CR_Search || sideMenuRoles.CR_View
+                                        || sideMenuRoles.CR_AddAttachments || sideMenuRoles.CR_ViewAttachments)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_Pending, "SearchPendingCrs", "CR")</li>
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_Assigned, "SearchAssignedCrs", "CR")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.CR_Reports)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_CR_Reports <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.Reports_CR_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_SearchReport, "SearchPrintCRs", "CR")</li>
+                                    }
+                                    @if (sideMenuRoles.Reports_CR_Projects_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_SearchProjectReport, "SearchPrintProjectCRs", "CR")</li>
+                                    }
+                                    @if (sideMenuRoles.Reports_CR_Samples_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_SearchSamplesReport, "SearchPrintCRSamples", "CR")</li>
+                                    }
+                                    @if (sideMenuRoles.Reports_CR_Samples_SearchDetailed)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_SearchSamplesReport_Detailed, "SearchPrintCRSamplesDetailed", "CR")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.RCV || sideMenuRoles.RCV_Missmatch || sideMenuRoles.RCV_Reports)
+            {
+                <li>
+                    <a><i class="fa fa-exclamation-triangle"></i> @Localization.Menu_Items.Menu_RCV <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.RCV)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_RCV <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.RCV_RandomSearch)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_RCV_RandomSearch, "SearchRandom", "RandomCRVerification")
+                                        </li>
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_RCV_PendingSearch, "SearchPending", "RandomCRVerification")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.RCV_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_RCV_Search, "Search", "RandomCRVerification")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.RCV_Missmatch)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_RCV_Missmatch <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.RCVMM_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_RCVMM_Search, "Search", "RCVMissmatch")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.RCV_Reports)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_RCV_Reports <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @*@if (sideMenuRoles.Reports_CR_Search)
+                                        {
+                                            <li>@Html.ActionLink(@Localization.Menu_Items.Sub_CR_SearchReport, "SearchPrintCRs", "CR")</li>
+                                        }*@
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (sideMenuRoles.UserProfile || sideMenuRoles.UserRoles)
+            {
+                <li>
+                    <a><i class="fa fa-users"></i> @Localization.Menu_Items.Menu_Users_Management <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @if (sideMenuRoles.UserProfile)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Users_Profile <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.UserProfile_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "UserProfile")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.UserProfile_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "UserProfile")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (sideMenuRoles.UserRoles)
+                        {
+                            <li>
+                                <a> @Localization.Menu_Items.Menu_Sub_Users_Roles <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @if (sideMenuRoles.UserRoles_Create)
+                                    {
+                                        <li class="sub_menu">
+                                            @Html.ActionLink(@Localization.Menu_Items.Sub_Create, "Create", "UserRoles")
+                                        </li>
+                                    }
+                                    @if (sideMenuRoles.UserRoles_Search)
+                                    {
+                                        <li>@Html.ActionLink(@Localization.Menu_Items.Sub_Search, "Search", "UserRoles")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

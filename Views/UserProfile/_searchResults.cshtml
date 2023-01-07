@@ -1,0 +1,86 @@
+﻿@model IEnumerable<QA.Entities.Business_Entities.Ent_UserProfile>
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@Localization.Global.SearchResults</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content">
+        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+               cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>@Localization.Global.SearchTableActions</th>
+                    <th>@Localization.UserProfile.User_name_ViewSearch</th>
+                    <th>@Localization.UserProfile.EmployeeName_ViewSearch</th>
+
+                    <th>@Localization.UserProfile.UserTypeID_ViewSearch</th>
+                    <th>@Localization.UserProfile.UserRole_ViewSearch</th>
+
+                    <th>@Localization.UserProfile.nationalityTypeID_ViewSearch</th>
+                    <th>@Localization.UserProfile.nationalityID_ViewSearch</th>
+                    <th>@Localization.UserProfile.NationalId_ViewSearch</th>
+                    <th>@Localization.UserProfile.employeeId_ViewSearch</th>
+
+                    <th>@Localization.UserProfile.superUserID_ViewSearch</th>
+                    <th>@Localization.UserProfile.projectOwnerID_ViewSearch</th>
+
+                    <th>@Localization.UserProfile.boolIsAssistant_ViewSearch</th>
+                    <th>@Localization.UserProfile.boolIsLocked_ViewSearch</th>
+
+                    <th>@Localization.UserProfile.ExpiryDate_ViewSearch</th>
+                    <th>@Localization.Global.boolIsActive</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Ajax.ActionLink(Localization.Global.SearchTableActions_View, "View", "UserProfile"
+         , new { ID = @item.UserProfileID }, new AjaxOptions()
+         {
+             InsertionMode = InsertionMode.Replace,
+             HttpMethod = "Get",
+             LoadingElementId = "imgloader",
+             OnBegin = "ajaxViewBegin",
+             OnSuccess = "ajaxViewSuccess",
+             OnFailure = "ajaxViewError",
+             UpdateTargetId = "divViewItemModal",
+         }) | @Html.ActionLink(Localization.Global.SearchTableActions_Edit, "Edit", "UserProfile"
+    , new { ID = @item.UserProfileID }, null)
+                    </td>
+                    <td>@item.userName</td>
+                    <td>@item.employeeName</td>
+
+                    <td>@item.userTypeName</td>
+                    <td>@item.roleName</td>
+
+                    <td>@item.nationalityTypeName</td>
+                    <td>@item.nationalityName</td>
+                    <td>@item.nationalId</td>
+                    <td>@item.employeeId</td>
+
+                    <td>@item.superUserName</td>
+                    <td>@item.projectOwnerName</td>
+
+                    <td>@item.isAssistantUser</td>
+                    <td>@item.isLocked</td>
+
+                    <td>@item.strExpiryDate</td>
+                    <td>@item.isActive</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="x_content">
+        <div id="divViewItemModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+             aria-hidden="true">
+        </div>
+    </div>
+</div>

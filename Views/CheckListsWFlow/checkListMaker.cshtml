@@ -1,0 +1,199 @@
+﻿@model QA.Entities.View_Entities.Vw_CheckList_Flow
+
+@{
+    ViewBag.Title = Localization.CheckListFlow_Master.checklist_Maker;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.Global.ViewDataRetrievedSuccessfully',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<script>
+    function ajaxSearchBegin() {
+
+    }
+
+    function ajaxSearchSuccess() {
+        new PNotify({
+            title: '@Localization.Global.SearchDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+    }
+
+    function ajaxSearchError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+
+    function ajaxViewBegin() {
+
+    }
+
+    function ajaxViewSuccess() {
+        new PNotify({
+            title: '@Localization.Global.ViewDataRetrievedSuccessfully',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+
+        $('#divViewItemModal').modal('toggle');
+    }
+
+    function ajaxViewError() {
+        new PNotify({
+            title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+
+        alert('Unhandled Error Occured !')
+    }
+</script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.CheckListFlow_Master.checklist_Maker</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            @Html.LabelFor(model => model.CLParty
+                                , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                            <div class="col-md-3 col-sm-12 col-12 form-group">
+                                @Html.EditorFor(model => model.CLParty, new
+                                {
+                                    htmlAttributes =
+                                    new { @class = "form-control col-md-12 col-sm-12 col-12", @readonly = "readonly" }
+                                })
+                            </div>
+                            <div class="col-md-1 col-sm-12 col-12 form-group"></div>
+                            @Html.LabelFor(model => model.registrationDate
+                                , htmlAttributes: new { @class = "control-label col-md-2 col-sm-12 col-12" })
+                            <div class="col-md-3 col-sm-12 col-12 form-group">
+                                @Html.EditorFor(model => model.strRegistrationDate
+                                    , new { htmlAttributes = new { @class = "form-control col-md-12 col-sm-12 col-12", @readonly = "readonly" } })
+                            </div>
+                        </div>
+
+                        @using (Html.BeginForm("checkListMaker", "CheckListsWFlow", FormMethod.Post
+                            , new { @class = "form-horizontal form-label-left", @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.cLFlowID)
+                            @Html.HiddenFor(model => model.cLID)
+
+                            <table class="table table-striped jambo_table bulk_action" cellspacing="0" width="100%">
+                                <tbody>
+                                    @if (Model.lstClItems.Count > 0)
+                                    {
+                                        string groupName = Model.lstClItems[0].cLGName;
+
+                                        for (int i = 0; i < Model.lstClItems.Count; i++)
+                                        {
+                                            if ((i == 0) || (!(@Model.lstClItems[i].cLGName.Equals(groupName))))
+                                            {
+                                                groupName = Model.lstClItems[i].cLGName;
+
+                                            <thead>
+                                                <tr style="text-align: center">
+                                                    <th style="width:30%;"> @Model.lstClItems[i].cLGName </th>
+                                                    <th style="width:15%;"> @Localization.CheckListFlow_Master.CLF_Maker_IsAvailable_Header</th>
+                                                    <th style="width:40%;"> @Localization.CheckListFlow_Master.CLF_Maker_Comments_Header </th>
+                                                    <th style="width:15%;"> @Localization.CheckListFlow_Master.ViewTable_Attachment </th>
+                                                </tr>
+                                            </thead>
+                                        }
+
+                                        <tr>
+                                            @Html.HiddenFor(model => model.lstClItems[i].cLGID)
+                                            @Html.HiddenFor(model => model.lstClItems[i].cLItemID)
+
+                                            <td>@Model.lstClItems[i].cLItemName</td>
+                                            <td>
+                                                @Html.DropDownListFor(model => model.lstClItems[i].isCLItemAvailable
+                                                , new SelectList(Model.lOVCLItemsAvailable, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-12 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => model.lstClItems[i].isCLItemAvailable, "", new { @class = "text-danger" })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(model => Model.lstClItems[i].comment, new { htmlAttributes = new { @class = "form-control col-md-12 col-12" } })
+                                                @Html.ValidationMessageFor(model => Model.lstClItems[i].comment, "", new { @class = "text-danger" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(model => Model.lstClItems[i].attachFile
+                                                    , new { @type = "file", @class = "control-label col-md-12 col-12" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                    </tbody>
+                                </table>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                            <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+            <div id="divSearchResults" class="col-md-12 col-sm-12 col-12">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="boolIsAssistant" xml:space="preserve">
+    <value>هل يكون مساعد مستخدم</value>
+  </data>
+  <data name="boolIsAssistant_ViewSearch" xml:space="preserve">
+    <value>هل يكون مساعد مستخدم</value>
+  </data>
+  <data name="boolIsLocked" xml:space="preserve">
+    <value>هل يكون مغلق</value>
+  </data>
+  <data name="boolIsLocked_ViewSearch" xml:space="preserve">
+    <value>هل يكون مغلق</value>
+  </data>
+  <data name="CreateUserProfile" xml:space="preserve">
+    <value>انشاء ملف تعريفى لمستخدم</value>
+  </data>
+  <data name="DDL_NatTypes_NID" xml:space="preserve">
+    <value>مواطن</value>
+  </data>
+  <data name="DDL_NatTypes_VisitorID" xml:space="preserve">
+    <value>موظف</value>
+  </data>
+  <data name="EmpID_length_validation" xml:space="preserve">
+    <value> يجب ان يكون عدد احرف  بين 5 - 20 حرف</value>
+  </data>
+  <data name="employeeId" xml:space="preserve">
+    <value>مسلسل موظف</value>
+  </data>
+  <data name="EmployeeIDAlreadyExist" xml:space="preserve">
+    <value>مسلسل موظف موجود بقاعدة البيانات</value>
+  </data>
+  <data name="employeeId_Search" xml:space="preserve">
+    <value>مسلسل موظف</value>
+  </data>
+  <data name="employeeId_ViewSearch" xml:space="preserve">
+    <value>مسلسل موظف</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="EmployeeName_length_Validation" xml:space="preserve">
+    <value> يجب ان يكون عدد احرف  بين 5 - 50 حرف</value>
+  </data>
+  <data name="employeeName_Search" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="EmployeeName_ViewSearch" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>تاريخ انتهاء الصلاحية</value>
+  </data>
+  <data name="ExpiryDate_ViewSearch" xml:space="preserve">
+    <value>تاريخ انتهاء الصلاحية</value>
+  </data>
+  <data name="expiry_ViewSearch" xml:space="preserve">
+    <value>تاريخ انتهاء الصلاحية</value>
+  </data>
+  <data name="isProjectOwnerMember" xml:space="preserve">
+    <value>هل يكون موظف امانة</value>
+  </data>
+  <data name="name_Search" xml:space="preserve">
+    <value>اسم </value>
+  </data>
+  <data name="name_ViewSearch" xml:space="preserve">
+    <value>اسم </value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>مسلسل الجنسية</value>
+  </data>
+  <data name="NationalId_Search" xml:space="preserve">
+    <value>مسلسل الجنسية</value>
+  </data>
+  <data name="NationalId_ViewSearch" xml:space="preserve">
+    <value>مسلسل الجنسية</value>
+  </data>
+  <data name="nationalityID" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="nationalityID_Search" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="nationalityID_ViewSearch" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="nationalityTypeID" xml:space="preserve">
+    <value>نوع الجنسية</value>
+  </data>
+  <data name="nationalityTypeID_Search" xml:space="preserve">
+    <value>نوع الجنسية</value>
+  </data>
+  <data name="nationalityTypeID_ViewSearch" xml:space="preserve">
+    <value>نوع الجنسية</value>
+  </data>
+  <data name="NIDAlreadyExist" xml:space="preserve">
+    <value>مسلسل الجنسية موجود بقاعدة البيانات</value>
+  </data>
+  <data name="NID_length_Validation" xml:space="preserve">
+    <value> يجب ان يكون عدد احرف  بين 5 - 20 حرف</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="Password_length_Validation" xml:space="preserve">
+    <value> يجب ان يكون عدد احرف  بين 5 - 30 حرف</value>
+  </data>
+  <data name="please_provide_avalid_ExpiryDate" xml:space="preserve">
+    <value>من فضلك ادخل تاريخ انتهاء الصلاحية الصحيح</value>
+  </data>
+  <data name="please_provide_avalid_Password" xml:space="preserve">
+    <value>من فضلك ادخل كلمة المرور الصحيحة</value>
+  </data>
+  <data name="please_provide_avalid_UserName" xml:space="preserve">
+    <value>من فضلك ادخل اسم المستخدم الصحيح</value>
+  </data>
+  <data name="projectOwnerID" xml:space="preserve">
+    <value>الجهة المالكة</value>
+  </data>
+  <data name="projectOwnerID_ViewSearch" xml:space="preserve">
+    <value>الجهة المالكة</value>
+  </data>
+  <data name="provide_avalid_EmpID" xml:space="preserve">
+    <value>من فضلك ادخل مسلسل الموظف الصحيح</value>
+  </data>
+  <data name="provide_avalid_NID" xml:space="preserve">
+    <value>من فضلك ادخل مسلسل الجنسية الصحيح</value>
+  </data>
+  <data name="provide_avalid_NityID" xml:space="preserve">
+    <value>اختر الجنسية</value>
+  </data>
+  <data name="provide_avalid_Ntype" xml:space="preserve">
+    <value>اختر نوع الجنسية</value>
+  </data>
+  <data name="Provide_valid_RoleID" xml:space="preserve">
+    <value>اختر فئة المستخدم</value>
+  </data>
+  <data name="provide_valid_Usertype" xml:space="preserve">
+    <value>اختر نوع المستخدم</value>
+  </data>
+  <data name="superUserID" xml:space="preserve">
+    <value>مسلسل المهندس المشرف</value>
+  </data>
+  <data name="SuperUserID_Search" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="superUserID_ViewSearch" xml:space="preserve">
+    <value>المهندس المشرف</value>
+  </data>
+  <data name="UpdateUserProfile" xml:space="preserve">
+    <value>تعديل الملف التعريفى للمستخدم</value>
+  </data>
+  <data name="UserID" xml:space="preserve">
+    <value>مسلسل المستخدم</value>
+  </data>
+  <data name="UserIDSearch" xml:space="preserve">
+    <value>مسلسل المستخدم</value>
+  </data>
+  <data name="userID_ViewSearch" xml:space="preserve">
+    <value>مسلسل المستخدم</value>
+  </data>
+  <data name="UsernameAlreadyExist" xml:space="preserve">
+    <value>اسم المستخدم موجود بقاعدة البيانات</value>
+  </data>
+  <data name="Username_length_Validation" xml:space="preserve">
+    <value> يجب ان يكون عدد احرف  بين 5 - 30 حرف</value>
+  </data>
+  <data name="userName_Search" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="UserProfileAddedSuccessfully" xml:space="preserve">
+    <value>تم اضافة مستخدم بنجاح</value>
+  </data>
+  <data name="UserProfileDetails" xml:space="preserve">
+    <value>بيانات المستخدم</value>
+  </data>
+  <data name="UserProfileID_Not_Available_inDB" xml:space="preserve">
+    <value>مسلسل الملف التعريفى غير موجود بقاعده البيانات</value>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>فئه المستخدم</value>
+  </data>
+  <data name="UserRole_ViewSearch" xml:space="preserve">
+    <value>فئه المستخدم</value>
+  </data>
+  <data name="UserTypeID" xml:space="preserve">
+    <value>نوع المستخدم </value>
+  </data>
+  <data name="UserTypeID_Search" xml:space="preserve">
+    <value>نوع المستخدم </value>
+  </data>
+  <data name="UserTypeID_ViewSearch" xml:space="preserve">
+    <value>نوع المستخدم </value>
+  </data>
+  <data name="User_name" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="User_name_ViewSearch" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="valid_projectOwner" xml:space="preserve">
+    <value>يرجى اختيار الجهه</value>
+  </data>
+  <data name="valid_SuperID" xml:space="preserve">
+    <value>من فضلك ادخل اسم المهندس المشرف الصحيح</value>
+  </data>
+  <data name="Wizard_ContactDetails" xml:space="preserve">
+    <value>بيانات الاتصال</value>
+  </data>
+  <data name="Wizard_LoginDetails" xml:space="preserve">
+    <value>بيانات الدخول على النظام</value>
+  </data>
+  <data name="Wizard_UserDetails" xml:space="preserve">
+    <value>بيانات المستخدم</value>
+  </data>
+</root>

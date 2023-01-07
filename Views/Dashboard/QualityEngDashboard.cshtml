@@ -1,0 +1,102 @@
+﻿@model QA.Entities.View_Entities.Vw_Dashboard
+
+@{
+    ViewBag.Title = "Quality Eng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col col-md-12" role="main">
+    <!-- top tiles -->
+    <div class="row tile_count">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-briefcase"></i> @Localization.Dashboard.Projects_Total </span>
+            <div class="count">@Model.dashboard.Projects_Total</div>
+            <span class="count_bottom">
+                <i class="green"><i class="fa fa-sort-asc"></i>@Model.dashboard.Projects_New_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-info-circle"></i> @Localization.Dashboard.RCV_Total </span>
+            <div class="count">@Model.dashboard.RCV_Total</div>
+            <span class="count_bottom">
+                <i class="red"><i class="fa fa-sort-asc"></i>@Model.dashboard.RCV_New_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range_RCV
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-info-circle"></i> @Localization.Dashboard.RCV_Pending </span>
+            <div class="count">@Model.dashboard.RCV_Pending</div>
+            <span class="count_bottom">
+                <i class="red"><i class="fa fa-sort-asc"></i>@Model.dashboard.RCV_New_Pending_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range_RCV
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-exclamation-triangle"></i> @Localization.Dashboard.MMC_Total </span>
+            <div class="count">@Model.dashboard.MMC_Total</div>
+            <span class="count_bottom">
+                <i class="red"><i class="fa fa-sort-asc"></i>@Model.dashboard.MMC_New_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range_MMC
+            </span>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-exclamation-triangle"></i> @Localization.Dashboard.MMC_Pending </span>
+            <div class="count">@Model.dashboard.MMC_Pending</div>
+            <span class="count_bottom">
+                <i class="red"><i class="fa fa-sort-asc"></i>@Model.dashboard.MMC_New_Pending_Percent% </i>
+                @Localization.Dashboard.Diff_Date_Range_RCV
+            </span>
+        </div>
+    </div>
+    <!-- /top tiles -->
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @Localization.Dashboard.Graph_RCV </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content2">
+                    <div id="graph_donut" style="width:100%; height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @Localization.Dashboard.Graph_RCVMM </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content2" style="width:100%; height:300px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- morris.js -->
+<script src="~/Design_Template/vendors/raphael/raphael.min.js"></script>
+<script src="~/Design_Template/vendors/morris.js/morris.min.js"></script>
+
+<script>
+    /////////////////////////////////// RCV Graph ////////////////////////////////////////
+    var V_RCV_Types_Match = '@Localization.Dashboard.Graph_RCV_Types_Match';
+    var V_RCV_Types_missMatch = '@Localization.Dashboard.Graph_RCV_Types_MissMatch';
+    var V_RCV_Types_Pending = '@Localization.Dashboard.Graph_RCV_Types_Pending';
+
+    var V_RCV_Match = @Model.dashboard.RCV_Match;
+    var V_RCV_missMatch = @Model.dashboard.RCV_MissMatch;
+    var V_RCV_Pending = @Model.dashboard.RCV_Pending;
+
+    /////////////////////////////////// MMC Graph ////////////////////////////////////////
+    var V_MMC_Types_Pending = '@Localization.Dashboard.Graph_RCVMM_Types_Pending';
+    var V_MMC_Types_Fixed = '@Localization.Dashboard.Graph_RCVMM_Types_Fixed';
+    var V_MMC_Types_Closed = '@Localization.Dashboard.Graph_RCVMM_Types_Closed';
+
+    var V_MMC_Pending = @Model.dashboard.MMC_Pending;
+    var V_MMC_Fixed = @Model.dashboard.MMC_Fixed;
+    var V_MMC_Closed = @Model.dashboard.MMC_Closed;
+</script>

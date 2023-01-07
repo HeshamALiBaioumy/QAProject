@@ -1,0 +1,372 @@
+﻿@model QA.Entities.View_Entities.VW_CR_Execute
+
+@{
+    ViewBag.Title = "ExecuteCR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.CR_Workflow.AssignedCRRetrievedSuccess',
+                        @*text: '@Session["EndMessage"].ToString()',*@
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+    else
+    {
+        <script>
+            jQuery(function () {
+                new PNotify({
+                    title: 'CR Accepted And moved to the next step',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                });
+            });
+        </script>
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.CR_Workflow.ExecuteCR_Header</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.CRID, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.CRID, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.projectID, Localization.CR_Workflow.Project + ": "
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.projectName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.projectItemID, Localization.CR_Workflow.Project_Item + ": "
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.projectItemName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.CRTypeMCID, Localization.CR_Workflow.CRMC + ": "
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.CRTypeMCName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.CRTypeGroupID, Localization.CR_Workflow.CR_Group + ": "
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.CRTypeGroupName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.CRTypeID, Localization.CR_Workflow.CR_Type
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.CRTypeName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.CRStatus, Localization.CR_Workflow.CR_Status + ": "
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.CRStatusName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.sample.sampleMaker
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.sample.sampleMaker, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.sample.sampleSize
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.sample.sampleSize, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.sample.sampleLength
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.sample.sampleLength, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.CR.sample.sampleUnitID
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.CR.sample.sampleUnitName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("ExecuteCR", "CR", FormMethod.Post
+                            , new
+                            {
+                                @class = "form-horizontal form-label-left",
+                                @id = "ExecuteCRForm",
+                                @name = "ExecuteCRForm",
+                                enctype = "multipart/form-data"
+                            }))
+                        {
+                            <div class="form-group" style="height: 320px;margin-top: 20px;">
+                                <div id='map' class="col-12" style="height: 300px;"></div>
+                                @Html.HiddenFor(model => Model.CR.mapSelection.zoomLevel, new { id = "MapZoomLevel" })
+                                @Html.HiddenFor(model => Model.projectMapSelection.exportJEOJSON, new { id = "ProjectMapJEOJSON" })
+                                @Html.HiddenFor(model => Model.CR.mapSelection.exportJEOJSON, new { id = "CRMapJEOJSON" })
+                                @Html.HiddenFor(model => Model.CR.mapSelection.turfCoordinates, new { id = "CRTurfCoordinates" })
+                                @Html.HiddenFor(model => Model.CR.mapSelection.projectMapSelectionType, new { id = "CRMapDrawType" })
+                            </div>
+
+
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.CR.CRID, new { @id = "CRID", @name = "CRID" })
+                            @Html.HiddenFor(model => Model.CR.isLabRequired, new { id = "isLabRequired" })
+                            @Html.HiddenFor(model => Model.CR.sample.mapSelection.exportJEOJSON, new { id = "CRSampleMapJEOJSON" })
+                            @Html.HiddenFor(model => Model.CR.sample.mapSelection.turfCoordinates, new { id = "CRSampleTurfCoordinates" })
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <input type="submit" value="@Localization.CR_Workflow.Accept_CR"
+                                               class="btn btn-success" name="CRAction" onclick="return AcceptCRValidation();" />
+                                        <input type="submit" value="@Localization.CR_Workflow.Reject_CR"
+                                               class="btn btn-primary" name="CRAction" onclick="return RejectCRValidation();" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="x_content">
+                                <div id="divViewItemModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">@Localization.CR.Modal_RejectCR_Reason</h4>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal Body -->
+                                            <div class="modal-body">
+                                                <div class="x_content">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            @Html.LabelFor(model => model.CR.rejectReason
+                                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                                            <div class="col-md-6 col-sm-6 col-12">
+                                                                @Html.EditorFor(model => model.CR.rejectReason
+                                                                    , new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                                @Html.ValidationMessageFor(model => model.CR.rejectReason, ""
+                                                                , new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal Body -->
+                                            <div class="modal-footer">
+                                                <button type="submit" value="@Localization.CR_Workflow.Reject_CR"
+                                                        class="btn btn-primary" name="CRAction"
+                                                        onclick="return RejectCRSubmit();">
+                                                    @Localization.Global.BtnOk
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Variables Declaration
+    function localizedAlerts(ErrorCode) {
+        if (ErrorCode == 'Map_Validation_Location') {
+            alert('@Localization.CR_Workflow.Sample_Location_Validation');
+        }
+
+        if (ErrorCode == 'Map_CRSample_Validation_Location') {
+            alert('@Localization.CR_Workflow.Map_CRSample_Validation_Location');
+        }
+
+        if (ErrorCode == 'RejectCR_RejectReason_Validation') {
+            alert('@Localization.CR_Workflow.RejectCR_RejectReason_Validation');
+        }
+    }
+</script>
+
+<script src="~/Design_Template/vendors/turf.min.js"></script>
+<script src="~/Design_Template/build/js/SoftaEngineers_ExecuteCRScreen.js"></script>

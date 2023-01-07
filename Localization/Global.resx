@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="boolIsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="BtnOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="BtnSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="BtnSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="CopyRights" xml:space="preserve">
+    <value>©2020 All Rights Reserved - Quality Assurance Admin </value>
+  </data>
+  <data name="CopyRightSW" xml:space="preserve">
+    <value>Software Engineers</value>
+  </data>
+  <data name="Lang_Arabic" xml:space="preserve">
+    <value>العربيه</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="makerID" xml:space="preserve">
+    <value>Maker ID</value>
+  </data>
+  <data name="Project_Quality_Control" xml:space="preserve">
+    <value>Quality Control</value>
+  </data>
+  <data name="Quick_Links" xml:space="preserve">
+    <value>Quick Links</value>
+  </data>
+  <data name="SearchDataRetrievedSuccessfully" xml:space="preserve">
+    <value>Search Data Retrieved Successfully</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Search Results</value>
+  </data>
+  <data name="searchResultsRetrievedSucessfully" xml:space="preserve">
+    <value>Search results retrieved successfully</value>
+  </data>
+  <data name="SearchTableActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="SearchTableActions_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Session_UserID" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="ViewDataRetrievedSuccessfully" xml:space="preserve">
+    <value>View Data Retrieved Successfully</value>
+  </data>
+  <data name="ViewResultsRetrievedSucessfully" xml:space="preserve">
+    <value>View results retrieved successfully</value>
+  </data>
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Welcome,</value>
+  </data>
+  <data name="boolIsVendor" xml:space="preserve">
+    <value>Is Vendor</value>
+  </data>
+  <data name="FrmCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="FrmUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="SearchTableActions_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Special_Characters_Not_Allowed" xml:space="preserve">
+    <value>Special Characters Not Allowed</value>
+  </data>
+  <data name="Email_Only_Field" xml:space="preserve">
+    <value>Please provide a working E-mail Address</value>
+  </data>
+  <data name="Numbers_Only_Field" xml:space="preserve">
+    <value>Field allowed for numeric values only</value>
+  </data>
+  <data name="SearchISActive" xml:space="preserve">
+    <value>- Search Is Active - </value>
+  </data>
+  <data name="SearchParameters" xml:space="preserve">
+    <value>Search Parameters</value>
+  </data>
+  <data name="LOVSelect" xml:space="preserve">
+    <value>- Select -</value>
+  </data>
+  <data name="SearchISActive_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="SearchISActive_InActive" xml:space="preserve">
+    <value>In-Active</value>
+  </data>
+  <data name="DDL_EmptyList" xml:space="preserve">
+    <value>- Select - </value>
+  </data>
+  <data name="ComplaintStatus_Search" xml:space="preserve">
+    <value>Complaint Status: </value>
+  </data>
+  <data name="UnhandledErrorOccured" xml:space="preserve">
+    <value>Unhandled Error Occured !</value>
+  </data>
+  <data name="DB_Connection_Error" xml:space="preserve">
+    <value>Database Connection Error Occured, Please Consult System Admin !</value>
+  </data>
+  <data name="Wizard_Step1" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
+  <data name="Wizard_Step2" xml:space="preserve">
+    <value>Step 2</value>
+  </data>
+  <data name="Wizard_Step3" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
+  <data name="Wizard_Step4" xml:space="preserve">
+    <value>Step 4</value>
+  </data>
+  <data name="Reports_OrgName" xml:space="preserve">
+    <value>وكاله ضمان الجوده - </value>
+  </data>
+  <data name="Attachment_ChooseFile" xml:space="preserve">
+    <value>Choose File</value>
+  </data>
+  <data name="Attachment_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Wizard_Finish_Label" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Wizard_Next_Label" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Wizard_Previous_Label" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ErrorPage_Header" xml:space="preserve">
+    <value>Oops! Page Not Found or Error Occured</value>
+  </data>
+  <data name="ErrorPage_Message" xml:space="preserve">
+    <value>Sorry but the page you are looking for does not exist, have been removed, name changed or is temporarily unavailable</value>
+  </data>
+  <data name="ErrorPage_Title" xml:space="preserve">
+    <value>Error Page</value>
+  </data>
+  <data name="ErrorPage_HomePage" xml:space="preserve">
+    <value>Back to homepage</value>
+  </data>
+  <data name="Attachment_ChooseMultiFiles" xml:space="preserve">
+    <value>Choose Multi-Files</value>
+  </data>
+  <data name="TextArea_Regex" xml:space="preserve">
+    <value>^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z|\r\n|\r|\n|\t|\s]*[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_ 0-9|\r\n|\r|\n|\t|\s]*$</value>
+  </data>
+  <data name="UserActions_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="UserActions_Logout" xml:space="preserve">
+    <value>LogOut</value>
+  </data>
+</root>

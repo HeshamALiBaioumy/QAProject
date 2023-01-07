@@ -1,0 +1,409 @@
+﻿@model QA.Entities.View_Entities.Vw_RCV_Missmatch
+@{
+    ViewBag.Title = Localization.RCV_Missmatch.Create_Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.RCV_Missmatch.Create_RetrieveRCVSuccess',
+                        @*text: '@Session["EndMessage"].ToString()',*@
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<script src="~/Design_Template/Scripts/tinymce/tinymce.min.js"></script>
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>@Localization.RCV_Missmatch.Create_ScreenHeader</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div id="divSearchArea" class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCVMissmatch.projectID
+                                    , Localization.RCV_Missmatch.Create_Project
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCVMissmatch.projectName, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCVMissmatch.CRID
+                                    , Localization.RCV_Missmatch.Create_CR
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCVMissmatch.strCRID, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCVMissmatch.CRRegistrationDate
+                                    , Localization.RCV_Missmatch.Create_CRRegistrationDate
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCVMissmatch.strCRRegistrationDate, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCVMissmatch.RCVAssignDate
+                                    , Localization.RCV_Missmatch.Create_RCVAssignDate
+                                    , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.EditorFor(model => model.RCVMissmatch.strRCVAssignDate, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RCVMissmatch.comments
+                                , Localization.RCV_Missmatch.Create_Comments
+                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    @Html.TextAreaFor(model => model.RCVMissmatch.comments, 2, 0
+                                        , htmlAttributes: new
+                                        {
+                                            @class = "form-control col-md-7 col-12",
+                                            @disabled = "disabled",
+                                            @readonly = "readonly"
+                                        })
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container border">
+                            <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_RCV_Attachments </h5>
+                            <div>
+                                @if (Model.RCVMissmatch.lstAttachmentNames.Count > 0)
+                                {
+                                    <div class="form-group">
+                                        <table class="table table-striped" id="tblAttachments" style="text-align: center;">
+                                            <tbody>
+                                                <tr>
+                                                    @for (int i = 0; i < Model.RCVMissmatch.lstAttachmentNames.Count; i++)
+                                                    {
+                                                        <td class="border">
+                                                            @Html.ActionLink(Model.RCVMissmatch.lstAttachmentNames[i], "DownloadAttachment", "RandomCRVerification"
+                                                                , new
+                                                                     {
+                                                                         fileName = Model.RCVMissmatch.lstAttachmentPaths[i],
+                                                                         downloadName = Model.RCVMissmatch.lstAttachmentNames[i]
+                                                                     }
+                                                                , new { @target = "_blank" })
+                                                        </td>
+                                                        if (i != 0 && (i + 1) % 4 == 0)
+                                                        {
+                                                        @:</tr><tr>
+                                                        }
+                                                    }
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <br />
+                        @Html.HiddenFor(model => Model.RCVMissmatch.mapProject.zoomLevel, new { id = "MapZoomLevel" })
+                        @Html.HiddenFor(model => Model.RCVMissmatch.mapProject.exportJEOJSON, new { id = "ProjectMapJEOJSON" })
+                        @Html.HiddenFor(model => Model.RCVMissmatch.mapCR.exportJEOJSON, new { id = "CRMapJEOJSON" })
+                        @Html.HiddenFor(model => Model.RCVMissmatch.mapCR.turfCoordinates, new { id = "CRTurfCoordinates" })
+                        @Html.HiddenFor(model => Model.RCVMissmatch.mapCR.projectMapSelectionType, new { id = "CRMapDrawType" })
+
+                        @using (Html.BeginForm("createRCVMissmatch", "RCVMissmatch", FormMethod.Post
+                            , new
+                            {
+                                @class = "form-horizontal form-label-left",
+                                enctype = "multipart/form-data",
+                                @id = "CreateRCVMissmatchForm",
+                                @name = "CreateRCVMissmatchForm"
+                            }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.RCVMissmatch.ID)
+                            @Html.HiddenFor(model => model.RCVMissmatch.RCVID)
+                            @Html.HiddenFor(model => model.RCVMissmatch.projectID)
+
+                            <div class="container border">
+                                <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_caseDescription </h5>
+                                <div>
+                                    <div class="form-group">
+                                        @Html.TextAreaFor(model => model.RCVMissmatch.caseDescription
+                                                , new { @class = "form-control col-md-12 col-12" })
+                                        <div id="infoMessage" style="display:none; color: red; font-weight: bold;">  </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            //       Sample 1 Details
+                            <div class="container border">
+                                <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_Sample1_Header </h5>
+                                <div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.RCVMissmatch.sample1.sampleMaker
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.RCVMissmatch.sample1.sampleMaker
+                                                    , new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample1.sampleMaker, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.RCVMissmatch.sample1.sampleSize
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.RCVMissmatch.sample1.sampleSize
+                                                    , new
+                                                         {
+                                                             htmlAttributes = new
+                                                             {
+                                                                 @class = "form-control col-md-7 col-12",
+                                                                 @type = "number",
+                                                                 @step = "0.01"
+                                                             }
+                                                         })
+                                                @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample1.sampleSize, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.RCVMissmatch.sample1.sampleLength
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.RCVMissmatch.sample1.sampleLength
+                                                    , new
+                                                         {
+                                                             htmlAttributes = new
+                                                             {
+                                                                 @class = "form-control col-md-7 col-12",
+                                                                 @type = "number",
+                                                                 @step = "0.01"
+                                                             }
+                                                         })
+                                                @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample1.sampleLength, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.RCVMissmatch.sample1.sampleUnitID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.RCVMissmatch.sample1.sampleUnitID
+                                                    , new SelectList(Model.lOVSampleUnits, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample1.sampleUnitID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            //       Sample 1 Map
+                    <div class="container border">
+                        <h5 class="Container_Header" style="width: 180px;"> @Localization.RCV_Missmatch.Create_Sample1_Location_Header </h5>
+                        <div class="form-group" style="height: 320px;margin-top: 20px;">
+                            <div id='map1' class="col-12" style="height: 300px;"></div>
+                            @Html.HiddenFor(model => Model.RCVMissmatch.mapSample1.exportJEOJSON, new { id = "Sample1MapJEOJSON" })
+                            @Html.HiddenFor(model => Model.RCVMissmatch.mapSample1.turfCoordinates, new { id = "Sample1MapTurfCoordinates" })
+                        </div>
+                    </div>
+                            <br />
+                            //       Sample 2 Details
+                            <div class="container border">
+                                <h5 class="Container_Header"> @Localization.RCV_Missmatch.Create_Sample2_Header </h5>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => Model.RCVMissmatch.sample2.sampleMaker
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => Model.RCVMissmatch.sample2.sampleMaker
+                                                , new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                            @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample2.sampleMaker, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => Model.RCVMissmatch.sample2.sampleSize
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => Model.RCVMissmatch.sample2.sampleSize
+                                                , new
+                                                     {
+                                                         htmlAttributes = new
+                                                         {
+                                                             @class = "form-control col-md-7 col-12",
+                                                             @type = "number",
+                                                             @step = "0.01"
+                                                         }
+                                                     })
+                                            @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample2.sampleSize, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => Model.RCVMissmatch.sample2.sampleLength
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.EditorFor(model => Model.RCVMissmatch.sample2.sampleLength
+                                                , new
+                                                     {
+                                                         htmlAttributes = new
+                                                         {
+                                                             @class = "form-control col-md-7 col-12",
+                                                             @type = "number",
+                                                             @step = "0.01"
+                                                         }
+                                                     })
+                                            @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample2.sampleLength, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        @Html.LabelFor(model => Model.RCVMissmatch.sample2.sampleUnitID
+                                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                        <div class="col-md-6 col-sm-6 col-12">
+                                            @Html.DropDownListFor(model => Model.RCVMissmatch.sample2.sampleUnitID
+                                                , new SelectList(Model.lOVSampleUnits, "id", "value")
+                                                , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                            @Html.ValidationMessageFor(model => Model.RCVMissmatch.sample2.sampleUnitID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            //       Sample 2 Map
+                            <div class="container border">
+                                <h5 class="Container_Header" style="width: 180px;"> @Localization.RCV_Missmatch.Create_Sample2_Location_Header </h5>
+                                <div class="form-group" style="height: 320px;margin-top: 20px;">
+                                    <div id='map2' class="col-12" style="height: 300px;"></div>
+                                    @Html.HiddenFor(model => Model.RCVMissmatch.mapSample2.exportJEOJSON, new { id = "Sample2MapJEOJSON" })
+                                    @Html.HiddenFor(model => Model.RCVMissmatch.mapSample2.turfCoordinates, new { id = "Sample2MapTurfCoordinates" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">@Localization.Global.BtnCancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">@Localization.Global.BtnSubmit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var Sample_Field_Required = '@Localization.RCV_Missmatch.Sample_Field_Required_val';
+    var Sample_Maker_Length = '@Localization.RCV_Missmatch.Sample_Maker_Length_val';
+    var Sample_SizeLength_Length = '@Localization.RCV_Missmatch.Sample_SizeLength_Length_val';
+    var Sample_Unit_Required = '@Localization.RCV_Missmatch.Sample_Unit_Required_Val';
+    var SpecialCharactersNotAllowed = '@Localization.Global.Special_Characters_Not_Allowed';
+
+    function localizedAlerts(ErrorCode) {
+        if (ErrorCode == 'Map_CRSample1_Validation_Location') {
+            alert('@Localization.RCV_Missmatch.Map_CRSample1_Validation_Location');
+        }
+
+        if (ErrorCode == 'Map_CRSample2_Validation_Location') {
+            alert('@Localization.RCV_Missmatch.Map_CRSample2_Validation_Location');
+        }
+    }
+</script>
+
+<script src="~/Design_Template/vendors/turf.min.js"></script>
+<script src="~/Design_Template/build/js/SoftaEngineers_createRCVMissmatch.js"></script>

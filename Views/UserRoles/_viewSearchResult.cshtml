@@ -1,0 +1,1167 @@
+﻿@model QA.Entities.Business_Entities.Ent_UserRoles
+
+<script src="~/Design_Template/build/js/custom.js"></script>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">@Localization.UserRoles.RoleDetails</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+            <div class="x_content">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.roleName, Localization.UserRoles.Role_Name_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.roleName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.initialScreenID, Localization.UserRoles.initialScreenID_Search
+                            , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            @Html.EditorFor(model => model.initialScreenName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "form-control col-md-7 col-12",
+                                    @disabled = "disabled",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                        <div class="col-md-9 col-sm-9 col-12">
+                            <div class="">
+                                <label>
+                                    @Html.CheckBoxFor(model => model.isActive, htmlAttributes: new
+                                    {
+                                        @class = "js-switch",
+                                        @checked = "checked",
+                                        @disabled = "disabled"
+                                    })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4>
+                                <small> @Localization.UserRoles.UserRolesSection </small>
+                            </h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <ul class="list-unstyled timeline">
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Dashboard_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_SuperEng
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_SuperEng
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_ConsultantEng
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_ConsultantEng
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_AuthLab
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_AuthLab
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_Technician
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_Technician
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_CEO
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_CEO
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Dashboard_QualityEng
+                                                            , htmlAttributes: new { @class = "flat" , @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Dashboard_QualityEng
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_ProjectOwnerType_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.projectOwnerType_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.projectOwnerType_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.projectOwnerType_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.projectOwnerType_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_ProjectOwner_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.ProjectOwner_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.ProjectOwner_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.ProjectOwner_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.ProjectOwner_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_FactoryType_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.FactoryType_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.FactoryType_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.FactoryType_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.FactoryType_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Factory_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Factory_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Factory_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Factory_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Factory_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Department_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Department_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Department_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Department_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Department_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_DepartmentSection_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.DepartmentSection_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.DepartmentSection_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.DepartmentSection_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.DepartmentSection_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_MixerType_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.MixerType_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.MixerType_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.MixerType_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.MixerType_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Mixer_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Mixer_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Mixer_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Mixer_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Mixer_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_SampleTestCategory_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTestCategory_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTestCategory_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTestCategory_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTestCategory_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_SampleTest_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTest_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTest_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTest_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.SampleTest_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CRTYPEMC_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTYPEMC_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTYPEMC_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTYPEMC_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTYPEMC_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CRTypeGroup_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTypeGroup_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTypeGroup_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTypeGroup_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRTypeGroup_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CRType_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRType_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRType_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRType_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CRType_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CheckListItem_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItem_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItem_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItem_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItem_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CheckListItemGroup_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItemGroup_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItemGroup_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItemGroup_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckListItemGroup_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CheckLists_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckLists_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckLists_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckLists_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CheckLists_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_UserProfile_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserProfile_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserProfile_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserProfile_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserProfile_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_UserRoles_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserRoles_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserRoles_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserRoles_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.UserRoles_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CR_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CR_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CR_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CR_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CR_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                    <br />
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CR_Action
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_CR_Action
+                                                    </label>
+                                                    <label class="col-4">
+                                                        @Html.CheckBoxFor(model => model.CR_AddAttachments
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_CR_AddAttach
+                                                    </label>
+                                                    <label class="col-4">
+                                                        @Html.CheckBoxFor(model => model.CR_ViewAttachments
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_CR_ViewAttach
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CLWF_Sequence_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Sequence_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Sequence_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Sequence_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Sequence_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CLWF_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Maker
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_CLWF_Maker
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.CLWF_Checker
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_CLWF_Checker
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Project_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Project_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Project_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Project_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Project_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Complaint_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Complaint_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Complaint_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Complaint_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Complaint_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_CR_Reports_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_CR_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_CR_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_CR_Samples_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_CR_Samples_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_CR_Projects_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_CR_Projects_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_CR_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_CR_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_CR_Samples_SearchDetailed
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_CR_Samples_SearchDetailed
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_Project_Reports_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.Reports_Project_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Reports_Project_View
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_RCV_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Action
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCV_Action
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_RandomSearch
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCV_RandomSearch
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_RCVMM_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCVMM_Create
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Create
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCVMM_Search
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Search
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCVMM_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCVMM_Edit
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_Edit
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="#" class="tag">
+                                                <span> @Localization.UserRoles.UR_RCVMM_Conversation_Head </span>
+                                            </a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"></h2>
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                <div>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Conversation_View
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCVMMConv_View
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Conversation_Reply
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCVMMConv_Reply
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Conversation_Close
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCVMMConv_Close
+                                                    </label>
+                                                    <label class="col-2">
+                                                        @Html.CheckBoxFor(model => model.RCV_Conversation_Escalation
+                                                            , htmlAttributes: new { @class = "flat", @disabled = "disabled" })
+                                                        @Localization.UserRoles.UR_Action_RCVMMConv_Escalation
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Body -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">
+                @Localization.Global.BtnOk
+            </button>
+        </div>
+    </div>
+</div>
+

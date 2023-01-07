@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CL_Pending" xml:space="preserve">
+    <value>Pending Check-Lists</value>
+  </data>
+  <data name="CL_Total" xml:space="preserve">
+    <value>Check-Lists</value>
+  </data>
+  <data name="Complaints_Closed_Total" xml:space="preserve">
+    <value>Closed Complaints</value>
+  </data>
+  <data name="Complaints_Total" xml:space="preserve">
+    <value>Complaints</value>
+  </data>
+  <data name="CR_Accepted" xml:space="preserve">
+    <value>Accepted CR's</value>
+  </data>
+  <data name="CR_Pending" xml:space="preserve">
+    <value>Pending CR's</value>
+  </data>
+  <data name="CR_Recieved_Pending" xml:space="preserve">
+    <value>Recieved CR's</value>
+  </data>
+  <data name="CR_Rejected" xml:space="preserve">
+    <value>Rejected CR's</value>
+  </data>
+  <data name="CR_Total" xml:space="preserve">
+    <value>CR's</value>
+  </data>
+  <data name="Diff_Date_Range" xml:space="preserve">
+    <value>From Last Month</value>
+  </data>
+  <data name="Diff_Date_Range_CL" xml:space="preserve">
+    <value>From Last 10 days</value>
+  </data>
+  <data name="Diff_Date_Range_CR" xml:space="preserve">
+    <value>From Last 10 days</value>
+  </data>
+  <data name="Diff_Date_Range_MMC" xml:space="preserve">
+    <value>From Last 10 days</value>
+  </data>
+  <data name="Diff_Date_Range_RCV" xml:space="preserve">
+    <value>From Last 10 days</value>
+  </data>
+  <data name="Graph_CheckList" xml:space="preserve">
+    <value>Check-List's Graph</value>
+  </data>
+  <data name="Graph_CL_Types_Accepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Graph_CL_Types_CheckerDone" xml:space="preserve">
+    <value>Done Checker</value>
+  </data>
+  <data name="Graph_CL_Types_CheckerPending" xml:space="preserve">
+    <value>Pending Checker</value>
+  </data>
+  <data name="Graph_CL_Types_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Graph_CL_Types_MakerDone" xml:space="preserve">
+    <value>Done Maker</value>
+  </data>
+  <data name="Graph_CL_Types_MakerPending" xml:space="preserve">
+    <value>Pending Maker</value>
+  </data>
+  <data name="Graph_CL_Types_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Graph_CR" xml:space="preserve">
+    <value>CR's Graph</value>
+  </data>
+  <data name="Graph_CR_Types_Accepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Graph_CR_Types_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Graph_CR_Types_RecievedPending" xml:space="preserve">
+    <value>Recieved Pending</value>
+  </data>
+  <data name="Graph_CR_Types_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Graph_Overall" xml:space="preserve">
+    <value>Overall Graph</value>
+  </data>
+  <data name="Graph_Overall_Types_CL" xml:space="preserve">
+    <value>CheckList</value>
+  </data>
+  <data name="Graph_Overall_Types_Complaint" xml:space="preserve">
+    <value>Complaint</value>
+  </data>
+  <data name="Graph_Overall_Types_CR" xml:space="preserve">
+    <value>CR</value>
+  </data>
+  <data name="Graph_Overall_Types_MMC" xml:space="preserve">
+    <value>Missmatch</value>
+  </data>
+  <data name="Graph_RCV" xml:space="preserve">
+    <value>Random CR Verification</value>
+  </data>
+  <data name="Graph_RCVMM" xml:space="preserve">
+    <value>Miss-Match Cases</value>
+  </data>
+  <data name="Graph_RCVMM_Types_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Graph_RCVMM_Types_Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="Graph_RCVMM_Types_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Graph_RCV_Types_Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Graph_RCV_Types_MissMatch" xml:space="preserve">
+    <value>Miss-Match</value>
+  </data>
+  <data name="Graph_RCV_Types_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="MMC_Pending" xml:space="preserve">
+    <value>MMC Pending</value>
+  </data>
+  <data name="MMC_Total" xml:space="preserve">
+    <value>MMC Total</value>
+  </data>
+  <data name="Projects_Total" xml:space="preserve">
+    <value>Total Projects</value>
+  </data>
+  <data name="RCV_Pending" xml:space="preserve">
+    <value>RCV Pending</value>
+  </data>
+  <data name="RCV_Total" xml:space="preserve">
+    <value>RCV Total</value>
+  </data>
+</root>

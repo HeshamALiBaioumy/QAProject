@@ -1,0 +1,420 @@
+﻿@model QA.Entities.View_Entities.Vw_Project
+
+@{
+    bool isUpdate = (Model != null && Model.project.ID != -1) ? true : false;
+
+    ViewBag.Title = (isUpdate) ? Localization.Global.FrmUpdate : Localization.Global.FrmCreate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["Status"] != null)
+    {
+        if ((bool)Session["Status"])
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@((isUpdate)? Localization.Global.ViewDataRetrievedSuccessfully
+                            : Localization.Project.ProjectAddedSuccessfully)',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                jQuery(function () {
+                    new PNotify({
+                        title: '@Localization.ErrorMessages.UnhandledErrorOccured',
+                        text: '@Session["EndMessage"].ToString()',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                });
+            </script>
+        }
+
+        Session["Status"] = null;
+        Session["EndMessage"] = null;
+    }
+}
+
+<div class="right_col col-lg-12" role="main">
+    <div class="">
+        <div id="imgloader" class="loadingImageDiv">
+            <img src="~/Design_Template/images/loading3.gif" class="loadingImageImg" />
+        </div>
+        <div class="page-title row">
+            <div class="col-sm-6 col-12 text-left">
+                <h3>
+                    @((isUpdate) ? Localization.Project.UpdateProject : Localization.Project.CreateProject)
+                </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Create", "Project", FormMethod.Post
+                            , new { @class = "form-horizontal form-label-left", @id = "ProjectForm", @name = "ProjectForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <!-- Smart Wizard -->
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step1 <br /><small>@Localization.Project.ProjectDetails</small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step2 <br /><small>@Localization.Project.ProjectStakeholders</small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step3 <br /><small>@Localization.Project.ProjectMileStones</small></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-4">
+                                            <span class="step_no">4</span>
+                                            <span class="step_descr"> @Localization.Global.Wizard_Step4 <br /><small>@Localization.Project.ProjectLocation</small></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="step-1">
+                                    @Html.HiddenFor(model => Model.project.ID)
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.name
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.EditorFor(model => Model.project.name, new { htmlAttributes = new { @class = "form-control col-md-7 col-12" } })
+                                                @Html.ValidationMessageFor(model => Model.project.name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.project.startDate
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                <div class="input-group date col-md-7 col-12" data-provide="datepicker">
+                                                    @Html.TextBoxFor(model => model.project.startDate
+                                                    , @System.Configuration.ConfigurationManager.AppSettings["MachineDateFormat"].ToString()
+                                                    , new { @class = "form-control datetype", @readonly = "readonly" })
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.project.startDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.project.endDate
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                <div class="input-group date col-md-7 col-12" data-provide="datepicker">
+                                                    @Html.TextBoxFor(model => model.project.endDate
+                                                    , @System.Configuration.ConfigurationManager.AppSettings["MachineDateFormat"].ToString()
+                                                    , new { @class = "form-control datetype", @readonly = "readonly" })
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.project.endDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => model.project.registerDate
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                <div class="input-group date col-md-7 col-12" data-provide="datepicker">
+                                                    @Html.TextBoxFor(model => model.project.registerDate
+                                                    , @System.Configuration.ConfigurationManager.AppSettings["MachineDateFormat"].ToString()
+                                                    , new { @class = "form-control datetype", @readonly = "readonly", @disabled = "disabled" })
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.project.registerDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.isActive, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-9 col-sm-9 col-12">
+                                                <div class="">
+                                                    <label>
+                                                        @Html.CheckBoxFor(model => Model.project.isActive, htmlAttributes: new { @class = "js-switch", @checked = "checked" })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step-2">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.projectOwnerID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.projectOwnerID
+                                                    , new SelectList(Model.lOVProjectOwners, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.projectOwnerID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.departmentID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.departmentID
+                                                    , new SelectList(Model.lOVDepartments, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.departmentID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.departmentSectionID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.departmentSectionID
+                                                    , new SelectList(Model.lOVSections, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.departmentSectionID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.supervisorEngID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.supervisorEngID
+                                                    , new SelectList(Model.lOVSupervisorEngineers, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.supervisorEngID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.consultantID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.consultantID
+                                                    , new SelectList(Model.lOVConsultants, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.consultantID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.consultantAssistantID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.consultantAssistantID
+                                                    , new SelectList(Model.lOVConsultantAssistant, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.consultantAssistantID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.contractorID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.contractorID
+                                                    , new SelectList(Model.lOVContractors, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.contractorID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.contractorAssistantID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.contractorAssistantID
+                                                    , new SelectList(Model.lOVContractorAssistant, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.contractorAssistantID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.authorizedLabID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.authorizedLabID
+                                                    , new SelectList(Model.lOVAuthorizedLabs, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.authorizedLabID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.QATechnicianID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.QATechnicianID
+                                                    , new SelectList(Model.lOVQATechnicians, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.QATechnicianID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.LabelFor(model => Model.project.QualityAssuranceEngID
+                                                , htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-12" })
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                @Html.DropDownListFor(model => Model.project.QualityAssuranceEngID
+                                                    , new SelectList(Model.lOVQualityAssuranceEngineers, "id", "value")
+                                                    , htmlAttributes: new { @class = "select2_single form-control col-md-7 col-12", tabindex = "-1" })
+                                                @Html.ValidationMessageFor(model => Model.project.QualityAssuranceEngID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step-3" class="h-75">
+                                    <div class="form-group">
+                                        <table class="table table-striped" id="tblProjectMilestones" style="text-align: center;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:20%">@Localization.Project.tbl_ProjMlstone_MileStone</th>
+                                                    <th style="width:30%">@Localization.Project.tbl_ProjMlstone_Description</th>
+                                                    <th style="width:20%">@Localization.Project.tbl_ProjMlstone_Amount</th>
+                                                    <th style="width:15%">@Localization.Project.tbl_ProjMlstone_Amt_Unit</th>
+                                                    @*<th style="width:10%">@Localization.Project.tbl_ProjMlstone_Percentage</th>*@
+                                                    <th style="width:5%">@Localization.Project.tbl_ProjMlstone_Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.project.projectMileStones)
+                                                {
+                                                    <tr>
+                                                        <td>@item.name</td>
+                                                        <td>@item.description</td>
+                                                        <td>@item.amount</td>
+                                                        <td><input type="hidden" value="@item.amountUnitID">@item.txtAmountUnit</td>
+                                                        @*<td>@item.percentage %</td>*@
+                                                        <td>
+                                                            <button type="button" onclick="Remove(this);" class="close"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden='true' style='font-size: 20px; color: red'>&times;</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" id="txtProjMlstone_MileStone" placeholder="Mile-stone">
+                                                        <label id="lblProjMlstone_MileStone" style="color: red; display: none"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="txtProjMlstone_Description" placeholder="Mile-stone Description" />
+                                                        <label id="lblProjMlstone_Description" style="color: red; display: none"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" id="txtProjMlstone_Amount" placeholder="Amount" />
+                                                        <label id="lblProjMlstone_Amount" style="color: red; display: none"></label>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DropDownList("ddlProjMlstone_Amt_Unit", new SelectList(Model.lOVMilestoneAmtUnits, "id", "value")
+                                                            , htmlAttributes: new { @class = "select2_single form-control col-md-12 col-12", tabindex = "-1" })
+                                                        <label id="lblProjMlstone_Amt_Unit" style="color: red; display: none"></label>
+                                                    </td>
+                                                    @*<td>
+                                                        <input id="txtProjMlstone_Percentage" class="knob" data-width="60" data-height="75" data-min="0"
+                                                               data-displayPrevious=true data-fgColor="#26B99A" value="25">
+                                                        <label id="lblProjMlstone_Percentage" style="color: red; display: none">*</label>
+                                                    </td>*@
+                                                    <td>
+                                                        <a class="btn btn-app" id="btnAdd" value="Add">
+                                                            <i class="fa fa-save"></i> @Localization.Project.tbl_ProjMlstone_Add
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="step-4" style="height: 100%;">
+                                    <div id='map' class="col-12" style="height: 98%;"></div>
+                                    @Html.HiddenFor(model => model.project.mapSelection.displayOnUserLocation, new { id = "MapDisplayOnUserLocation" })
+                                    @Html.HiddenFor(model => model.project.mapSelection.centerLatitude, new { id = "MapCenterLatitude" })
+                                    @Html.HiddenFor(model => model.project.mapSelection.centerLongitude, new { id = "MapCenterLongitude" })
+                                    @Html.HiddenFor(model => model.project.mapSelection.zoomLevel, new { id = "MapZoomLevel" })
+                                    @Html.HiddenFor(model => model.project.mapSelection.exportJEOJSON, new { id = "MapJEOJSON" })
+                                </div>
+                            </div>
+                            <!-- End SmartWizard Content -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Variables Declaration
+    var vartextRegex = /^@QA.Entities.Session_Entities.RegexEnum.validText$/;
+    var varNumericRegex = /^@QA.Entities.Session_Entities.RegexEnum.numbers$/;
+    var tbl_ProjMlstone_Val_Length = "@Localization.Project.tbl_ProjMlstone_Val_Length";
+    var tbl_ProjMlstone_Val_Required = "@Localization.Project.tbl_ProjMlstone_Val_Required";
+    var tbl_ProjMlstone_Val_SpecialCharacters = "@Localization.Project.tbl_ProjMlstone_Val_SpecialCharacters";
+    var tbl_ProjMlstone_Val_NumericField = "@Localization.Project.tbl_ProjMlstone_Val_NumericField";
+    var isProjectUpdate = '@isUpdate';
+
+    var Wizard_Next_Label = "@Localization.Global.Wizard_Next_Label";
+    var Wizard_Previous_Label = "@Localization.Global.Wizard_Previous_Label";
+    var Wizard_Finish_Label = "@Localization.Global.Wizard_Finish_Label";
+
+    function localizedAlerts(ErrorCode) {
+        if (ErrorCode == 'Map_Validation_ProjectLocation') {
+            alert('@Localization.Project.Map_Validation_ProjectLocation');
+        } else if (ErrorCode == 'MileStones_Validation') {
+            alert('@Localization.Project.MileStones_Validation');
+        }else if (ErrorCode == 'tbl_ProjMlstone_Percentage_Validation') {
+            alert('@Localization.Project.tbl_ProjMlstone_Percentage_Validation');
+        }
+    }
+</script>
+
+<script src="~/Design_Template/build/js/SoftaEngineers_ProjectScreen.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
