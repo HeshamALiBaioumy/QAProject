@@ -672,6 +672,9 @@
     <Compile Include="Models\CR_TYPE_GROUPS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CR_WORKFOW.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DEPARTMENT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -772,6 +775,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PROJECT_OWNER_TYPE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RCV.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RCVMM_ASSIGNED_LOV.cs">

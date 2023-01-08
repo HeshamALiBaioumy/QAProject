@@ -268,6 +268,34 @@ warning 6002: The table/view 'QualityDb.dbo.CR' does not have a primary key defi
           <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
           <Property Name="MAKER_DAT_TIM" Type="datetime" />
         </EntityType>
+        <EntityType Name="CR_WORKFOW">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CONTRACTOR_ID" Type="int" />
+          <Property Name="REGISTRATION_DATE" Type="date" />
+          <Property Name="SUPERVISORENG_ID" Type="int" />
+          <Property Name="SUPERVISORENG_RECIEVEDATE" Type="date" />
+          <Property Name="SUPERVISORENG_FEEDBACK" Type="nvarchar" MaxLength="10" />
+          <Property Name="SUPERVISORENG_FEEDBACK_DATE" Type="date" />
+          <Property Name="SUPERVISORENG_COMMENTID" Type="int" />
+          <Property Name="CONSULTANTENG_ID" Type="int" />
+          <Property Name="CONSULTANTENG_RECIEVEDATE" Type="date" />
+          <Property Name="CONSULTANTENG_FEEDBACK" Type="nvarchar" MaxLength="10" />
+          <Property Name="CONSULTANTENG_FEEDBACK_DATE" Type="date" />
+          <Property Name="CONSULTANTENG_COMMENTID" Type="int" />
+          <Property Name="IS_REQUIRE_SAMPLE" Type="bit" />
+          <Property Name="AUTHLAB_ID" Type="int" />
+          <Property Name="AUTHLAB_RECIEVEDATE" Type="date" />
+          <Property Name="AUTHLAB_FEEDBACK" Type="nvarchar" MaxLength="10" />
+          <Property Name="AUTHLAB_FEEDBACK_DATE" Type="date" />
+          <Property Name="AUTHLAB_COMMENTID" Type="int" />
+          <Property Name="CR_CURRENT_STATUS" Type="int" />
+          <Property Name="CONTRACTOR_UPDATE_RECIEVEDATE" Type="date" />
+          <Property Name="CONTRACTOR_UPDATE_UPDATEDATE" Type="date" />
+          <Property Name="REJECT_REASON" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
             <PropertyRef Name="DEPARTMENT_ID" />
@@ -485,6 +513,20 @@ warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a prima
           <Property Name="MAP_SELECTION_ID" Type="int" />
           <Property Name="MAKER" Type="nvarchar" MaxLength="30" />
           <Property Name="MAKER_DAT_TIM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RCV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="int" />
+          <Property Name="CR_ID" Type="int" />
+          <Property Name="IS_SAMPLE_REQUIRED" Type="bit" />
+          <Property Name="ASSIGN_USER_ID" Type="int" />
+          <Property Name="ASSIGN_DATE" Type="date" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="255" />
+          <Property Name="CLOSURE_DATE" Type="date" />
         </EntityType>
         <EntityType Name="RCV_STATUS_LOV">
           <Key>
@@ -768,6 +810,7 @@ warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a prima
           <EntitySet Name="CR_TYPES" EntityType="Self.CR_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CR_TYPES_FLOW" EntityType="Self.CR_TYPES_FLOW" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CR_TYPES_MAIN_CATEGORIES" EntityType="Self.CR_TYPES_MAIN_CATEGORIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CR_WORKFOW" EntityType="Self.CR_WORKFOW" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPARTMENT_SECTION" EntityType="Self.DEPARTMENT_SECTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FACTORY" EntityType="Self.FACTORY" Schema="dbo" store:Type="Tables" />
@@ -784,6 +827,7 @@ warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a prima
           <EntitySet Name="PROJECT_OWNER" EntityType="Self.PROJECT_OWNER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="Self.PROJECT_OWNER_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCV" EntityType="Self.RCV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCV_STATUS_LOV" EntityType="Self.RCV_STATUS_LOV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="Self.RCVMM_ASSIGNED_LOV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCVMM_STATUS_LOV" EntityType="Self.RCVMM_STATUS_LOV" Schema="dbo" store:Type="Tables" />
@@ -858,6 +902,7 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <EntitySet Name="CR_TYPES" EntityType="QualityDbModel.CR_TYPES" />
           <EntitySet Name="CR_TYPES_FLOW" EntityType="QualityDbModel.CR_TYPES_FLOW" />
           <EntitySet Name="CR_TYPES_MAIN_CATEGORIES" EntityType="QualityDbModel.CR_TYPES_MAIN_CATEGORIES" />
+          <EntitySet Name="CR_WORKFOW" EntityType="QualityDbModel.CR_WORKFOW" />
           <EntitySet Name="DEPARTMENTs" EntityType="QualityDbModel.DEPARTMENT" />
           <EntitySet Name="DEPARTMENT_SECTION" EntityType="QualityDbModel.DEPARTMENT_SECTION" />
           <EntitySet Name="FACTORies" EntityType="QualityDbModel.FACTORY" />
@@ -874,6 +919,7 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <EntitySet Name="PROJECT_OWNER" EntityType="QualityDbModel.PROJECT_OWNER" />
           <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="QualityDbModel.PROJECT_OWNER_TYPE" />
           <EntitySet Name="PROJECTS" EntityType="QualityDbModel.PROJECT" />
+          <EntitySet Name="RCVs" EntityType="QualityDbModel.RCV" />
           <EntitySet Name="RCV_STATUS_LOV" EntityType="QualityDbModel.RCV_STATUS_LOV" />
           <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="QualityDbModel.RCVMM_ASSIGNED_LOV" />
           <EntitySet Name="RCVMM_STATUS_LOV" EntityType="QualityDbModel.RCVMM_STATUS_LOV" />
@@ -1136,6 +1182,34 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="CR_WORKFOW">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CONTRACTOR_ID" Type="Int32" />
+          <Property Name="REGISTRATION_DATE" Type="DateTime" Precision="0" />
+          <Property Name="SUPERVISORENG_ID" Type="Int32" />
+          <Property Name="SUPERVISORENG_RECIEVEDATE" Type="DateTime" Precision="0" />
+          <Property Name="SUPERVISORENG_FEEDBACK" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SUPERVISORENG_FEEDBACK_DATE" Type="DateTime" Precision="0" />
+          <Property Name="SUPERVISORENG_COMMENTID" Type="Int32" />
+          <Property Name="CONSULTANTENG_ID" Type="Int32" />
+          <Property Name="CONSULTANTENG_RECIEVEDATE" Type="DateTime" Precision="0" />
+          <Property Name="CONSULTANTENG_FEEDBACK" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CONSULTANTENG_FEEDBACK_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CONSULTANTENG_COMMENTID" Type="Int32" />
+          <Property Name="IS_REQUIRE_SAMPLE" Type="Boolean" />
+          <Property Name="AUTHLAB_ID" Type="Int32" />
+          <Property Name="AUTHLAB_RECIEVEDATE" Type="DateTime" Precision="0" />
+          <Property Name="AUTHLAB_FEEDBACK" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHLAB_FEEDBACK_DATE" Type="DateTime" Precision="0" />
+          <Property Name="AUTHLAB_COMMENTID" Type="Int32" />
+          <Property Name="CR_CURRENT_STATUS" Type="Int32" />
+          <Property Name="CONTRACTOR_UPDATE_RECIEVEDATE" Type="DateTime" Precision="0" />
+          <Property Name="CONTRACTOR_UPDATE_UPDATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="REJECT_REASON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
             <PropertyRef Name="DEPARTMENT_ID" />
@@ -1325,6 +1399,20 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <Property Name="MAP_SELECTION_ID" Type="Int32" />
           <Property Name="MAKER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MAKER_DAT_TIM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RCV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJECT_ID" Type="Int32" />
+          <Property Name="CR_ID" Type="Int32" />
+          <Property Name="IS_SAMPLE_REQUIRED" Type="Boolean" />
+          <Property Name="ASSIGN_USER_ID" Type="Int32" />
+          <Property Name="ASSIGN_DATE" Type="DateTime" Precision="0" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CLOSURE_DATE" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="RCV_STATUS_LOV">
           <Key>
@@ -1898,6 +1986,35 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CR_WORKFOW">
+            <EntityTypeMapping TypeName="QualityDbModel.CR_WORKFOW">
+              <MappingFragment StoreEntitySet="CR_WORKFOW">
+                <ScalarProperty Name="REJECT_REASON" ColumnName="REJECT_REASON" />
+                <ScalarProperty Name="CONTRACTOR_UPDATE_UPDATEDATE" ColumnName="CONTRACTOR_UPDATE_UPDATEDATE" />
+                <ScalarProperty Name="CONTRACTOR_UPDATE_RECIEVEDATE" ColumnName="CONTRACTOR_UPDATE_RECIEVEDATE" />
+                <ScalarProperty Name="CR_CURRENT_STATUS" ColumnName="CR_CURRENT_STATUS" />
+                <ScalarProperty Name="AUTHLAB_COMMENTID" ColumnName="AUTHLAB_COMMENTID" />
+                <ScalarProperty Name="AUTHLAB_FEEDBACK_DATE" ColumnName="AUTHLAB_FEEDBACK_DATE" />
+                <ScalarProperty Name="AUTHLAB_FEEDBACK" ColumnName="AUTHLAB_FEEDBACK" />
+                <ScalarProperty Name="AUTHLAB_RECIEVEDATE" ColumnName="AUTHLAB_RECIEVEDATE" />
+                <ScalarProperty Name="AUTHLAB_ID" ColumnName="AUTHLAB_ID" />
+                <ScalarProperty Name="IS_REQUIRE_SAMPLE" ColumnName="IS_REQUIRE_SAMPLE" />
+                <ScalarProperty Name="CONSULTANTENG_COMMENTID" ColumnName="CONSULTANTENG_COMMENTID" />
+                <ScalarProperty Name="CONSULTANTENG_FEEDBACK_DATE" ColumnName="CONSULTANTENG_FEEDBACK_DATE" />
+                <ScalarProperty Name="CONSULTANTENG_FEEDBACK" ColumnName="CONSULTANTENG_FEEDBACK" />
+                <ScalarProperty Name="CONSULTANTENG_RECIEVEDATE" ColumnName="CONSULTANTENG_RECIEVEDATE" />
+                <ScalarProperty Name="CONSULTANTENG_ID" ColumnName="CONSULTANTENG_ID" />
+                <ScalarProperty Name="SUPERVISORENG_COMMENTID" ColumnName="SUPERVISORENG_COMMENTID" />
+                <ScalarProperty Name="SUPERVISORENG_FEEDBACK_DATE" ColumnName="SUPERVISORENG_FEEDBACK_DATE" />
+                <ScalarProperty Name="SUPERVISORENG_FEEDBACK" ColumnName="SUPERVISORENG_FEEDBACK" />
+                <ScalarProperty Name="SUPERVISORENG_RECIEVEDATE" ColumnName="SUPERVISORENG_RECIEVEDATE" />
+                <ScalarProperty Name="SUPERVISORENG_ID" ColumnName="SUPERVISORENG_ID" />
+                <ScalarProperty Name="REGISTRATION_DATE" ColumnName="REGISTRATION_DATE" />
+                <ScalarProperty Name="CONTRACTOR_ID" ColumnName="CONTRACTOR_ID" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DEPARTMENTs">
             <EntityTypeMapping TypeName="QualityDbModel.DEPARTMENT">
               <MappingFragment StoreEntitySet="DEPARTMENT">
@@ -2101,6 +2218,21 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
                 <ScalarProperty Name="PROJECT_OWNER_ID" ColumnName="PROJECT_OWNER_ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="PROJECTS_ID" ColumnName="PROJECTS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCVs">
+            <EntityTypeMapping TypeName="QualityDbModel.RCV">
+              <MappingFragment StoreEntitySet="RCV">
+                <ScalarProperty Name="CLOSURE_DATE" ColumnName="CLOSURE_DATE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ASSIGN_DATE" ColumnName="ASSIGN_DATE" />
+                <ScalarProperty Name="ASSIGN_USER_ID" ColumnName="ASSIGN_USER_ID" />
+                <ScalarProperty Name="IS_SAMPLE_REQUIRED" ColumnName="IS_SAMPLE_REQUIRED" />
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

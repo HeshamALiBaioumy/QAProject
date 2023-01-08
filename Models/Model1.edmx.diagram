@@ -23,38 +23,40 @@
         <EntityTypeShape EntityType="QualityDbModel.CR_TYPES" Width="1.5" PointX="10.75" PointY="7.75" />
         <EntityTypeShape EntityType="QualityDbModel.CR_TYPES_FLOW" Width="1.5" PointX="2.75" PointY="11.75" />
         <EntityTypeShape EntityType="QualityDbModel.CR_TYPES_MAIN_CATEGORIES" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="QualityDbModel.DEPARTMENT" Width="1.5" PointX="10.75" PointY="11.75" />
-        <EntityTypeShape EntityType="QualityDbModel.DEPARTMENT_SECTION" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QualityDbModel.FACTORY" Width="1.5" PointX="12.75" PointY="4.75" />
-        <EntityTypeShape EntityType="QualityDbModel.FACTORY_TYPES" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="QualityDbModel.LOG_MESSAGES" Width="1.5" PointX="12.75" PointY="8.75" />
-        <EntityTypeShape EntityType="QualityDbModel.LT_INITIALSCREENS" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="QualityDbModel.LT_MEASURE_UNITS" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QualityDbModel.MAP_POINTS" Width="1.5" PointX="14.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QualityDbModel.MIXER" Width="1.5" PointX="14.75" PointY="6.75" />
-        <EntityTypeShape EntityType="QualityDbModel.MIXER_TYPES" Width="1.5" PointX="14.75" PointY="11.75" />
-        <EntityTypeShape EntityType="QualityDbModel.NAIONAL_TYPE" Width="1.5" PointX="14.75" PointY="14.75" />
-        <EntityTypeShape EntityType="QualityDbModel.NATIONALITY" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.NOTE" Width="1.5" PointX="2.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.PROJECT_OWNER" Width="1.5" PointX="4.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.PROJECT_OWNER_TYPE" Width="1.5" PointX="6.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.PROJECT" Width="1.5" PointX="8.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.RCV_STATUS_LOV" Width="1.5" PointX="10.75" PointY="15.75" />
-        <EntityTypeShape EntityType="QualityDbModel.RCVMM_ASSIGNED_LOV" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QualityDbModel.RCVMM_STATUS_LOV" Width="1.5" PointX="16.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TEST" Width="1.5" PointX="16.75" PointY="6.75" />
-        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TEST_CATEGORIES" Width="1.5" PointX="16.75" PointY="10.75" />
-        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TYPE" Width="1.5" PointX="16.75" PointY="13.75" />
-        <EntityTypeShape EntityType="QualityDbModel.SAMPLE" Width="1.5" PointX="16.75" PointY="16.75" />
-        <EntityTypeShape EntityType="QualityDbModel.SUPER_USERS" Width="1.5" PointX="12.75" PointY="17.75" />
-        <EntityTypeShape EntityType="QualityDbModel.TEST_SPATIAL_DATA" Width="1.5" PointX="18.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QualityDbModel.USER_PROFILE_TYPE" Width="1.5" PointX="0.75" PointY="18.75" />
-        <EntityTypeShape EntityType="QualityDbModel.USER_ROLES" Width="1.5" PointX="18.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QualityDbModel.USERS_LOGIN" Width="1.5" PointX="2.75" PointY="19.75" />
-        <EntityTypeShape EntityType="QualityDbModel.USERS_PROFILE" Width="1.5" PointX="4.75" PointY="19.75" />
-        <EntityTypeShape EntityType="QualityDbModel.CR" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QualityDbModel.MAP_SELECTIONS" Width="1.5" PointX="20.75" PointY="4.75" />
-        <EntityTypeShape EntityType="QualityDbModel.PROJECT_ITEMS" Width="1.5" PointX="20.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QualityDbModel.CR_WORKFOW" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="QualityDbModel.DEPARTMENT" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QualityDbModel.DEPARTMENT_SECTION" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QualityDbModel.FACTORY" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="QualityDbModel.FACTORY_TYPES" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QualityDbModel.LOG_MESSAGES" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="QualityDbModel.LT_INITIALSCREENS" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QualityDbModel.LT_MEASURE_UNITS" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QualityDbModel.MAP_POINTS" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="QualityDbModel.MIXER" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="QualityDbModel.MIXER_TYPES" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="QualityDbModel.NAIONAL_TYPE" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="QualityDbModel.NATIONALITY" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="QualityDbModel.NOTE" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QualityDbModel.PROJECT_OWNER" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QualityDbModel.PROJECT_OWNER_TYPE" Width="1.5" PointX="4.75" PointY="16.75" />
+        <EntityTypeShape EntityType="QualityDbModel.PROJECT" Width="1.5" PointX="6.75" PointY="16.75" />
+        <EntityTypeShape EntityType="QualityDbModel.RCV" Width="1.5" PointX="16.75" PointY="7.75" />
+        <EntityTypeShape EntityType="QualityDbModel.RCV_STATUS_LOV" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="QualityDbModel.RCVMM_ASSIGNED_LOV" Width="1.5" PointX="16.75" PointY="14.75" />
+        <EntityTypeShape EntityType="QualityDbModel.RCVMM_STATUS_LOV" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TEST" Width="1.5" PointX="14.75" PointY="17.75" />
+        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TEST_CATEGORIES" Width="1.5" PointX="16.75" PointY="17.75" />
+        <EntityTypeShape EntityType="QualityDbModel.SAMPLE_TYPE" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QualityDbModel.SAMPLE" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="QualityDbModel.SUPER_USERS" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QualityDbModel.TEST_SPATIAL_DATA" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="QualityDbModel.USER_PROFILE_TYPE" Width="1.5" PointX="8.75" PointY="18.75" />
+        <EntityTypeShape EntityType="QualityDbModel.USER_ROLES" Width="1.5" PointX="18.75" PointY="9.75" />
+        <EntityTypeShape EntityType="QualityDbModel.USERS_LOGIN" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QualityDbModel.USERS_PROFILE" Width="1.5" PointX="2.75" PointY="20.75" />
+        <EntityTypeShape EntityType="QualityDbModel.CR" Width="1.5" PointX="20.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QualityDbModel.MAP_SELECTIONS" Width="1.5" PointX="20.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QualityDbModel.PROJECT_ITEMS" Width="1.5" PointX="10.75" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

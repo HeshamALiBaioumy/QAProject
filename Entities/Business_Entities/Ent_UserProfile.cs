@@ -22,6 +22,8 @@ namespace QA.Entities.Business_Entities
             , ErrorMessageResourceName = "EmployeeName_length_Validation")]
         public string employeeName { get; set; }
 
+        public int? contactId { get; set; }
+
         //[الرقم القومي, رقم الإقامة]
         [Display(Name = "nationalityTypeID", ResourceType = typeof(Localization.UserProfile))]
         [Range(minimum: 0, maximum: int.MaxValue, ErrorMessageResourceType = typeof(Localization.UserProfile)

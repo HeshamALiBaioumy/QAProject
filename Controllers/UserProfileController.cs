@@ -41,7 +41,7 @@ namespace QA.Controllers
                 lOVUserTypes = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_UserTypes),
                 lOVNationalityTypes = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_NationalityTypes),
                 lOVNationalities = lstNationalities,
-                lOVSuperUsers = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.EmptyList),
+                lOVSuperUsers = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_SupervisorEngs),
                 lOVRoles = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_Roles),
                 lOVProjectOwners = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.Project_Owner)
             });
@@ -196,7 +196,7 @@ namespace QA.Controllers
             return View(new Vw_UserProfile()
             {
                 lOVUserTypes = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_UserTypes),
-                lOVNationalityTypes = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_NationalityTypes),
+                lOVNationalityTypes = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_Nationalities),
                 lOVNationalities = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_Nationalities),
                 lOVSuperUsers = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.EmptyList),
                 lOVRoles = new Mdl_LOV().fillLOV(Mdl_LOV.searchEntities.UserProfile_Roles),

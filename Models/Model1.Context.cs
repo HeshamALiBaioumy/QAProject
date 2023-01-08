@@ -43,6 +43,7 @@ namespace QA.Models
         public DbSet<CR_TYPES> CR_TYPES { get; set; }
         public DbSet<CR_TYPES_FLOW> CR_TYPES_FLOW { get; set; }
         public DbSet<CR_TYPES_MAIN_CATEGORIES> CR_TYPES_MAIN_CATEGORIES { get; set; }
+        public DbSet<CR_WORKFOW> CR_WORKFOW { get; set; }
         public DbSet<DEPARTMENT> DEPARTMENTs { get; set; }
         public DbSet<DEPARTMENT_SECTION> DEPARTMENT_SECTION { get; set; }
         public DbSet<FACTORY> FACTORies { get; set; }
@@ -59,6 +60,7 @@ namespace QA.Models
         public DbSet<PROJECT_OWNER> PROJECT_OWNER { get; set; }
         public DbSet<PROJECT_OWNER_TYPE> PROJECT_OWNER_TYPE { get; set; }
         public DbSet<PROJECT> PROJECTS { get; set; }
+        public DbSet<RCV> RCVs { get; set; }
         public DbSet<RCV_STATUS_LOV> RCV_STATUS_LOV { get; set; }
         public DbSet<RCVMM_ASSIGNED_LOV> RCVMM_ASSIGNED_LOV { get; set; }
         public DbSet<RCVMM_STATUS_LOV> RCVMM_STATUS_LOV { get; set; }

@@ -170,8 +170,8 @@ namespace QA.Models
                                     select new LOV()
                                     {
                                         id = cr.CR_ID,
-                                        value = proj.PROJECTS_ID.ToString()+"-"+ proj.NAME+"-"+item.NAME+"-"+cr.REGISTER_DATE.Value.ToString("dd/MM/yyyy"),
-                                        idStr = proj.PROJECTS_ID.ToString()+"-"+ proj.NAME+"-"+item.NAME+"-"+cr.REGISTER_DATE.Value.ToString("dd/MM/yyyy"),
+                                        value = proj.NAME+"-"+item.NAME,
+                                        idStr = proj.NAME+"-"+item.NAME,
                                     };
 
                       lst = query.ToList();
@@ -210,60 +210,236 @@ namespace QA.Models
 
                     case searchEntities.UserProfile_Nationalities:
                         searchEntityName = "UserProfile_Nationalities";
+                        lst = ctx.COUNTRIES.Select(d => new LOV { id = -1, value = d.COUNTRY_CODE, idStr = d.ENGLISHNAME }).ToList();
                         break;
                     case searchEntities.UserProfile_UserTypes:
                         searchEntityName = "UserProfile_UserTypes";
+                        lst = ctx.USER_PROFILE_TYPE.Where(s=>s.IS_ACTIVE).Select(d => new LOV { id = d.TYPE_ID, value = d.NAME, idStr = d.NAME }).ToList();
                         break;
                     case searchEntities.UserProfile_UserType_SuperUsers:
-                        searchEntityName = "UserProfile_UserType_SuperUsers";
+                        searchEntityName = "UserProfile_UserType_SuperUsers"; 
+
+                        var prof = from poftp  in ctx.USER_PROFILE_TYPE
+                                   join usprf in ctx.USERS_PROFILE  on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                   where poftp.TYPE_CODE =="SE"
+
+                                   select new LOV()
+                                    {
+                                        id = usprf.PROFILE_ID,
+                                        value = usprf.NAME,
+                                        idStr = usprf.NAME,
+                                    };
+
+                        lst = prof.ToList();
                         break;
                     case searchEntities.UserProfile_Roles:
                         searchEntityName = "UserProfile_Roles";
+                        lst = ctx.USER_ROLES.Select(d => new LOV { id = d.ROLE_ID, value = d.NAME, idStr = d.NAME }).ToList();
+
                         break;
                     case searchEntities.UserProfile_Consultants:
                         searchEntityName = "UserProfile_Consultants";
+                        var cons = from poftp in ctx.USER_PROFILE_TYPE
+                                   join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                   where poftp.TYPE_CODE == "CE"
+
+                                   select new LOV()
+                                   {
+                                       id = usprf.PROFILE_ID,
+                                       value = usprf.NAME,
+                                       idStr = usprf.NAME,
+                                   };
+
+                        lst = cons.ToList();
                         break;
                     case searchEntities.UserProfile_All_Consultant_Assistants:
                         searchEntityName = "UserProfile_All_Consultant_Assistants";
+                        var CEA = from poftp in ctx.USER_PROFILE_TYPE
+                                   join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                   where poftp.TYPE_CODE == "CEA" && poftp.IS_ACTIVE
+
+                                  select new LOV()
+                                   {
+                                       id = usprf.PROFILE_ID,
+                                       value = usprf.NAME,
+                                       idStr = usprf.NAME,
+                                   };
+
+                        lst = CEA.ToList();
                         break;
                     case searchEntities.UserProfile_Consultant_Assistants:
                         searchEntityName = "UserProfile_Consultant_Assistants";
+                        var CEAAll = from poftp in ctx.USER_PROFILE_TYPE
+                                  join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                  where poftp.TYPE_CODE == "CEA" && usprf.SUPER_USER_ID == parentID && poftp.IS_ACTIVE
+
+                                  select new LOV()
+                                  {
+                                      id = usprf.PROFILE_ID,
+                                      value = usprf.NAME,
+                                      idStr = usprf.NAME,
+                                  };
+
+                        lst = CEAAll.ToList();
+
                         break;
                     case searchEntities.UserProfile_Contractor:
                         searchEntityName = "UserProfile_Contractor";
+                        var CR = from poftp in ctx.USER_PROFILE_TYPE
+                                     join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                     where poftp.TYPE_CODE == "CR" && usprf.SUPER_USER_ID == parentID && poftp.IS_ACTIVE
+
+                                     select new LOV()
+                                     {
+                                         id = usprf.PROFILE_ID,
+                                         value = usprf.NAME,
+                                         idStr = usprf.NAME,
+                                     };
+
+                        lst = CR.ToList();
+
                         break;
                     case searchEntities.UserProfile_All_Contractor_Assistants:
                         searchEntityName = "UserProfile_All_Contractor_Assistants";
+                        var CRRelated = from poftp in ctx.USER_PROFILE_TYPE
+                                     join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                     where poftp.TYPE_CODE == "CRA" && poftp.IS_ACTIVE
+
+                                     select new LOV()
+                                     {
+                                         id = usprf.PROFILE_ID,
+                                         value = usprf.NAME,
+                                         idStr = usprf.NAME,
+                                     };
+
+                        lst = CRRelated.ToList();
                         break;
                     case searchEntities.UserProfile_Contractor_Assistants:
                         searchEntityName = "UserProfile_Contractor_Assistants";
+
+                        var CRUser = from poftp in ctx.USER_PROFILE_TYPE
+                                        join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                        where poftp.TYPE_CODE == "CRA" && usprf.SUPER_USER_ID == parentID && poftp.IS_ACTIVE
+
+                                        select new LOV()
+                                        {
+                                            id = usprf.PROFILE_ID,
+                                            value = usprf.NAME,
+                                            idStr = usprf.NAME,
+                                        };
+
+                        lst = CRUser.ToList();
                         break;
                     case searchEntities.UserProfile_AuthLab:
                         searchEntityName = "UserProfile_AuthLab";
+
+                        var authLap = from poftp in ctx.USER_PROFILE_TYPE
+                                     join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                     where poftp.TYPE_CODE == "AL" && poftp.IS_ACTIVE
+
+                                     select new LOV()
+                                     {
+                                         id = usprf.PROFILE_ID,
+                                         value = usprf.NAME,
+                                         idStr = usprf.NAME,
+                                     };
+
+                        lst = authLap.ToList();
                         break;
                     case searchEntities.UserProfile_QATech:
                         searchEntityName = "UserProfile_QATech";
-                        var currentType = ctx.USER_PROFILE_TYPE.FirstOrDefault(s => s.NAME == "QATech");
-                        if (currentType !=null)
-                        {
-                            lst = ctx.USERS_PROFILE.Where(s=>s.USER_TYPE_ID == currentType.TYPE_ID)
-                                .Select(d => new LOV { id = d.PROFILE_ID, value = d.NAME, idStr = d.NAME }).ToList();
-                        }
+                        var QATech = from poftp in ctx.USER_PROFILE_TYPE
+                                      join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                      where poftp.TYPE_CODE == "QT" &&  poftp.IS_ACTIVE
+
+                                      select new LOV()
+                                      {
+                                          id = usprf.PROFILE_ID,
+                                          value = usprf.NAME,
+                                          idStr = usprf.NAME,
+                                      };
+
+                        lst = QATech.ToList();
                         break;
                     case searchEntities.UserProfile_SupervisorEngs:
                         searchEntityName = "UserProfile_SupervisorEngs";
+
+                        var UserProfile_SupervisorEngs = from poftp in ctx.USER_PROFILE_TYPE
+                                     join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                     where poftp.TYPE_CODE == "SE"  && poftp.IS_ACTIVE
+
+                                     select new LOV()
+                                     {
+                                         id = usprf.PROFILE_ID,
+                                         value = usprf.NAME,
+                                         idStr = usprf.NAME,
+                                     };
+
+                        lst = UserProfile_SupervisorEngs.ToList();
                         break;
                     case searchEntities.UserProfile_QALAB:
                         searchEntityName = "UserProfile_QALAB";
+
+                        var UserProfile_QALAB = from poftp in ctx.USER_PROFILE_TYPE
+                                                         join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                                         where poftp.TYPE_CODE == "SE"  && poftp.IS_ACTIVE
+
+                                                         select new LOV()
+                                                         {
+                                                             id = usprf.PROFILE_ID,
+                                                             value = usprf.NAME,
+                                                             idStr = usprf.NAME,
+                                                         };
+
+                        lst = UserProfile_QALAB.ToList();
                         break;
                     case searchEntities.UserProfile_RepSuper:
                         searchEntityName = "UserProfile_RepSuper";
+
+                        var UserProfile_RepSuper = from poftp in ctx.USER_PROFILE_TYPE
+                                                join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                                where poftp.TYPE_CODE == "RS"  && poftp.IS_ACTIVE
+
+                                                select new LOV()
+                                                {
+                                                    id = usprf.PROFILE_ID,
+                                                    value = usprf.NAME,
+                                                    idStr = usprf.NAME,
+                                                };
+
+                        lst = UserProfile_RepSuper.ToList();
                         break;
                     case searchEntities.UserProfile_QualityEngineers:
                         searchEntityName = "UserProfile_QualityEngineers";
+                        var UserProfile_QualityEngineers = from poftp in ctx.USER_PROFILE_TYPE
+                                                   join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                                   where poftp.TYPE_CODE == "QAE" &&  poftp.IS_ACTIVE
+
+                                                   select new LOV()
+                                                   {
+                                                       id = usprf.PROFILE_ID,
+                                                       value = usprf.NAME,
+                                                       idStr = usprf.NAME,
+                                                   };
+
+                        lst = UserProfile_QualityEngineers.ToList();
                         break;
                     case searchEntities.UserProfile:
                         searchEntityName = "UserProfile";
+
+                        var UserProfile = from poftp in ctx.USER_PROFILE_TYPE
+                                                           join usprf in ctx.USERS_PROFILE on poftp.TYPE_ID equals usprf.USER_TYPE_ID
+                                                           where  poftp.IS_ACTIVE
+
+                                                           select new LOV()
+                                                           {
+                                                               id = usprf.PROFILE_ID,
+                                                               value = usprf.NAME,
+                                                               idStr = usprf.NAME,
+                                                           };
+
+                        lst = UserProfile.ToList();
+
                         break;
                     case searchEntities.Generic_Units:
                         searchEntityName = "Generic_Units";
@@ -273,6 +449,12 @@ namespace QA.Models
                     case searchEntities.UserRoles_InitialScreens:
                         searchEntityName = "UserRoles_InitialScreens";
                         lst = ctx.LT_INITIALSCREENS.Select(d => new LOV { id = d.ID, value = d.SCREENNAME_ENG, idStr = d.SCREENNAME_ENG }).ToList();
+
+                        break;
+
+                    case searchEntities.UserProfile_NationalityTypes:
+                        searchEntityName = "UserProfile_NationalityTypes";
+                        lst = ctx.NAIONAL_TYPE.Select(d => new LOV { id = d.NATIONAL_TYPE_ID, value = d.NATIONAL_DESC, idStr = d.NATIONAL_DESC }).ToList();
 
                         break;
 
@@ -304,7 +486,7 @@ namespace QA.Models
 
                         break;
                     //case searchEntities.CR_Statuses:
-                    case searchEntities.UserProfile_NationalityTypes:
+                //    case searchEntities.UserProfile_NationalityTypes:
                     //case searchEntities.Project_Milestone_AmtUnits:
                     case searchEntities.CR_SampleTest_Result:
                         isDBLOV = false;
