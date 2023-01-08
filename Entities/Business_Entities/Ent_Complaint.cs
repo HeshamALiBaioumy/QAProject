@@ -62,6 +62,8 @@ namespace QA.Entities.Business_Entities
         [Display(Name = "complaintStatus", ResourceType = typeof(Localization.Complaint))]
         public int complaintStatus { get; set; }
 
+        public DateTime regisetDate { get; set; }
+
         public string ComplaintStatusStr
         {
             get

@@ -81,7 +81,7 @@ namespace QA.Models
                                 projectID = proj.PROJECTS_ID,
                                 projectName = proj.NAME,
                                 CRID = cr.CR_ID,
-                                CRName = cr.REGISTER_DATE !=null? cr.REGISTER_DATE.Value.ToString("dd/MM/yyyy"):"",
+                                regisetDate = cr.REGISTER_DATE.HasValue? cr.REGISTER_DATE.Value:default(DateTime),
                                 comments = comp.COMMENTS,
                                 description = comp.DESCRIPTION,
                                 NotificationList = comp.NOTIFICATION_LIST,
@@ -115,6 +115,10 @@ namespace QA.Models
                 }
 
                 searchResult = query.ToList();
+                searchResult.ForEach(y =>
+                {
+                    y.CRName = y.regisetDate.ToString("dd/MM/yyyy");
+                });
             }
             catch (Exception ex)
             {

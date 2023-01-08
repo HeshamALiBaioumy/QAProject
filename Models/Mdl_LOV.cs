@@ -147,7 +147,7 @@ namespace QA.Models
                         break;
                     case searchEntities.ProjectCRs:
                         searchEntityName = "projectCRs";
-                        lst = ctx.CRs.AsNoTracking().Select(d => new LOV { id = d.CR_ID, value = d.REGISTER_DATE.Value.ToString("dd/MM.yyyy"), idStr = d.REGISTER_DATE.Value.ToString("dd/MM.yyyy") }).ToList();
+                        lst = ctx.CRs.AsNoTracking().Where(s=>s.PROJECT_ID == parentID).ToList().Select(d => new LOV { id = d.CR_ID, value = d.REGISTER_DATE.Value.ToString("dd/MM.yyyy"), idStr = d.REGISTER_DATE.Value.ToString("dd/MM.yyyy") }).ToList();
                         break;
                     case searchEntities.Project_Items:
                         searchEntityName = "Project_Items";
