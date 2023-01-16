@@ -61,6 +61,7 @@ namespace QA.Models
         public DbSet<PROJECT_OWNER_TYPE> PROJECT_OWNER_TYPE { get; set; }
         public DbSet<PROJECT> PROJECTS { get; set; }
         public DbSet<RCV> RCVs { get; set; }
+        public DbSet<RCV_MISSMATCH> RCV_MISSMATCH { get; set; }
         public DbSet<RCV_STATUS_LOV> RCV_STATUS_LOV { get; set; }
         public DbSet<RCVMM_ASSIGNED_LOV> RCVMM_ASSIGNED_LOV { get; set; }
         public DbSet<RCVMM_STATUS_LOV> RCVMM_STATUS_LOV { get; set; }

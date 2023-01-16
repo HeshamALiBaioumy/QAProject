@@ -528,6 +528,28 @@ warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a prima
           <Property Name="COMMENTS" Type="nvarchar" MaxLength="255" />
           <Property Name="CLOSURE_DATE" Type="date" />
         </EntityType>
+        <EntityType Name="RCV_MISSMATCH">
+          <Key>
+            <PropertyRef Name="MMC_ID" />
+          </Key>
+          <Property Name="MMC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RCV_ID" Type="int" />
+          <Property Name="PROJECT_ID" Type="int" />
+          <Property Name="CASE_CREATE_DATETIME" Type="date" />
+          <Property Name="CASE_DESC" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SAMPLE_ID_1" Type="int" />
+          <Property Name="MAP_POINT_ID_1" Type="int" />
+          <Property Name="SAMPLE_ID_2" Type="int" />
+          <Property Name="MAP_POINT_ID_2" Type="int" />
+          <Property Name="TECHNICIAN_ID" Type="int" />
+          <Property Name="SUPERVISORENG_ID" Type="int" />
+          <Property Name="CONTRACTORASSISTANT_ID" Type="int" />
+          <Property Name="QUALITYENG_ID" Type="int" />
+          <Property Name="STATUS_ID" Type="int" />
+          <Property Name="PENDING_ON_ID" Type="int" />
+          <Property Name="CASE_CLOSE_DATETIME" Type="date" />
+          <Property Name="MAKER_ID" Type="int" />
+        </EntityType>
         <EntityType Name="RCV_STATUS_LOV">
           <Key>
             <PropertyRef Name="ID" />
@@ -828,6 +850,7 @@ warning 6002: The table/view 'QualityDb.dbo.PROJECT_ITEMS' does not have a prima
           <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="Self.PROJECT_OWNER_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCV" EntityType="Self.RCV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RCV_MISSMATCH" EntityType="Self.RCV_MISSMATCH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCV_STATUS_LOV" EntityType="Self.RCV_STATUS_LOV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="Self.RCVMM_ASSIGNED_LOV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RCVMM_STATUS_LOV" EntityType="Self.RCVMM_STATUS_LOV" Schema="dbo" store:Type="Tables" />
@@ -920,6 +943,7 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <EntitySet Name="PROJECT_OWNER_TYPE" EntityType="QualityDbModel.PROJECT_OWNER_TYPE" />
           <EntitySet Name="PROJECTS" EntityType="QualityDbModel.PROJECT" />
           <EntitySet Name="RCVs" EntityType="QualityDbModel.RCV" />
+          <EntitySet Name="RCV_MISSMATCH" EntityType="QualityDbModel.RCV_MISSMATCH" />
           <EntitySet Name="RCV_STATUS_LOV" EntityType="QualityDbModel.RCV_STATUS_LOV" />
           <EntitySet Name="RCVMM_ASSIGNED_LOV" EntityType="QualityDbModel.RCVMM_ASSIGNED_LOV" />
           <EntitySet Name="RCVMM_STATUS_LOV" EntityType="QualityDbModel.RCVMM_STATUS_LOV" />
@@ -1413,6 +1437,28 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
           <Property Name="STATUS" Type="Int32" />
           <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CLOSURE_DATE" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="RCV_MISSMATCH">
+          <Key>
+            <PropertyRef Name="MMC_ID" />
+          </Key>
+          <Property Name="MMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RCV_ID" Type="Int32" />
+          <Property Name="PROJECT_ID" Type="Int32" />
+          <Property Name="CASE_CREATE_DATETIME" Type="DateTime" Precision="0" />
+          <Property Name="CASE_DESC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLE_ID_1" Type="Int32" />
+          <Property Name="MAP_POINT_ID_1" Type="Int32" />
+          <Property Name="SAMPLE_ID_2" Type="Int32" />
+          <Property Name="MAP_POINT_ID_2" Type="Int32" />
+          <Property Name="TECHNICIAN_ID" Type="Int32" />
+          <Property Name="SUPERVISORENG_ID" Type="Int32" />
+          <Property Name="CONTRACTORASSISTANT_ID" Type="Int32" />
+          <Property Name="QUALITYENG_ID" Type="Int32" />
+          <Property Name="STATUS_ID" Type="Int32" />
+          <Property Name="PENDING_ON_ID" Type="Int32" />
+          <Property Name="CASE_CLOSE_DATETIME" Type="DateTime" Precision="0" />
+          <Property Name="MAKER_ID" Type="Int32" />
         </EntityType>
         <EntityType Name="RCV_STATUS_LOV">
           <Key>
@@ -2233,6 +2279,29 @@ FROM [dbo].[PROJECT_ITEMS] AS [PROJECT_ITEMS]</DefiningQuery>
                 <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
                 <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RCV_MISSMATCH">
+            <EntityTypeMapping TypeName="QualityDbModel.RCV_MISSMATCH">
+              <MappingFragment StoreEntitySet="RCV_MISSMATCH">
+                <ScalarProperty Name="MAKER_ID" ColumnName="MAKER_ID" />
+                <ScalarProperty Name="CASE_CLOSE_DATETIME" ColumnName="CASE_CLOSE_DATETIME" />
+                <ScalarProperty Name="PENDING_ON_ID" ColumnName="PENDING_ON_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="QUALITYENG_ID" ColumnName="QUALITYENG_ID" />
+                <ScalarProperty Name="CONTRACTORASSISTANT_ID" ColumnName="CONTRACTORASSISTANT_ID" />
+                <ScalarProperty Name="SUPERVISORENG_ID" ColumnName="SUPERVISORENG_ID" />
+                <ScalarProperty Name="TECHNICIAN_ID" ColumnName="TECHNICIAN_ID" />
+                <ScalarProperty Name="MAP_POINT_ID_2" ColumnName="MAP_POINT_ID_2" />
+                <ScalarProperty Name="SAMPLE_ID_2" ColumnName="SAMPLE_ID_2" />
+                <ScalarProperty Name="MAP_POINT_ID_1" ColumnName="MAP_POINT_ID_1" />
+                <ScalarProperty Name="SAMPLE_ID_1" ColumnName="SAMPLE_ID_1" />
+                <ScalarProperty Name="CASE_DESC" ColumnName="CASE_DESC" />
+                <ScalarProperty Name="CASE_CREATE_DATETIME" ColumnName="CASE_CREATE_DATETIME" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="RCV_ID" ColumnName="RCV_ID" />
+                <ScalarProperty Name="MMC_ID" ColumnName="MMC_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
